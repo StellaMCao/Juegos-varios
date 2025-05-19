@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego de Prompts MIEL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e1;
+      text-align: center;
+      padding: 40px;
+    }
+    input, button {
+      font-size: 18px;
+      padding: 10px;
+      margin: 5px;
+    }
+    input[type="text"] {
+      width: 200px;
+    }
+    .resultado {
+      margin-top: 30px;
+      font-size: 18px;
+      background: #fff3cd;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      max-width: 700px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍯 Juego de Prompts MIEL</h1>
+  
+  <p>Ingresá un número de 4 cifras (de 0000 a 9999):</p>
+  <input type="text" id="codigo" maxlength="4" placeholder="Ej: 0427" />
+
+  <p>Ingresá una temática:</p>
+  <input type="text" id="tematica" placeholder="Ej: ansiedad, IA, identidad..." />
+
+  <br>
+  <button onclick="generarPrompt()">Generar Prompt</button>
+  <button onclick="copiarPrompt()">📋 Copiar Prompt</button>
+  <button onclick="reiniciar()">🔄 Reiniciar</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    const metas = [
+      "para explorar la temática de [TEMA] con una consigna creativa",
+      "para diseñar una actividad de clase sobre [TEMA]",
+      "para presentar un dilema relacionado con [TEMA]",
+      "para calmar inquietudes vinculadas a [TEMA]",
+      "para incluir en una historia basada en [TEMA]",
+      "para abrir una clase reflexiva sobre [TEMA]",
+      "para inspirar una producción artística sobre [TEMA]",
+      "para abordar [TEMA] desde el humor",
+      "para disparar una conversación filosófica sobre [TEMA]",
+      "para pensar en voz alta sobre [TEMA]"
+    ];
+
+    const identidades = [
+      "una monja tibetana",
+      "un robot paranoico",
+      "un político en campaña",
+      "una abuela que da consejos",
+      "un hacker melancólico",
+      "una docente de literatura",
+      "un médium del siglo XIX",
+      "un payaso con miedo al silencio",
+      "un filósofo escéptico griego",
+      "una estudiante que no entiende nada"
+    ];
+
+    const estilos = [
+      "poético y onírico",
+      "sarcástico y cortante",
+      "grandilocuente y ampuloso",
+      "tierno y circular",
+      "críptico y visual",
+      "con metáforas literarias",
+      "profético y delirante",
+      "absurdo y juguetón",
+      "con paradojas y analogías",
+      "confesional, con dudas"
+    ];
+
+    const formatos = [
+      "en una sola línea con rima",
+      "en una tabla de dos columnas",
+      "en 50 palabras exactas",
+      "como una receta de cocina",
+      "como un gráfico ASCII",
+      "en forma de diálogo",
+      "en verso libre",
+      "en viñetas con emojis",
+      "en un mapa conceptual",
+      "en primera persona y español rioplatense"
+    ];
+
+    let promptFinal = ""; // para guardar el prompt generado
+
+    function generarPrompt() {
+      const codigo = document.getElementById("codigo").value.trim().padStart(4, '0');
+      const tematica = document.getElementById("tematica").value.trim();
+
+      if (!/^\d{4}$/.test(codigo) || tematica === "") {
+        document.getElementById("resultado").innerHTML = "⚠️ Ingresá un número de 4 cifras y una temática.";
+        return;
+      }
+
+      const m = parseInt(codigo[0]);
+      const i = parseInt(codigo[1]);
+      const e = parseInt(codigo[2]);
+      const l = parseInt(codigo[3]);
+
+      const meta = metas[m].replace("[TEMA]", tematica.toLowerCase());
+      const identidad = identidades[i];
+      const estilo = estilos[e];
+      const formato = formatos[l];
+
+      promptFinal = `Quiero un texto ${meta}, redactado como si lo escribiera ${identidad}, con un estilo ${estilo}, y presentado ${formato}.`;
+
+      const detalle = `
+        <strong>Meta:</strong> ${meta}<br>
+        <strong>Identidad:</strong> Como si respondiera ${identidad}<br>
+        <strong>Estilo:</strong> Con un tono ${estilo}<br>
+        <strong>Lenguaje / Formato:</strong> ${formato}<br><br>
+        ✍️ <strong>Prompt generado:</strong><br>
+        <textarea id="promptTexto" rows="4" style="width:90%;">${promptFinal}</textarea>
+      `;
+
+      document.getElementById("resultado").innerHTML = detalle;
+    }
+
+    function copiarPrompt() {
+      const campo = document.getElementById("promptTexto");
+      if (campo) {
+        campo.select();
+        document.execCommand("copy");
+        alert("✅ Prompt copiado al portapapeles.");
+      } else {
+        alert("⚠️ Generá un prompt primero.");
+      }
+    }
+
+    function reiniciar() {
+      document.getElementById("codigo").value = "";
+      document.getElementById("tematica").value = "";
+      document.getElementById("resultado").innerHTML = "";
+      promptFinal = "";
+    }
+  </script>
+</body>
+</html>
 
