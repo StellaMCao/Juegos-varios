@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Rúbrica Analítica de Evaluación de Materiales con IA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 15px;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.5; /* Line-height base para el body */
+            font-size: 0.95em; /* Tamaño de fuente base para el body */
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 30px auto 32px auto;
+            padding: 18px 14px 30px 14px;
+            background-color: #fff;
+            border-radius: 11px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.11);
+        }
+        .evaluation-info {
+            margin-bottom: 22px;
+            padding: 12px 10px 8px 10px;
+            background-color: #f9f9f9;
+            border-radius: 7px;
+            border: 1px solid #eee;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .evaluation-info label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+        .evaluation-info > div { /* Contenedores de los inputs para control flex */
+            display: flex;
+            flex-direction: column;
+        }
+        /* Ajuste de flex para los campos de entrada */
+        .evaluation-info > div:nth-child(1) { /* Materia o Tema */
+            flex: 2 1 400px; /* Crece el doble, base de 400px */
+            min-width: 250px; /* Asegura un mínimo de ancho */
+        }
+        .evaluation-info > div:nth-child(2) { /* Notas del Evaluador */
+            flex: 1 1 200px; /* Crece 1, base de 200px */
+            min-width: 150px; /* Asegura un mínimo de ancho */
+        }
+        .evaluation-info input[type="text"],
+        .evaluation-info textarea {
+            width: 100%; /* Ocupa todo el ancho de su contenedor flex */
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .evaluation-info textarea {
+            min-height: 28px;
+            resize: vertical;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate; /* Esencial para border-spacing */
+            border-spacing: 10px 0; /* 10px de espacio horizontal entre columnas, 0 vertical */
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            font-size: 10pt; /* Todo el texto de la tabla a 10pt */
+            margin-bottom: 32px;
+            table-layout: fixed; /* Asegura que las columnas mantengan su ancho fijo */
+        }
+        thead tr {
+            display: table-row; /* Asegura que thead se comporte como fila de tabla */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 10px; /* Padding uniforme para todas las celdas */
+            text-align: left;
+            vertical-align: top; /* Asegura que el contenido se alinee arriba */
+            word-wrap: break-word; /* Permite que el texto se rompa si es muy largo */
+        }
+        th {
+            background-color: #e9e9e9;
+            color: #333;
+            font-weight: bold;
+            font-size: 0.85em; /* Encabezados ligeramente más pequeños */
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        /* Definición de anchos de columna */
+        td:nth-child(1) { /* Dimensión */
+            width: 8%; /* Ancho ajustado */
+            font-weight: bold;
+            background-color: #f9f9f9;
+            min-width: 80px; /* Mantenemos min-width para evitar que se colapse demasiado en pantallas muy pequeñas */
+            vertical-align: middle; /* Centra el texto en la celda con rowspan */
+        }
+        td.criterio-col { /* Columna Criterio con clase específica */
+            width: 15%; /* Ancho ajustado */
+            font-weight: bold; /* Toda la columna en negrita */
+        }
+        td.criterio-col .autor-criterio { /* Autores en cursiva y heredando la negrita */
+            font-style: italic;
+            font-weight: inherit; /* Hereda la negrita del padre td */
+        }
+        /* Las tres columnas de valoración: Adecuado, Parcial, Insuficiente */
+        td.adequate-cell, td.partial-cell, td.insufficient-cell {
+            width: 25.66%; /* Ancho exacto y uniforme para las tres columnas ((100% - 8% - 15%) / 3 = 77% / 3) */
+            padding: 0; /* ¡Importante! El padding lo controla el LABEL hijo */
+            vertical-align: top; /* Contenido de la celda alineado arriba */
+        }
+        tbody tr {
+            display: table-row; /* Asegura que tbody se comporte como fila de tabla para la altura */
+        }
+        tbody td {
+            display: table-cell; /* Asegura que las celdas se comporten como celdas de tabla */
+            vertical-align: inherit; /* Hereda vertical-align del td general */
+        }
+
+        /* Estilo para los recuadros de selección (label) */
+        input[type="radio"] { display: none; } /* Oculta los botones de radio nativos */
+        td label {
+            display: flex; /* Convierte el label en un contenedor flex */
+            align-items: center; /* Centra verticalmente el texto dentro del label */
+            justify-content: flex-start; /* Alinea el texto al inicio horizontalmente */
+            cursor: pointer;
+            
+            padding: 10px; /* ¡Padding uniforme a los 4 lados! */
+            border: 1px solid #333; /* Borde negro */
+
+            border-radius: 4px;
+            box-sizing: border-box; /* Incluye padding y borde en la altura/ancho calculados */
+            width: 100%; /* El label ocupa todo el ancho de su TD padre */
+            
+            /* --- Altura FIJA para 3 líneas de texto a 10pt, con 1.5 line-height y 10px padding --- */
+            /* Altura de una línea de texto a 10pt con 1.5 line-height es aprox 20px. */
+            /* 3 líneas * 20px (altura de línea) + 2*10px (padding vertical) + 2*1px (borde vertical) = 60 + 20 + 2 = 82px. */
+            height: 82px; 
+            overflow: hidden; /* ¡Corta el texto si es más largo de 3 líneas! */
+            white-space: normal; /* Permite que el texto se envuelva */
+            word-break: break-word; /* Rompe palabras largas para evitar desbordamiento */
+            hyphens: auto; /* Activa la separación en sílabas */
+            /* --- Fin Altura FIJA --- */
+
+            font-weight: normal; /* Asegura que el texto dentro de los recuadros NO esté en negrita */
+            font-size: 1em; /* Mantiene el tamaño de fuente heredado de la tabla (10pt) */
+            line-height: 1.5; /* Asegura la altura de línea consistente para el cálculo */
+            text-align: left; /* Alinea el texto dentro del label */
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            /* TRANSFORM NARROW ELIMINADO PARA CONSISTENCIA DE ALTURA Y RENDERIZADO */
+        }
+        td.adequate-cell label {
+            background-color: #e8f5e9; color: #2e7d32; border-color: #b6e2c3;
+        }
+        td.partial-cell label {
+            background-color: #fffde7; color: #8d6e00; border-color: #ffe082;
+        }
+        td.insufficient-cell label {
+            background-color: #ffebee; color: #c62828; border-color: #ffcdd2;
+        }
+        td.adequate-cell label:hover { background-color: #d0f0d3;}
+        td.partial-cell label:hover { background-color: #fff9c4;}
+        td.insufficient-cell label:hover { background-color: #ffcdd2;}
+        input[type="radio"]:checked + label { border-width: 2px; box-shadow: 0 0 0 2px #00968830;}
+        td.adequate-cell input[type="radio"]:checked + label { background-color: #c8e6c9; color: #1b5e20; border-color: #1b5e20; }
+        td.partial-cell input[type="radio"]:checked + label { background-color: #ffe082; color: #ff8f00; border-color: #ff8f00; }
+        td.insufficient-cell input[type="radio"]:checked + label { background-color: #ffcdd2; color: #b71c1c; border-color: #b71c1c; }
+        /* Semáforo visual */
+        #scoreContainer {
+            text-align: center; margin-top: 28px; font-size: 1.18em; font-weight: bold; color: #0056b3;
+            padding: 15px 8px 9px 8px; background-color: #eaf6ff; border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.09); display: flex; flex-direction: column; align-items: center;
+            max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+        #totalScore { font-size: 1.4em; color: #d32f2f; margin-top: 7px; margin-bottom: 6px; }
+        #trafficLightBox {
+            width: 50px; height: 120px; background-color: #333; border-radius: 8px; border: 2px solid #555;
+            display: flex; flex-direction: column; justify-content: space-around; align-items: center;
+            padding: 5px; margin: 12px auto; box-shadow: inset 0 0 5px rgba(0,0,0,0.5); position: relative;
+        }
+        #trafficLightBox::after {
+            content: ''; position: absolute; bottom: -20px; width: 20px; height: 25px;
+            background-color: #444; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;
+            left: 50%; transform: translateX(-50%);
+        }
+        .light-bulb {
+            width: 35px; height: 35px; border-radius: 50%; background-color: #666;
+            transition: background-color 0.3s, box-shadow 0.3s; border: 1px solid #444;
+        }
+        .light-bulb.red-on { background-color: #F44336; box-shadow: 0 0 10px #F44336, 0 0 20px rgba(244,67,54,0.5);}
+        .light-bulb.yellow-on { background-color: #FFC107; box-shadow: 0 0 10px #FFC107, 0 0 20px rgba(255,193,7,0.5);}
+        .light-bulb.green-on { background-color: #4CAF50; box-shadow: 0 0 10px #4CAF50, 0 0 20px rgba(76,175,80,0.5);}
+        #trafficLightText {
+            text-align: center; margin-top: 8px; font-size: 1em; color: #444; max-width: 700px;
+        }
+        .button-container { text-align: center; margin-top: 18px; margin-bottom: 16px;}
+        .button-container button {
+            padding: 10px 20px; font-size: 1em; margin: 0 10px; border: none; border-radius: 5px;
+            cursor: pointer; background-color: #007bff; color: white; transition: background-color 0.3s;
+        }
+        .button-container button:hover { background-color: #0056b3; }
+        .button-container button#resetButton { background-color: #dc3545;}
+        .button-container button#resetButton:hover { background-color: #c82333;}
+        /* Responsivo */
+        @media (max-width: 900px) {
+            .container { padding: 6px; }
+            .evaluation-info input[type="text"], .evaluation-info textarea { width: 95%; }
+            table { border-spacing: 0; border-collapse: collapse; } /* Elimina espaciado en móvil */
+            th, td { display: block; width: 100% !important; min-width: 0 !important; max-width: none !important; padding: 8px 10px; }
+            th { position: static !important; } /* Deshabilita sticky en móvil */
+            tbody tr { display: block; width: 100%; } /* Filas se apilan */
+            tbody td { display: block; width: 100%; vertical-align: top; } /* Celdas se apilan */
+            td:nth-child(1), td.criterio-col, td.adequate-cell, td.partial-cell, td.insufficient-cell {
+                width: 100% !important; /* Ancho completo en móvil */
+                padding: 8px 10px; /* Padding móvil */
+            }
+            td label { 
+                height: auto; /* Permitir que la altura sea auto en móvil */
+                min-height: 56px; /* Altura mínima para legibilidad en móvil */
+                max-height: none; 
+                overflow: visible; /* Mostrar todo el texto en móvil */
+                transform: none; /* Deshabilitar el transform en móvil */
+                padding: 8px 10px;
+            }
+        }
+        /* Estilos de impresión */
+        @media print {
+            body { margin: 0; font-size: 10pt; color: black; background-color: white;}
+            .container, #scoreContainer { box-shadow: none; border: none;}
+            h1 { font-size: 16pt; color: #000;}
+            .evaluation-info { box-shadow: none; border: none; background: white;}
+            .evaluation-info input[type="text"], .evaluation-info textarea { border: none; border-bottom: 1px dotted #999; background: none;}
+            .button-container, input[type="radio"] { display: none;}
+            #trafficLightBox { transform: scale(0.8);}
+            #totalScore { color: #000 !important;}
+            th, td { padding: 5px 8px; border-color: #ccc;}
+            td label {
+                transform: none; /* Deshabilitar scaleX en impresión */
+                height: auto !important; /* Permitir altura auto para impresión */
+                overflow: visible !important; /* Mostrar todo el texto para impresión */
+                padding: 5px; /* Ajustar padding para impresión */
+            }
+            td.adequate-cell input[type="radio"]:checked + label,
+            td.partial-cell input[type="radio"]:checked + label,
+            td.insufficient-cell input[type="radio"]:checked + label {
+                background-color: #e0e0e0 !important; /* Gris claro para selección en impresión */
+                color: #000 !important;
+                border-color: #000 !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Rúbrica Analítica – Evaluación crítica de materiales generados con IA</h1>
+    <div class="evaluation-info">
+        <div style="flex:1;">
+            <label for="evaluationSubject">Materia o Tema de Evaluación:</label>
+            <input type="text" id="evaluationSubject" name="evaluationSubject" placeholder="Ej: Material didáctico sobre IA">
+        </div>
+        <div style="flex:2;min-width:230px;">
+            <label for="evaluatorNotes">Notas del Evaluador:</label>
+            <textarea id="evaluatorNotes" name="evaluatorNotes" rows="2" placeholder="Añada aquí cualquier nota o comentario adicional sobre el material evaluado."></textarea>
+        </div>
+    </div>
+    <form id="rubricForm">
+        <table>
+            <thead>
+                <tr>
+                    <th>Dimensión</th>
+                    <th>Criterio</th>
+                    <th>Adecuado</th>
+                    <th>Parcial</th>
+                    <th>Insuficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">Rigor académico</td>
+                    <td class="criterio-col">
+                        Fiabilidad de las fuentes <br>
+                        ¿El texto cita fuentes reales y comprobables? <br>
+                        <span class="autor-criterio">(García Caicedo et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c1" value="2" id="c1a"><label for="c1a">Cita fuentes académicas verificables, con autor, año y acceso.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c1" value="1" id="c1p"><label for="c1p">Menciona autores o fuentes genéricas, sin trazabilidad.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c1" value="0" id="c1i"><label for="c1i">No hay fuentes, o las referencias son falsas o vagas.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="criterio-col">
+                        Validación con evidencia <br>
+                        ¿Las afirmaciones están respaldadas por datos o investigaciones? <br>
+                        <span class="autor-criterio">(García Viteri et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c2" value="2" id="c2a"><label for="c2a">Sostiene afirmaciones con datos o investigaciones concretas.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c2" value="1" id="c2p"><label for="c2p">Algunas afirmaciones están justificadas, otras no.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c2" value="0" id="c2i"><label for="c2i">Afirmaciones sin respaldo empírico o conceptual.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Transparencia y ética</td>
+                    <td class="criterio-col">
+                        Transparencia algorítmica <br>
+                        ¿Se aclara si el contenido fue generado por IA o se advierten límites? <br>
+                        <span class="autor-criterio">(García Caicedo et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c3" value="2" id="c3a"><label for="c3a">El texto señala sus límites, indica si fue generado por IA o sugiere revisión crítica.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c3" value="1" id="c3p"><label for="c3p">Menciona de forma ambigua el uso de IA.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c3" value="0" id="c3i"><label for="c3i">Oculta su origen o se presenta como verdad sin matices.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="criterio-col">
+                        Equidad y enfoque contextual <br>
+                        ¿Evita sesgos y considera diversidad de contextos? <br>
+                        <span class="autor-criterio">(García Caicedo et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c4" value="2" id="c4a"><label for="c4a">Muestra conciencia de contextos diversos, evita sesgos.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c4" value="1" id="c4p"><label for="c4p">Enfoque generalista sin daño, pero sin apertura.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c4" value="0" id="c4i"><label for="c4i">Reproduce sesgos o ignora el contexto educativo.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Valor pedagógico</td>
+                    <td class="criterio-col">
+                        Coherencia educativa <br>
+                        ¿Está vinculado a objetivos formativos o secuencias didácticas? <br>
+                        <span class="autor-criterio">(García Viteri et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c5" value="2" id="c5a"><label for="c5a">Se articula con objetivos formativos o secuencias didácticas.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c5" value="1" id="c5p"><label for="c5p">Puede adaptarse, pero no está claramente vinculado.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c5" value="0" id="c5i"><label for="c5i">No tiene sentido pedagógico aparente.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="criterio-col">
+                        Estímulo al pensamiento crítico <br>
+                        ¿Promueve la reflexión o la problematización? <br>
+                        <span class="autor-criterio">(García Viteri et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c6" value="2" id="c6a"><label for="c6a">Abre preguntas, ofrece interpretaciones o enfoques alternativos.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c6" value="1" id="c6p"><label for="c6p">Presenta ideas pero no invita a reflexionar.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c6" value="0" id="c6i"><label for="c6i">Da respuestas cerradas o simplistas.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Calidad comunicativa</td>
+                    <td class="criterio-col">
+                        Claridad y redacción <br>
+                        ¿Está bien escrito y es claro, sin frases vacías? <br>
+                        <span class="autor-criterio">(García Viteri et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c7" value="2" id="c7a"><label for="c7a">Lenguaje claro, fluido, sin automatismos ni frases infladas.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c7" value="1" id="c7p"><label for="c7p">Redacción comprensible, pero algo repetitiva o redundante.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c7" value="0" id="c7i"><label for="c7i">Redacción forzada, pobre o con señales claras de IA.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Profundidad y pertinencia</td>
+                    <td class="criterio-col">
+                        Desarrollo conceptual <br>
+                        ¿Desarrolla con profundidad los conceptos clave? <br>
+                        <span class="autor-criterio">(García Caicedo et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c8" value="2" id="c8a"><label for="c8a">Desarrolla conceptos con profundidad y relaciones entre ideas.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c8" value="1" id="c8p"><label for="c8p">Menciona conceptos sin profundizar.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c8" value="0" id="c8i"><label for="c8i">Uso superficial o decorativo de términos clave.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="criterio-col">
+                        Ajuste disciplinar <br>
+                        ¿Es pertinente para la disciplina y el nivel? <br>
+                        <span class="autor-criterio">(García Viteri et al.)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c9" value="2" id="c9a"><label for="c9a">Se adecua al campo de estudio y al nivel educativo.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c9" value="1" id="c9p"><label for="c9p">Es general, pero puede usarse.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c9" value="0" id="c9i"><label for="c9i">No es pertinente para la disciplina o nivel propuesto.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Integración crítica</td>
+                    <td class="criterio-col">
+                        Apropiación del contenido generado <br>
+                        ¿El material es resignificado o reformulado críticamente? <br>
+                        <span class="autor-criterio">(Ambas fuentes)</span>
+                    </td>
+                    <td class="adequate-cell">
+                        <input type="radio" name="c10" value="2" id="c10a"><label for="c10a">El material es evaluado, reformulado o resignificado críticamente.</label>
+                    </td>
+                    <td class="partial-cell">
+                        <input type="radio" name="c10" value="1" id="c10p"><label for="c10p">Uso pasivo con algo de reelaboración.</label>
+                    </td>
+                    <td class="insufficient-cell">
+                        <input type="radio" name="c10" value="0" id="c10i"><label for="c10i">Uso acrítico, copia directa sin apropiación.</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div class="button-container">
+        <button type="button" id="resetButton">Reiniciar</button>
+        <button type="button" id="savePdfButton">Imprimir</button>
+    </div>
+    <div id="scoreContainer">
+        Puntaje Total: <span id="totalScore">0</span><br>
+        <div id="trafficLightBox">
+            <div id="greenLight" class="light-bulb"></div>
+            <div id="yellowLight" class="light-bulb"></div>
+            <div id="redLight" class="light-bulb"></div>
+        </div>
+        <div id="trafficLightText"></div>
+    </div>
+</div>
+<script>
+    const rubricForm = document.getElementById('rubricForm');
+    const totalScoreSpan = document.getElementById('totalScore');
+    const redLight = document.getElementById('redLight');
+    const yellowLight = document.getElementById('yellowLight');
+    const greenLight = document.getElementById('greenLight');
+    const trafficLightText = document.getElementById('trafficLightText');
+    const resetButton = document.getElementById('resetButton');
+    const savePdfButton = document.getElementById('savePdfButton');
+
+    // Rangos de puntaje
+    const scoreRanges = {
+        green: {
+            min: 17, max: 20,
+            description: 'Evaluación crítica profunda, reflexiva y bien fundamentada. El material fue analizado con criterios claros, identificando fortalezas y debilidades, y proponiendo mejoras fundamentadas. Indica un dominio alto de la mirada crítica.'
+        },
+        yellow: {
+            min: 10, max: 16,
+            description: 'Evaluación aceptable, aunque necesita mayor profundidad o problematización en algunos criterios. Hay elementos relevantes, pero se observan generalizaciones, falta de ejemplos o escaso cuestionamiento.'
+        },
+        red: {
+            min: 0, max: 9,
+            description: 'Evaluación limitada o superficial, con escasa justificación o uso casi acrítico del material generado. Es necesario revisar y reforzar la mirada crítica y la aplicación de los criterios de análisis.'
+        }
+    };
+
+    function calculateScore() {
+        let score = 0;
+        const checkedRadios = rubricForm.querySelectorAll('input[type="radio"]:checked');
+        checkedRadios.forEach(radio => {
+            score += parseInt(radio.value || 0);
+        });
+        totalScoreSpan.textContent = score;
+        updateTrafficLight(score);
+    }
+
+    function updateTrafficLight(score) {
+        totalScoreSpan.style.color = '';
+        redLight.classList.remove('red-on');
+        yellowLight.classList.remove('yellow-on');
+        greenLight.classList.remove('green-on');
+        
+        let descriptiveTextContent = '';
+        let scoreColor = '';
+        let emojiStatus = '';
+        let rangeText = '';
+
+        if (score >= scoreRanges.green.min) {
+            greenLight.classList.add('green-on');
+            scoreColor = '#4CAF50';
+            emojiStatus = '🟢 Verde (Bien)';
+            rangeText = `${scoreRanges.green.min}–${scoreRanges.green.max}`;
+            descriptiveTextContent = scoreRanges.green.description;
+        } else if (score >= scoreRanges.yellow.min) {
+            yellowLight.classList.add('yellow-on');
+            scoreColor = '#FFC107';
+            emojiStatus = '🟡 Amarillo (Atención)';
+            rangeText = `${scoreRanges.yellow.min}–${scoreRanges.yellow.max}`;
+            descriptiveTextContent = scoreRanges.yellow.description;
+        } else {
+            redLight.classList.add('red-on');
+            scoreColor = '#F44336';
+            emojiStatus = '🔴 Rojo (Revisar)';
+            rangeText = `${scoreRanges.red.min}–${scoreRanges.red.max}`;
+            descriptiveTextContent = scoreRanges.red.description;
+        }
+        
+        totalScoreSpan.style.color = scoreColor;
+        // Construcción final del texto del semáforo con retorno de línea
+        trafficLightText.innerHTML = `${emojiStatus}: ${rangeText} puntos<br><br>${descriptiveTextContent}`;
+    }
+
+    resetButton.addEventListener('click', () => {
+        const allRadios = rubricForm.querySelectorAll('input[type="radio"]');
+        allRadios.forEach(radio => { radio.checked = false; });
+        document.getElementById('evaluationSubject').value = '';
+        document.getElementById('evaluatorNotes').value = '';
+        calculateScore();
+    });
+
+    savePdfButton.addEventListener('click', () => { window.print(); });
+
+    rubricForm.addEventListener('change', calculateScore);
+    document.addEventListener('DOMContentLoaded', calculateScore);
+</script>
+</body>
+</html>
