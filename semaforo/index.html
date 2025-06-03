@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semáforo</title>
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      gap: 20px;
+    }
+    .semaforo {
+      background-color: #555;
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .luz {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #111;
+      transition: background-color 0.5s;
+    }
+    .rojo.encendido {
+      background-color: red;
+    }
+    .amarillo.encendido {
+      background-color: yellow;
+    }
+    .verde.encendido {
+      background-color: limegreen;
+    }
+    .controles {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="semaforo">
+    <div class="luz rojo" id="rojo"></div>
+    <div class="luz amarillo" id="amarillo"></div>
+    <div class="luz verde" id="verde"></div>
+  </div>
+
+  <div class="controles">
+    <button onclick="encender('rojo')">Rojo</button>
+    <button onclick="encender('amarillo')">Amarillo</button>
+    <button onclick="encender('verde')">Verde</button>
+  </div>
+
+  <script>
+    const luces = ["rojo", "amarillo", "verde"];
+    let actual = 0;
+    let intervalo = null;
+
+    function cambiarLuz() {
+      luces.forEach((luz, index) => {
+        document.getElementById(luz).classList.toggle("encendido", index === actual);
+      });
+      actual = (actual + 1) % luces.length;
+    }
+
+    function encender(color) {
+      clearInterval(intervalo);
+      luces.forEach((luz) => {
+        document.getElementById(luz).classList.toggle("encendido", luz === color);
+      });
+    }
+
+    cambiarLuz(); // inicializa
+    intervalo = setInterval(cambiarLuz, 1000);
+  </script>
+</body>
+</html>
