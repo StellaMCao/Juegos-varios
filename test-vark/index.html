@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Estilos de Aprendizaje VARK</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 850px;
+            width: 100%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        h2, h3, h4, h5 {
+            color: #34495e;
+        }
+        .introduccion {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+        .pregunta {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .pregunta p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #34495e;
+        }
+        .opcion {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .opcion input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.1);
+            accent-color: #3498db;
+        }
+        label {
+            cursor: pointer;
+            color: #555;
+        }
+        button, .btn-estilo {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        button:hover, .btn-estilo:hover {
+            background-color: #229954;
+            transform: translateY(-2px);
+        }
+        button#btnCalcular {
+            display: block;
+            width: 100%;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #resultadosContainer {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .barra-grafico-container {
+            margin-bottom: 15px;
+        }
+        .etiqueta-grafico {
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-size: 0.95em;
+            color: #34495e;
+        }
+        .barra-grafico {
+            background-color: #3498db;
+            height: 22px;
+            margin-bottom: 8px;
+            color: white;
+            padding-left: 8px;
+            line-height: 22px;
+            border-radius: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: width 0.5s ease-in-out;
+        }
+        .botones-estilos {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .btn-estilo {
+            margin: 5px;
+            background-color: #8e44ad;
+        }
+        .btn-estilo:hover {
+            background-color: #732d91;
+        }
+        .btn-estilo.v { background-color: #e74c3c; }
+        .btn-estilo.v:hover { background-color: #c0392b; }
+        .btn-estilo.a { background-color: #f39c12; }
+        .btn-estilo.a:hover { background-color: #d35400; }
+        .btn-estilo.r { background-color: #2980b9; }
+        .btn-estilo.r:hover { background-color: #1f618d; }
+        .btn-estilo.k { background-color: #16a085; }
+        .btn-estilo.k:hover { background-color: #117a65; }
+
+        #explicacionDetalladaEstilo {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f4f8;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        #btnReiniciar {
+            background-color: #e74c3c;
+            display: block;
+            width: auto;
+            margin: 30px auto 0 auto;
+        }
+        #btnReiniciar:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cuestionario de Estilos de Aprendizaje VARK</h1>
+        <p class="introduccion">
+            Este cuestionario está pensado para ayudarte a identificar tus preferencias al procesar información.
+            Entender tu estilo de aprendizaje puede mejorar un montón tus estrategias de estudio y cómo te comunicás.
+            Acá no hay respuestas correctas o incorrectas, simplemente elegí las opciones que más vayan con vos.
+        </p>
+
+        <form id="varkForm">
+            <div class="pregunta">
+                <p>1. Necesitás aprender cómo funciona un nuevo programa de software. ¿Qué harías preferentemente?</p>
+                <div class="opcion"><input type="checkbox" id="q1r" name="q1" value="R"> <label for="q1r">Leer el manual o las instrucciones escritas.</label></div>
+                <div class="opcion"><input type="checkbox" id="q1k" name="q1" value="K"> <label for="q1k">Pedirle a un/a colega que te lo muestre y te deje probarlo.</label></div>
+                <div class="opcion"><input type="checkbox" id="q1v" name="q1" value="V"> <label for="q1v">Ver un video tutorial o una demostración en línea.</label></div>
+                <div class="opcion"><input type="checkbox" id="q1a" name="q1" value="A"> <label for="q1a">Que alguien te explique verbalmente sus funciones.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>2. Estás planeando unas vacaciones para un grupo. ¿Qué harías primero?</p>
+                <div class="opcion"><input type="checkbox" id="q2r" name="q2" value="R"> <label for="q2r">Leer sobre los destinos y comparar información escrita.</label></div>
+                <div class="opcion"><input type="checkbox" id="q2v" name="q2" value="V"> <label for="q2v">Imaginar cómo serían las vacaciones en cada lugar, visualizando las experiencias.</label></div>
+                <div class="opcion"><input type="checkbox" id="q2a" name="q2" value="A"> <label for="q2a">Hablar con personas que hayan visitado esos lugares o con un agente de viajes.</label></div>
+                <div class="opcion"><input type="checkbox" id="q2k" name="q2" value="K"> <label for="q2k">Crear un itinerario práctico, quizás probando rutas en un mapa o simulando actividades.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>3. Tenés que dar indicaciones para llegar a tu casa. ¿Cómo lo harías?</p>
+                <div class="opcion"><input type="checkbox" id="q3v" name="q3" value="V"> <label for="q3v">Dibujarías un mapa o usarías uno existente para señalar la ruta.</label></div>
+                <div class="opcion"><input type="checkbox" id="q3r" name="q3" value="R"> <label for="q3r">Escribirías las instrucciones paso a paso.</label></div>
+                <div class="opcion"><input type="checkbox" id="q3a" name="q3" value="A"> <label for="q3a">Explicarías verbalmente las direcciones por teléfono o en persona.</label></div>
+                <div class="opcion"><input type="checkbox" id="q3k" name="q3" value="K"> <label for="q3k">Irías con la persona o harías que te siga, mostrando el camino.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>4. Debés aprender sobre un tema histórico complejo. ¿Qué preferirías?</p>
+                <div class="opcion"><input type="checkbox" id="q4v" name="q4" value="V"> <label for="q4v">Ver un documental con recreaciones y mapas de la época.</label></div>
+                <div class="opcion"><input type="checkbox" id="q4a" name="q4" value="A"> <label for="q4a">Escuchar un podcast o una conferencia de un/a experto/a.</label></div>
+                <div class="opcion"><input type="checkbox" id="q4r" name="q4" value="R"> <label for="q4r">Leer libros, artículos y cronologías detalladas.</label></div>
+                <div class="opcion"><input type="checkbox" id="q4k" name="q4" value="K"> <label for="q4k">Visitar un museo con exhibiciones interactivas o participar en una recreación histórica.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>5. Cuando cocinás una receta nueva, ¿qué es lo más útil para vos?</p>
+                <div class="opcion"><input type="checkbox" id="q5r" name="q5" value="R"> <label for="q5r">Seguir las instrucciones escritas paso a paso.</label></div>
+                <div class="opcion"><input type="checkbox" id="q5v" name="q5" value="V"> <label for="q5v">Ver fotografías del proceso y del plato terminado.</label></div>
+                <div class="opcion"><input type="checkbox" id="q5a" name="q5" value="A"> <label for="q5a">Escuchar a alguien que te explique los pasos mientras cocinás.</label></div>
+                <div class="opcion"><input type="checkbox" id="q5k" name="q5" value="K"> <label for="q5k">Simplemente empezar a mezclar ingredientes y probar, ajustando sobre la marcha.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>6. Vas a comprar un nuevo teléfono móvil. ¿Qué información te influye más?</p>
+                <div class="opcion"><input type="checkbox" id="q6r" name="q6" value="R"> <label for="q6r">Leer reseñas detalladas y comparativas de especificaciones.</label></div>
+                <div class="opcion"><input type="checkbox" id="q6a" name="q6" value="A"> <label for="q6a">Que un/a amigo/a te cuente su experiencia con diferentes modelos.</label></div>
+                <div class="opcion"><input type="checkbox" id="q6v" name="q6" value="V"> <label for="q6v">Ver videos de "unboxing" y demostraciones de uso.</label></div>
+                <div class="opcion"><input type="checkbox" id="q6k" name="q6" value="K"> <label for="q6k">Ir a un negocio, sostener los teléfonos, probar su interfaz y sentir cómo se manejan.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>7. Querés recordar algo importante, como una lista de compras. ¿Qué hacés?</p>
+                <div class="opcion"><input type="checkbox" id="q7r" name="q7" value="R"> <label for="q7r">La escribís.</label></div>
+                <div class="opcion"><input type="checkbox" id="q7a" name="q7" value="A"> <label for="q7a">La repetís en voz alta varias veces o la asociás con una melodía.</label></div>
+                <div class="opcion"><input type="checkbox" id="q7v" name="q7" value="V"> <label for="q7v">La visualizás en tu mente, quizás imaginando los objetos en los estantes.</label></div>
+                <div class="opcion"><input type="checkbox" id="q7k" name="q7" value="K"> <label for="q7k">Caminás por el negocio (real o imaginariamente) recogiendo los artículos.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>8. Si tenés un problema con un aparato, ¿qué hacés primero?</p>
+                <div class="opcion"><input type="checkbox" id="q8v" name="q8" value="V"> <label for="q8v">Buscás diagramas o esquemas de cómo funciona.</label></div>
+                <div class="opcion"><input type="checkbox" id="q8r" name="q8" value="R"> <label for="q8r">Leés el manual de instrucciones o buscás soluciones escritas en foros.</label></div>
+                <div class="opcion"><input type="checkbox" id="q8k" name="q8" value="K"> <label for="q8k">Intentás manipularlo, tocar botones, desarmarlo un poco para ver qué sucede.</label></div>
+                <div class="opcion"><input type="checkbox" id="q8a" name="q8" value="A"> <label for="q8a">Llamás a un/a amigo/a o a un/a técnico/a para que te explique qué podría ser.</label></div>
+            </div>
+            
+            <div class="pregunta">
+                <p>9. Cuando aprendés un nuevo deporte o habilidad física, ¿qué te ayuda más?</p>
+                <div class="opcion"><input type="checkbox" id="q9k" name="q9" value="K"> <label for="q9k">Que el/la instructor/a te lo demuestre y luego vos lo intentes.</label></div>
+                <div class="opcion"><input type="checkbox" id="q9v" name="q9" value="V"> <label for="q9v">Ver videos de profesionales ejecutando la técnica.</label></div>
+                <div class="opcion"><input type="checkbox" id="q9a" name="q9" value="A"> <label for="q9a">Escuchar atentamente las explicaciones del/la entrenador/a sobre la postura y el movimiento.</label></div>
+                <div class="opcion"><input type="checkbox" id="q9r" name="q9" value="R"> <label for="q9r">Leer sobre la teoría y las reglas del deporte.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>10. Estás en una reunión y se presenta mucha información. ¿Qué te ayuda a entenderla mejor?</p>
+                <div class="opcion"><input type="checkbox" id="q10v" name="q10" value="V"> <label for="q10v">Ver gráficos, tablas y diapositivas bien diseñadas.</label></div>
+                <div class="opcion"><input type="checkbox" id="q10a" name="q10" value="A"> <label for="q10a">Escuchar atentamente al/la presentador/a y las discusiones.</label></div>
+                <div class="opcion"><input type="checkbox" id="q10r" name="q10" value="R"> <label for="q10r">Tomar notas detalladas y organizar la información por escrito.</label></div>
+                <div class="opcion"><input type="checkbox" id="q10k" name="q10" value="K"> <label for="q10k">Participar activamente, hacer preguntas o imaginar cómo aplicarías esa información.</label></div>
+            </div>
+             
+            <div class="pregunta">
+                <p>11. Debés ensamblar un mueble que viene desarmado. ¿Cuál es tu enfoque principal?</p>
+                <div class="opcion"><input type="checkbox" id="q11r" name="q11" value="R"> <label for="q11r">Seguir cuidadosamente las instrucciones escritas y los diagramas paso a paso.</label></div>
+                <div class="opcion"><input type="checkbox" id="q11v" name="q11" value="V"> <label for="q11v">Mirar todas las piezas, visualizar cómo encajan y luego empezar.</label></div>
+                <div class="opcion"><input type="checkbox" id="q11a" name="q11" value="A"> <label for="q11a">Que alguien te lea las instrucciones mientras vos ensamblás.</label></div>
+                <div class="opcion"><input type="checkbox" id="q11k" name="q11" value="K"> <label for="q11k">Empezar a ensamblar las piezas que parecen encajar, probando y ajustando.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>12. Al elegir ropa nueva, ¿qué es lo más importante para vos?</p>
+                <div class="opcion"><input type="checkbox" id="q12v" name="q12" value="V"> <label for="q12v">Cómo se ve puesta, los colores y el estilo visual.</label></div>
+                <div class="opcion"><input type="checkbox" id="q12r" name="q12" value="R"> <label for="q12r">Leer las etiquetas sobre el material y las instrucciones de cuidado.</label></div>
+                <div class="opcion"><input type="checkbox" id="q12a" name="q12" value="A"> <label for="q12a">La opinión de un/a amigo/a o del/la vendedor/a sobre cómo te queda.</label></div>
+                <div class="opcion"><input type="checkbox" id="q12k" name="q12" value="K"> <label for="q12k">Cómo se siente la tela, la comodidad y cómo te permite moverte.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>13. Querés aprender a tocar un instrumento musical. ¿Cómo empezarías?</p>
+                <div class="opcion"><input type="checkbox" id="q13v" name="q13" value="V"> <label for="q13v">Viendo tutoriales donde muestran la posición de los dedos y cómo suena.</label></div>
+                <div class="opcion"><input type="checkbox" id="q13a" name="q13" value="A"> <label for="q13a">Escuchando grabaciones de la música que querés tocar e intentando imitarla.</label></div>
+                <div class="opcion"><input type="checkbox" id="q13r" name="q13" value="R"> <label for="q13r">Estudiando partituras y teoría musical.</label></div>
+                <div class="opcion"><input type="checkbox" id="q13k" name="q13" value="K"> <label for="q13k">Tomando el instrumento y experimentando con los sonidos, probando diferentes notas.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>14. Cuando estás estresado/a o necesitás relajarte, ¿qué preferís?</p>
+                <div class="opcion"><input type="checkbox" id="q14v" name="q14" value="V"> <label for="q14v">Ver una película o imágenes relajantes.</label></div>
+                <div class="opcion"><input type="checkbox" id="q14a" name="q14" value="A"> <label for="q14a">Escuchar música tranquila o sonidos de la naturaleza.</label></div>
+                <div class="opcion"><input type="checkbox" id="q14r" name="q14" value="R"> <label for="q14r">Escribir en un diario o leer un libro.</label></div>
+                <div class="opcion"><input type="checkbox" id="q14k" name="q14" value="K"> <label for="q14k">Hacer ejercicio, caminar, practicar yoga o alguna actividad manual.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>15. Si tuvieras que explicar una idea compleja a alguien, ¿cómo lo harías?</p>
+                <div class="opcion"><input type="checkbox" id="q15v" name="q15" value="V"> <label for="q15v">Usando analogías visuales, diagramas o dibujos.</label></div>
+                <div class="opcion"><input type="checkbox" id="q15a" name="q15" value="A"> <label for="q15a">Explicándolo verbalmente, usando diferentes tonos de voz y ejemplos orales.</label></div>
+                <div class="opcion"><input type="checkbox" id="q15r" name="q15" value="R"> <label for="q15r">Escribiendo un resumen claro y conciso con los puntos clave.</label></div>
+                <div class="opcion"><input type="checkbox" id="q15k" name="q15" value="K"> <label for="q15k">Usando ejemplos prácticos, demostraciones o haciendo que la persona lo experimente.</label></div>
+            </div>
+
+            <div class="pregunta">
+                <p>16. ¿Cuál de estas actividades de ocio disfrutás más?</p>
+                <div class="opcion"><input type="checkbox" id="q16v" name="q16" value="V"> <label for="q16v">Ir al cine, exposiciones de arte o disfrutar de paisajes.</label></div>
+                <div class="opcion"><input type="checkbox" id="q16a" name="q16" value="A"> <label for="q16a">Escuchar conciertos, podcasts o audiolibros.</label></div>
+                <div class="opcion"><input type="checkbox" id="q16r" name="q16" value="R"> <label for="q16r">Leer novelas, blogs o escribir.</label></div>
+                <div class="opcion"><input type="checkbox" id="q16k" name="q16" value="K"> <label for="q16k">Hacer deportes, bailar, jardinería o manualidades.</label></div>
+            </div>
+
+            <button type="button" id="btnCalcular" onclick="calcularResultados()">Ver mis Resultados</button>
+        </form>
+
+        <div id="resultadosContainer" style="display:none;">
+            <h2>Tus Resultados VARK</h2>
+            <div id="porcentajes"></div>
+            <h3>Gráfico Representativo</h3>
+            <div id="grafico"></div>
+            <h3>Explicación General de tus Preferencias</h3>
+            <div id="explicacionesResumen"></div>
+
+            <div class="botones-estilos">
+                <h3>Conocé más sobre cada Estilo de Aprendizaje:</h3>
+                <button class="btn-estilo v" onclick="mostrarExplicacionDetallada('V')">Visual (V)</button>
+                <button class="btn-estilo a" onclick="mostrarExplicacionDetallada('A')">Auditivo (A)</button>
+                <button class="btn-estilo r" onclick="mostrarExplicacionDetallada('R')">Lectoescritura (R)</button>
+                <button class="btn-estilo k" onclick="mostrarExplicacionDetallada('K')">Kinestésico (K)</button>
+                <button class="btn-estilo" onclick="mostrarExplicacionDetallada('M')">Multimodal</button>
+            </div>
+            <div id="explicacionDetalladaEstilo" style="display:none;">
+                <!-- Contenido dinámico acá -->
+            </div>
+        </div>
+    </div>
+    <button type="button" id="btnReiniciar" onclick="reiniciarCuestionario()" style="display:none;">Reiniciar Cuestionario</button>
+
+    <script>
+        const explicacionesEstilos = {
+            V: {
+                nombre: "Visual (V)",
+                descripcionCorta: "Preferís el uso de elementos visuales como imágenes, gráficos y mapas para comprender y recordar información.",
+                descripcionLarga: "Las personas con preferencia Visual aprenden mejor cuando la información se presenta en un formato gráfico. Se benefician de mapas mentales, diagramas, videos, el uso de colores y la organización espacial del contenido. Observar demostraciones, visualizar conceptos y utilizar materiales visualmente ricos son estrategias efectivas para vos.",
+                tecnicas: [
+                    "Utilizá resaltadores de colores y organizá tus apuntes con jerarquía visual.",
+                    "Creá mapas mentales, conceptuales y diagramas de flujo.",
+                    "Buscá videos, infografías y presentaciones con buen diseño visual.",
+                    "Visualizá mentalmente los conceptos o procesos que estás aprendiendo.",
+                    "Transformá listas o textos densos en tablas, gráficos o esquemas.",
+                    "Utilizá tarjetas de memoria (flashcards) con imágenes, símbolos o diagramas.",
+                    "Prestá atención a la maquetación y el diseño de los materiales de estudio."
+                ]
+            },
+            A: {
+                nombre: "Auditivo (A) / Oral",
+                descripcionCorta: "Aprendés mejor escuchando y hablando. Las discusiones, explicaciones orales y sonidos son clave para vos.",
+                descripcionLarga: "Quienes tienen una preferencia Auditiva procesan mejor la información a través del oído. Las discusiones grupales, las explicaciones verbales, escuchar conferencias o podcasts, y repetir la información en voz alta son métodos muy útiles para vos. El tono de voz, el ritmo y las inflexiones pueden ayudarte a la comprensión y retención.",
+                tecnicas: [
+                    "Participá activamente en discusiones, debates y hacé preguntas.",
+                    "Grabá las clases o conferencias para escucharlas nuevamente.",
+                    "Leé tus apuntes o el material de estudio en voz alta.",
+                    "Explicá los conceptos aprendidos a otra persona.",
+                    "Utilizá mnemotecnias auditivas como rimas, canciones o acrónimos.",
+                    "Escuchá podcasts educativos y audiolibros.",
+                    "Estudiá en grupo para poder dialogar y escuchar diferentes perspectivas.",
+                    "Grabate explicando un tema y luego escuchate."
+                ]
+            },
+            R: {
+                nombre: "Lectoescritura (R)",
+                descripcionCorta: "Te sentís más cómodo/a con la información presentada en formato escrito. Leer y escribir son tus herramientas principales.",
+                descripcionLarga: "Las personas con preferencia por la Lectoescritura interactúan con la información principalmente a través de la palabra escrita. Disfrutan leyendo textos, manuales, artículos y tomando notas detalladas. La organización lógica de la información escrita, como listas, resúmenes y definiciones, facilita tu aprendizaje.",
+                tecnicas: [
+                    "Tomá apuntes detallados y bien estructurados durante clases o lecturas.",
+                    "Reescribí tus apuntes con tus propias palabras y organizalos.",
+                    "Elaborá listas, resúmenes, glosarios y esquemas escritos.",
+                    "Leé extensamente sobre los temas: libros de texto, artículos, blogs especializados.",
+                    "Buscá definiciones precisas y explicaciones textuales claras.",
+                    "Escribí ensayos, informes o respuestas desarrolladas para profundizar tu comprensión.",
+                    "Creá tarjetas de memoria (flashcards) con definiciones, conceptos clave y preguntas/respuestas escritas.",
+                    "Utilizá diccionarios y tesauros para enriquecer tu vocabulario y comprensión."
+                ]
+            },
+            K: {
+                nombre: "Kinestésico (K)",
+                descripcionCorta: "Aprendés mejor 'haciendo', a través de la experiencia práctica, el movimiento y la manipulación de objetos.",
+                descripcionLarga: "La preferencia Kinestésica implica aprender a través de la experiencia directa y la acción. Estas personas necesitan involucrarse físicamente, manipular objetos, realizar experimentos y aplicar los conocimientos en situaciones reales. El movimiento y la interacción con el entorno son fundamentales para vos.",
+                tecnicas: [
+                    "Buscá aplicaciones prácticas de la teoría: ejemplos reales, estudios de caso.",
+                    "Realizá experimentos, simulaciones, demostraciones o construí modelos.",
+                    "Utilizá objetos manipulables para entender conceptos abstractos.",
+                    "Incorporá movimiento al estudiar: caminá, usá una pelota antiestrés, estudiá de pie.",
+                    "Participá en juegos de roles (role-playing) para vivenciar situaciones.",
+                    "Realizá visitas de campo, talleres prácticos y buscá experiencias directas.",
+                    "Tomá descansos activos y frecuentes durante tus sesiones de estudio.",
+                    "Asociá el aprendizaje con acciones físicas, gestos o la creación de algo tangible."
+                ]
+            },
+            M: {
+                nombre: "Multimodal",
+                descripcionCorta: "Utilizás una combinación de varios estilos de aprendizaje de forma flexible.",
+                descripcionLarga: "Ser Multimodal significa que tenés fortalezas en varios estilos de aprendizaje (Visual, Auditivo, Lectoescritura y/o Kinestésico) y podés adaptar tus estrategias según la tarea o el contexto. Esto te brinda una gran flexibilidad. Podés elegir el modo que mejor se adapte al tipo de información que estás procesando o combinar varios modos para una comprensión más profunda. Es importante ser consciente de tus preferencias para poder seleccionar las herramientas más efectivas en cada situación de aprendizaje.",
+                tecnicas: [
+                    "Combiná estrategias de tus estilos preferentes. Por ejemplo, leé (R), mirá un video (V), discutí (A) y luego hacé un proyecto (K).",
+                    "Adaptá tu método según la materia o la tarea específica.",
+                    "Buscá recursos de aprendizaje que integren múltiples modalidades.",
+                    "Experimentá con diferentes combinaciones de técnicas para descubrir qué te resulta más efectivo.",
+                    "Sé consciente de cómo cada modalidad te ayuda a procesar diferentes tipos de información."
+                ]
+            }
+        };
+
+        function calcularResultados() {
+            const form = document.getElementById('varkForm');
+            const scores = { V: 0, A: 0, R: 0, K: 0 };
+            let totalSelections = 0;
+
+            const preguntas = form.querySelectorAll('.pregunta');
+            preguntas.forEach(pregunta => {
+                const checkboxes = pregunta.querySelectorAll('input[type="checkbox"]:checked');
+                checkboxes.forEach(checkbox => {
+                    scores[checkbox.value]++;
+                    totalSelections++;
+                });
+            });
+
+            const porcentajesDiv = document.getElementById('porcentajes');
+            const graficoDiv = document.getElementById('grafico');
+            const explicacionesResumenDiv = document.getElementById('explicacionesResumen');
+            const resultadosContainer = document.getElementById('resultadosContainer');
+            const btnReiniciar = document.getElementById('btnReiniciar');
+
+            porcentajesDiv.innerHTML = '';
+            graficoDiv.innerHTML = '';
+            explicacionesResumenDiv.innerHTML = '';
+            document.getElementById('explicacionDetalladaEstilo').style.display = 'none';
+
+            if (totalSelections === 0) {
+                porcentajesDiv.innerHTML = "<p>Por favor, seleccioná al menos una opción en el cuestionario para calcular tus resultados.</p>";
+                resultadosContainer.style.display = 'block';
+                btnReiniciar.style.display = 'block';
+                resultadosContainer.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            let maxScore = 0;
+            let estilosDominantes = [];
+
+            let outputPorcentajes = "<h4>Tus porcentajes:</h4><ul>";
+            for (const estilo in scores) {
+                const porcentaje = (scores[estilo] / totalSelections) * 100;
+                outputPorcentajes += `<li>${explicacionesEstilos[estilo].nombre}: ${porcentaje.toFixed(1)}%</li>`;
+                
+                const barraContainer = document.createElement('div');
+                barraContainer.className = 'barra-grafico-container';
+                const etiqueta = document.createElement('div');
+                etiqueta.className = 'etiqueta-grafico';
+                etiqueta.textContent = `${explicacionesEstilos[estilo].nombre} (${porcentaje.toFixed(1)}%)`;
+                const barra = document.createElement('div');
+                barra.className = 'barra-grafico';
+                setTimeout(() => { barra.style.width = porcentaje + '%'; }, 100); 
+                barra.textContent = ` `; 
+                
+                barraContainer.appendChild(etiqueta);
+                barraContainer.appendChild(barra);
+                graficoDiv.appendChild(barraContainer);
+
+                if (scores[estilo] > maxScore) {
+                    maxScore = scores[estilo];
+                }
+            }
+            outputPorcentajes += "</ul>";
+            porcentajesDiv.innerHTML = outputPorcentajes;
+
+            for (const estilo in scores) {
+                if (scores[estilo] === maxScore && maxScore > 0) {
+                    estilosDominantes.push(estilo);
+                }
+            }
+            
+            if (estilosDominantes.length > 1) {
+                 explicacionesResumenDiv.innerHTML += "<p><strong>Tenés un perfil Multimodal.</strong> Esto significa que tus preferencias de aprendizaje son variadas y podés beneficiarte de estrategias de múltiples estilos. ¡Es una gran ventaja! Explorá las explicaciones detalladas para cada uno de tus estilos destacados.</p>";
+            } else if (estilosDominantes.length === 1) {
+                 explicacionesResumenDiv.innerHTML += `<p><strong>Tu estilo de aprendizaje predominante es ${explicacionesEstilos[estilosDominantes[0]].nombre}.</strong> ${explicacionesEstilos[estilosDominantes[0]].descripcionCorta} Explorá la explicación detallada para este estilo.</p>`;
+            } else {
+                 explicacionesResumenDiv.innerHTML = "<p>Tus preferencias parecen ser equilibradas o no se define un estilo claramente dominante con las opciones seleccionadas. Te recomendamos explorar las explicaciones de todos los estilos para descubrir qué técnicas te pueden ser más útiles.</p>";
+            }
+
+            resultadosContainer.style.display = 'block';
+            btnReiniciar.style.display = 'block';
+            resultadosContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function mostrarExplicacionDetallada(estiloKey) {
+            const divExplicacion = document.getElementById('explicacionDetalladaEstilo');
+            const dataEstilo = explicacionesEstilos[estiloKey];
+
+            if (!dataEstilo) {
+                divExplicacion.innerHTML = "<p>Información no disponible.</p>";
+                divExplicacion.style.display = 'block';
+                return;
+            }
+            
+            let htmlContenido = `
+                <h4>${dataEstilo.nombre}</h4>
+                <p><em>${dataEstilo.descripcionCorta}</em></p>
+                <p>${dataEstilo.descripcionLarga}</p>
+            `;
+            if (dataEstilo.tecnicas && dataEstilo.tecnicas.length > 0) {
+                htmlContenido += `<h5>Técnicas y estrategias sugeridas para vos:</h5><ul>`;
+                dataEstilo.tecnicas.forEach(tec => {
+                    htmlContenido += `<li>${tec}</li>`;
+                });
+                htmlContenido += `</ul>`;
+            }
+
+            divExplicacion.innerHTML = htmlContenido;
+            divExplicacion.style.display = 'block';
+            divExplicacion.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function reiniciarCuestionario() {
+            document.getElementById('varkForm').reset();
+            document.getElementById('resultadosContainer').style.display = 'none';
+            document.getElementById('explicacionDetalladaEstilo').style.display = 'none';
+            document.getElementById('btnReiniciar').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+    </script>
+</body>
+</html>
