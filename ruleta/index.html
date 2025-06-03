@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de Preguntas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px; /* Padding general para móviles y escritorio */
+            background-color: #f0f2f5;
+            color: #333;
+            box-sizing: border-box; /* Incluye padding y border en el width/height total */
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row; /* Por defecto para escritorio */
+            align-items: flex-start;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 1300px;
+            margin-bottom: 30px;
+        }
+
+        .ruleta-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .ruleta-container {
+            position: relative;
+            width: 500px; /* Tamaño base para escritorio */
+            height: 500px;
+            margin: 0 auto 20px auto;
+        }
+
+        #ruletaCanvas {
+            display: block;
+            width: 100%; /* Hace el canvas responsivo dentro de su contenedor */
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(0,0,0,0.3);
+            transition: transform 6s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .marcador {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 28px solid transparent;
+            border-right: 28px solid transparent;
+            border-top: 42px solid #e74c3c;
+            z-index: 10;
+        }
+
+        #btnGirar {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.15em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 200px;
+        }
+
+        #btnGirar:hover {
+            background-color: #229954;
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        #btnGirar:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .lateral-derecho {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 380px; /* Ancho base para escritorio */
+            padding-top: 0; /* No necesita padding extra aquí */
+        }
+
+        .titulo-principal-container {
+            background-color: #fff;
+            padding: 18px 22px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            width: 100%; /* Ocupa el ancho de su contenedor padre */
+            box-sizing: border-box;
+        }
+
+        .titulo-principal-container h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .pregunta-seleccionada-area {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            width: 100%; /* Ocupa el ancho de su contenedor padre */
+            box-sizing: border-box;
+        }
+
+        .pregunta-seleccionada-area h3 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            color: #34495e;
+            font-size: 1.3em;
+        }
+
+        #textoPregunta {
+            font-size: 1.4em;
+            color: #2c3e50;
+            font-weight: 600;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .configuracion-area {
+            width: 100%;
+            max-width: 800px; /* Ligeramente más chico para que no sea tan ancho en pantallas grandes */
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 30px;
+            box-sizing: border-box;
+        }
+        .configuracion-area h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            color: #2c3e50;
+            font-size: 1.6em;
+        }
+         .configuracion-area p {
+            font-size: 1.05em;
+            margin-bottom: 12px;
+            color: #555;
+        }
+        .configuracion-area textarea {
+            width: calc(100% - 30px); /* Ajuste para padding interno */
+            min-height: 150px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            margin-bottom: 18px;
+            resize: vertical;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        }
+        .configuracion-area .botones-config {
+            display: flex;
+            flex-direction: column; /* Apilados en móvil por defecto */
+            align-items: center; /* Centrar botones apilados */
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .configuracion-area button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%; /* Ocupan todo el ancho disponible en móvil */
+            max-width: 280px; /* Ancho máximo para los botones */
+        }
+         .configuracion-area button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        .configuracion-area button#btnReiniciarTodo {
+            background-color: #e74c3c;
+        }
+        .configuracion-area button#btnReiniciarTodo:hover {
+            background-color: #c0392b;
+        }
+
+        /* --- Media Queries para Responsividad --- */
+        @media (max-width: 992px) { /* Tablets y móviles grandes en horizontal */
+            .main-container {
+                flex-direction: column;
+                align-items: center; /* Centrar todo cuando está en columna */
+                gap: 25px;
+            }
+            .ruleta-container {
+                width: 400px;
+                height: 400px;
+            }
+            .marcador {
+                top: -15px;
+                border-left-width: 22px;
+                border-right-width: 22px;
+                border-top-width: 35px;
+            }
+            .lateral-derecho {
+                width: 90%; /* Ocupa más ancho en tablet */
+                max-width: 500px; /* Pero con un límite */
+                align-items: center; /* Centrar contenido del lateral */
+            }
+            .titulo-principal-container h1 {
+                font-size: 1.8em;
+            }
+            .pregunta-seleccionada-area h3{
+                font-size: 1.2em;
+            }
+            #textoPregunta {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 767px) { /* Móviles */
+            body {
+                padding: 10px;
+            }
+            .main-container {
+                /* La dirección ya es column por el query anterior, el orden se controla en HTML */
+                gap: 20px;
+            }
+            .ruleta-area {
+                order: 2; /* Ruleta después del título */
+            }
+            .lateral-derecho {
+                order: 1; /* Título y pregunta primero */
+                width: 100%; /* Ocupar todo el ancho */
+                gap: 15px;
+            }
+             .titulo-principal-container {
+                padding: 15px;
+            }
+            .titulo-principal-container h1 {
+                font-size: 1.6em;
+            }
+            .ruleta-container {
+                width: 300px; /* Más chica para móviles */
+                height: 300px;
+                margin-bottom: 15px;
+            }
+            .marcador {
+                top: -12px;
+                border-left-width: 18px;
+                border-right-width: 18px;
+                border-top-width: 28px;
+            }
+            #btnGirar {
+                padding: 12px 25px;
+                font-size: 1.05em;
+                width: 180px;
+            }
+            .pregunta-seleccionada-area {
+                order: 3; /* Pregunta después de la ruleta */
+                padding: 20px;
+                min-height: 150px;
+            }
+            .pregunta-seleccionada-area h3{
+                font-size: 1.15em;
+                margin-bottom: 12px;
+            }
+            #textoPregunta {
+                font-size: 1.2em;
+            }
+            .configuracion-area {
+                order: 4; /* Configuración al final */
+                padding: 20px;
+                margin-top: 25px;
+            }
+            .configuracion-area h2 {
+                font-size: 1.4em;
+            }
+            .configuracion-area p {
+                font-size: 1em;
+            }
+            .configuracion-area textarea {
+                min-height: 120px;
+                width: calc(100% - 24px);
+            }
+            .configuracion-area .botones-config {
+                /* Ya están en columna por defecto */
+            }
+             .configuracion-area button {
+                padding: 10px 20px;
+                font-size: 0.95em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- El orden en HTML ahora importa para el flujo en móviles -->
+    <div class="main-container">
+        <div class="lateral-derecho"> <!-- Contendrá título y pregunta (se reordena para móvil) -->
+            <div class="titulo-principal-container">
+              <h1>Ruleta de Preguntas</h1>
+            </div>
+            <div class="pregunta-seleccionada-area" id="preguntaSeleccionadaContainer" style="display: none;">
+                <h3>Pregunta Seleccionada:</h3>
+                <p id="textoPregunta"></p>
+            </div>
+        </div>
+        <div class="ruleta-area"> <!-- Contendrá ruleta y botón de girar -->
+            <div class="ruleta-container">
+                <canvas id="ruletaCanvas" width="500" height="500"></canvas> <!-- Tamaño base para JS -->
+                <div class="marcador"></div>
+            </div>
+            <button id="btnGirar" onclick="girarRuleta()">¡Girar la Ruleta!</button>
+        </div>
+    </div>
+
+    <div class="configuracion-area">
+        <h2>Configurá tus Preguntas</h2>
+        <p>Ingresá cada pregunta en una nueva línea:</p>
+        <textarea id="inputPreguntas" placeholder="¿Cuál es tu color favorito?
+¿Qué comiste ayer?
+Nombra una película que te guste mucho..."></textarea>
+        <div class="botones-config">
+            <button onclick="actualizarPreguntas()">Actualizar Ruleta</button>
+            <button id="btnReiniciarTodo" onclick="reiniciarTodo()">Reiniciar con Ejemplos</button>
+        </div>
+    </div>
+
+    <script>
+        let preguntas = [
+            "¿Cuál es la capital de la provincia de Buenos Aires?",
+            "¿Quién es considerado el padre de la patria en Argentina?",
+            "¿En qué año se declaró la independencia argentina?",
+            "Mencioná un plato típico de la gastronomía rioplatense.",
+            "¿Qué colores tiene la bandera de Uruguay?",
+            "¿Cómo se llama el famoso obelisco de Buenos Aires?",
+            "¿Qué es el mate y cómo se prepara tradicionalmente?",
+            "Nombra un escritor argentino o uruguayo reconocido mundialmente.",
+            "¿Cuál es el equipo de fútbol con más copas Libertadores?",
+            "¿En qué provincia argentina se encuentran las Cataratas del Iguazú?",
+            "¿Qué instrumento musical es emblemático del tango?",
+            "¿Cuál es la bebida nacional de Argentina además del mate?"
+        ];
+
+        const coloresBase = [
+            "#FF6B6B", "#FFD166", "#06D6A0", "#118AB2", "#073B4C", "#F7B2AD", "#9B5DE5",
+            "#EE6055", "#60D394", "#AAF683", "#FFD97D", "#FF9B85", "#83C5BE", "#F15BB5",
+            "#A2D2FF", "#BDE0FE", "#FFC8DD", "#FFAFCC", "#CDB4DB", "#E29578", "#00F5D4"
+        ];
+        let coloresSegmentos = [];
+
+        const canvas = document.getElementById('ruletaCanvas');
+        const ctx = canvas.getContext('2d');
+        const btnGirar = document.getElementById('btnGirar');
+        const textoPreguntaElem = document.getElementById('textoPregunta');
+        const preguntaSeleccionadaContainer = document.getElementById('preguntaSeleccionadaContainer');
+
+        let anguloActualRad = 0;
+        let estaGirando = false;
+        // El radio se calculará dinámicamente en dibujarRuleta basado en el tamaño actual del canvas
+        let radio;
+        const paddingTextoBase = 30;
+        const alturaBaseLineaTexto = 13;
+        let tamanoFuenteSegmento = alturaBaseLineaTexto;
+
+        function setCanvasSize() {
+            // Los atributos width/height del canvas DEBEN ser seteados para limpiar y escalar correctamente
+            // El CSS controla el tamaño visual, pero el canvas necesita estos atributos.
+            // Para mantener la proporción, tomamos el width visual y lo aplicamos.
+            const estiloComputado = getComputedStyle(canvas);
+            const canvasVisualWidth = parseFloat(estiloComputado.width);
+            const canvasVisualHeight = parseFloat(estiloComputado.height);
+
+            // Asegurarse de que el canvas no sea demasiado pequeño
+            const minSize = 100;
+            canvas.width = Math.max(minSize, canvasVisualWidth);
+            canvas.height = Math.max(minSize, canvasVisualHeight);
+            radio = canvas.width / 2; // Actualizar radio
+        }
+
+
+        function generarColoresSegmentos(numSegmentos) {
+            coloresSegmentos = [];
+            for (let i = 0; i < numSegmentos; i++) {
+                coloresSegmentos.push(coloresBase[i % coloresBase.length]);
+            }
+        }
+
+        function dibujarTextoEnSegmento(texto, anguloCentral, colorFondo, numSegmentos) {
+            ctx.save();
+            ctx.translate(radio, radio);
+            ctx.rotate(anguloCentral);
+            ctx.textAlign = "right";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = esColorOscuro(colorFondo) ? "#FFFFFF" : "#2c3e50";
+
+            let paddingTexto = paddingTextoBase;
+            // Ajustar padding y tamaño de fuente si el radio es muy pequeño (móvil)
+            if (radio < 180) { // Si la ruleta es más chica (ej. 300px de ancho)
+                paddingTexto = 20;
+                if (numSegmentos <= 8) tamanoFuenteSegmento = alturaBaseLineaTexto -1;
+                else if (numSegmentos <= 12) tamanoFuenteSegmento = alturaBaseLineaTexto -2;
+                else if (numSegmentos <= 16) tamanoFuenteSegmento = alturaBaseLineaTexto -3;
+                else tamanoFuenteSegmento = alturaBaseLineaTexto - 4;
+            } else { // Escritorio
+                if (numSegmentos <= 8) tamanoFuenteSegmento = alturaBaseLineaTexto + 1;
+                else if (numSegmentos <= 12) tamanoFuenteSegmento = alturaBaseLineaTexto;
+                else if (numSegmentos <= 16) tamanoFuenteSegmento = alturaBaseLineaTexto - 1;
+                else tamanoFuenteSegmento = alturaBaseLineaTexto - 2;
+            }
+            if (tamanoFuenteSegmento < 8) tamanoFuenteSegmento = 8; // Mínimo absoluto
+
+            ctx.font = `600 ${tamanoFuenteSegmento}px Segoe UI`;
+
+            const maxAnchoTexto = radio - paddingTexto - (radio < 180 ? 10 : 15) ; // Menos margen en móvil
+            const alturaEfectivaLinea = tamanoFuenteSegmento * 1.15; // Un poco más de interlineado
+            
+            const palabras = texto.split(' ');
+            let lineas = [];
+            let lineaActual = "";
+
+            for (const palabra of palabras) {
+                const testLinea = lineaActual ? `${lineaActual} ${palabra}` : palabra;
+                const metrics = ctx.measureText(testLinea);
+                if (metrics.width > maxAnchoTexto && lineaActual !== "") {
+                    lineas.push(lineaActual);
+                    lineaActual = palabra;
+                } else {
+                    lineaActual = testLinea;
+                }
+            }
+            lineas.push(lineaActual);
+
+            let maxLineas = (radio < 180 && numSegmentos > 10) ? 1 : 2; // 1 línea si es móvil y muchos segmentos
+            if (radio >= 180 && numSegmentos <= 10) maxLineas = 3;
+
+
+            if (lineas.length > maxLineas) {
+                lineas = lineas.slice(0, maxLineas);
+                let ultimaLinea = lineas[maxLineas-1];
+                if (ultimaLinea.length > 3) {
+                    lineas[maxLineas-1] = ultimaLinea.substring(0, Math.max(0, ultimaLinea.length - 3)) + "...";
+                }
+            } else {
+                 for (let i=0; i < lineas.length; i++){
+                    if (ctx.measureText(lineas[i]).width > maxAnchoTexto) {
+                        while(ctx.measureText(lineas[i] + "...").width > maxAnchoTexto && lineas[i].length > 0){
+                            lineas[i] = lineas[i].slice(0, -1);
+                        }
+                        if(lineas[i].length > 0) lineas[i] += "..."; // Solo añadir "..." si queda texto
+                        else lineas[i] = "..."; // Si se borró todo, solo "..."
+                    }
+                 }
+            }
+
+            const numLineasFinal = lineas.length;
+            const yInicial = -((numLineasFinal - 1) * alturaEfectivaLinea) / 2;
+
+            for (let i = 0; i < numLineasFinal; i++) {
+                ctx.fillText(lineas[i], radio - paddingTexto, yInicial + (i * alturaEfectivaLinea) );
+            }
+            ctx.restore();
+        }
+
+        function dibujarRuleta() {
+            setCanvasSize(); // Asegura que el canvas tenga el tamaño correcto antes de dibujar
+            
+            const numSegmentos = preguntas.length;
+            if (numSegmentos === 0) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = "#7f8c8d";
+                let fontSizePlaceholder = (radio < 180) ? 16 : 20;
+                ctx.font = `bold ${fontSizePlaceholder}px Segoe UI`;
+                ctx.fillText("Agregá preguntas abajo", radio, radio);
+                return;
+            }
+
+            generarColoresSegmentos(numSegmentos);
+            const anguloPorSegmento = (2 * Math.PI) / numSegmentos;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < numSegmentos; i++) {
+                const anguloInicio = i * anguloPorSegmento;
+                const anguloFin = (i + 1) * anguloPorSegmento;
+                const anguloCentral = anguloInicio + anguloPorSegmento / 2;
+
+                ctx.beginPath();
+                ctx.fillStyle = coloresSegmentos[i];
+                ctx.moveTo(radio, radio);
+                ctx.arc(radio, radio, radio - (radio < 180 ? 1 : 2), anguloInicio, anguloFin);
+                ctx.closePath();
+                ctx.fill();
+                dibujarTextoEnSegmento(preguntas[i], anguloCentral, coloresSegmentos[i], numSegmentos);
+            }
+        }
+
+        function esColorOscuro(hexColor) {
+            const color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor;
+            const r = parseInt(color.substring(0, 2), 16);
+            const g = parseInt(color.substring(2, 4), 16);
+            const b = parseInt(color.substring(4, 6), 16);
+            const luminosidad = (r * 299 + g * 587 + b * 114) / 1000;
+            return luminosidad < 140;
+        }
+
+        function girarRuleta() {
+            if (estaGirando || preguntas.length === 0) return;
+
+            estaGirando = true;
+            btnGirar.disabled = true;
+            preguntaSeleccionadaContainer.style.display = 'none';
+
+            const vueltasCompletas = Math.floor(Math.random() * 4) + 6;
+            const anguloExtraDeg = Math.random() * 360;
+            const anguloTotalGiroDeg = vueltasCompletas * 360 + anguloExtraDeg;
+
+            const anguloActualVisualDeg = parseFloat(canvas.style.transform.replace('rotate(', '').replace('deg)', '')) || 0;
+            const nuevoAnguloVisualDeg = anguloActualVisualDeg + anguloTotalGiroDeg;
+            
+            canvas.style.transform = `rotate(${nuevoAnguloVisualDeg}deg)`;
+            anguloActualRad = (nuevoAnguloVisualDeg % 360) * (Math.PI / 180);
+
+            setTimeout(() => {
+                estaGirando = false;
+                btnGirar.disabled = false;
+
+                const numSegmentos = preguntas.length;
+                const anguloPorSegmento = (2 * Math.PI) / numSegmentos;
+                
+                let indiceNormalizado = ( (2*Math.PI) - anguloActualRad + (Math.PI * 1.5) ) % (2*Math.PI);
+                let indiceGanador = Math.floor(indiceNormalizado / anguloPorSegmento);
+
+                if (preguntas[indiceGanador]) {
+                    textoPreguntaElem.textContent = preguntas[indiceGanador];
+                    preguntaSeleccionadaContainer.style.display = 'flex';
+                } else {
+                    textoPreguntaElem.textContent = "Error al seleccionar la pregunta.";
+                    preguntaSeleccionadaContainer.style.display = 'flex';
+                }
+            }, 6100); 
+        }
+        
+        function actualizarPreguntas() {
+            const nuevasPreguntasTexto = document.getElementById('inputPreguntas').value.trim();
+            if (nuevasPreguntasTexto) {
+                preguntas = nuevasPreguntasTexto.split('\n').map(p => p.trim()).filter(p => p.length > 0);
+            } else {
+                preguntas = []; 
+            }
+            
+            document.getElementById('inputPreguntas').placeholder = preguntas.length > 0 ? "Agregá más o modificá..." : "Pregunta 1\nPregunta 2...";
+            
+            canvas.style.transition = 'none'; 
+            canvas.style.transform = 'rotate(0deg)';
+            anguloActualRad = 0; 
+            setTimeout(() => { 
+                canvas.style.transition = 'transform 6s cubic-bezier(0.22, 0.61, 0.36, 1)';
+            }, 50);
+
+            dibujarRuleta(); // Esto llamará a setCanvasSize() dentro
+            preguntaSeleccionadaContainer.style.display = 'none';
+            textoPreguntaElem.textContent = "";
+            btnGirar.disabled = (preguntas.length === 0);
+        }
+
+        function reiniciarTodo() {
+            preguntas = [
+                "¿Cuál es la capital de Uruguay?",
+                "Describí tu día ideal.",
+                "Si pudieras viajar a cualquier época, ¿cuál elegirías y por qué?",
+                "¿Qué superpoder te gustaría tener?",
+                "Nombra tres cosas por las que estás agradecido/a hoy.",
+                "¿Cuál es tu libro o película favorita y por qué te impactó?",
+                "Si fueras un animal, ¿cuál serías?",
+                "¿Qué habilidad nueva te gustaría aprender?",
+                "Comparte un recuerdo feliz de tu infancia.",
+                "¿Cuál es tu estación del año preferida y qué te gusta de ella?",
+                "Si tuvieras que comer una sola cosa por el resto de tu vida, ¿qué sería?",
+                "¿Qué personaje histórico o ficticio te gustaría conocer?"
+            ];
+            document.getElementById('inputPreguntas').value = preguntas.join('\n');
+            actualizarPreguntas();
+            alert("¡Ruleta reiniciada con preguntas de ejemplo!");
+        }
+
+        // Inicialización y listener para redimensionar
+        window.addEventListener('resize', dibujarRuleta); // Redibujar si cambia el tamaño de la ventana
+        document.getElementById('inputPreguntas').value = preguntas.join('\n');
+        actualizarPreguntas(); // Llama a dibujarRuleta internamente
+        btnGirar.disabled = (preguntas.length === 0);
+
+    </script>
+</body>
+</html>
