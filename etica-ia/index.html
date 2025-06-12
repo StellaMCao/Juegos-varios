@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escenario Ramificado: El Dilema del Estudiante (Versión Definitiva)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .branching-scenario {
+            width: 100%;
+            max-width: 950px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            background-color: #16213e;
+            position: relative;
+        }
+
+        .scenario-slide { display: none; }
+        .scenario-slide.active { display: block; animation: fadeIn 0.6s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-container { position: relative; width: 100%; height: 650px; }
+        .scenario-image { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.5) contrast(1.1); }
+
+        .scenario-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.98), transparent);
+            color: #e0e0e0;
+            padding: 40px 50px;
+            box-sizing: border-box;
+        }
+        
+        h2 { margin-top: 0; margin-bottom: 15px; font-size: 2.3rem; font-weight: 700; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        p { margin-bottom: 25px; font-size: 1.1rem; line-height: 1.7; max-width: 95%; color: #c5cdd8; }
+
+        .scenario-choices { display: flex; flex-direction: column; gap: 12px; }
+        .choice-btn {
+            background-color: rgba(255, 255, 255, 0.1); color: #f0f0f0; border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 22px; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;
+            text-align: left; backdrop-filter: blur(4px);
+        }
+        .choice-btn:hover { background-color: #4a69bd; border-color: #4a69bd; transform: scale(1.02); }
+        
+        .final-slide .scenario-content {
+            top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; background: rgba(22, 33, 62, 0.85); backdrop-filter: blur(5px);
+        }
+        .final-slide h2 { font-size: 2.8rem; }
+        .final-slide p { font-size: 1.15rem; max-width: 80%; }
+        .final-slide .pregunta-final { font-style: italic; color: #0abde3; margin-top: 20px; max-width: 75%; }
+        .restart-btn { 
+            background-color: #0abde3; color: #111; font-weight: bold; border: none; align-self: center; padding: 15px 45px; margin-top: 20px;
+        }
+        .restart-btn:hover { background-color: #ffffff; }
+    </style>
+</head>
+<body>
+    <div class="branching-scenario">
+
+        <!-- INICIO -->
+        <div id="inicio" class="scenario-slide active"><div class="slide-container"><img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=1740&auto=format&fit=crop" alt="Estudiante trabajando tarde" class="scenario-image"><div class="scenario-content"><h2>El Dilema de Lucas</h2><p>Final del cuatrimestre. Lucas está hasta las manos con un ensayo de investigación que define su nota. La presión es total. Un amigo le pasa el dato de "CogniWrite", una IA que escribe textos. ¿Cuál es su primer movimiento?</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('rama-a1')">A) Jugar sobre seguro: antes que nada, revisás la política de integridad académica de la facultad sobre el uso de IA.</button><button class="choice-btn" onclick="showSlide('rama-b1')">B) Uso táctico: la usás solo para tirar ideas y armar un esqueleto del ensayo. El músculo lo ponés vos.</button><button class="choice-btn" onclick="showSlide('rama-c1')">C) Ser pragmático: le pedís a la IA que genere los párrafos más densos y después los conectás con tu propia escritura.</button><button class="choice-btn" onclick="showSlide('rama-d1')">D) Dividir para conquistar: le proponés a tu compañera Clara usar la IA juntos para sacarse el trabajo de encima más rápido.</button></div></div></div></div>
+        
+        <!-- RAMA A: Política Académica -->
+        <div id="rama-a1" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?q=80&w=1740&auto=format&fit=crop" alt="Documento con términos y condiciones" class="scenario-image"><div class="scenario-content"><h2>Letra Chica y Zona Gris</h2><p>Revisás la normativa. Es ambigua: permite "herramientas de apoyo" pero prohíbe la "entrega de trabajo no original". No te aclara mucho, solo te confirma que te estás metiendo en un terreno complicado.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('rama-a2')">A) Te la jugás y le mandás un mail al profesor para preguntarle directamente qué opina del uso de estas herramientas.</button><button class="choice-btn" onclick="showSlide('final-agotamiento')">B) No querés líos. Descartás la IA por completo y te mentalizás para una noche a puro café y apuntes.</button></div></div></div></div>
+        <div id="rama-a2" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1674&auto=format&fit=crop" alt="Profesor hablando con un estudiante" class="scenario-image"><div class="scenario-content"><h2>La Respuesta del Profesor</h2><p>El profesor te contesta, pero su respuesta es igual de ambigua: "Lucas, la clave es el pensamiento crítico. Usá tu criterio, pero asegurate de que el trabajo final sea tuyo". Te pasó la pelota de nuevo.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-informado')">A) Entendés el mensaje. Usás la IA solo para corregir gramática y la citás como un editor, manteniendo todo el contenido original.</button><button class="choice-btn" onclick="showSlide('final-voz-rota')">B) Interpretás "usá tu criterio" como una luz verde para ser más "vivo". Usás la IA para refrasear y mejorar párrafos enteros.</button></div></div></div></div>
+
+        <!-- RAMA B: Uso Táctico (Estructura) -->
+        <div id="rama-b1" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=1746&auto=format&fit=crop" alt="Pizarra con mapa mental" class="scenario-image"><div class="scenario-content"><h2>Un Esqueleto Sólido, pero Sin Alma</h2><p>El esquema que te dio la IA es lógicamente impecable, pero le falta tu toque, una idea fuerte. Es una estructura correcta, pero predecible. Ahora tenés que decidir qué tipo de laburo querés entregar.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-sinergia')">A) Usás el esquema como base, pero te tomás el laburo de buscarle la vuelta para meter un argumento propio y original.</button><button class="choice-btn" onclick="showSlide('rama-b2')">B) Adoptás el esquema tal cual. Es eficiente y te permite empezar a escribir ya, sin vueltas.</button></div></div></div></div>
+        <div id="rama-b2" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1674&auto=format&fit=crop" alt="Persona frustrada frente a la computadora" class="scenario-image"><div class="scenario-content"><h2>El Muro Creativo</h2><p>Estás escribiendo sobre la estructura predecible de la IA y, como era de esperarse, te trabás en una parte teórica muy compleja. No te sale cómo explicarla. La tentación de que la IA te salve las papas es enorme.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-reelaboracion')">A) Le pedís a la IA que te lo explique de varias formas distintas, pero el párrafo final lo escribís vos con tus palabras.</button><button class="choice-btn" onclick="showSlide('rama-b3')">B) No tenés tiempo para esto. Le pedís a la IA que escriba la sección y la pegás en tu documento. "Es solo un párrafo", pensás.</button></div></div></div></div>
+        <div id="rama-b3" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1524995767962-b1fdedb6b145?q=80&w=1740&auto=format&fit=crop" alt="Estanterías de biblioteca" class="scenario-image"><div class="scenario-content"><h2>El Toque Final: Las Fuentes</h2><p>El ensayo está escrito, una mezcla de tu voz y la de la máquina. Ahora falta lo peor: la bibliografía. La tentación de pedirle a la IA que genere las citas para los argumentos que ella misma sugirió es casi irresistible.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-error-factico')">A) El atajo definitivo: le pedís a la IA que te "genere una bibliografía en formato APA con 10 fuentes relevantes".</button><button class="choice-btn" onclick="showSlide('final-voz-rota')">B) Hacés el trabajo pesado: vas a la base de datos de la facu y buscás a mano las fuentes para cada afirmación.</button></div></div></div></div>
+
+        <!-- RAMA C: Enfoque Pragmático (Híbrido) -->
+        <div id="rama-c1" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=1740&auto=format&fit=crop" alt="Teclado con luces de colores" class="scenario-image"><div class="scenario-content"><h2>El Contraste Evidente</h2><p>Armaste el ensayo. Pero al juntar tus partes con las que generó la IA, la diferencia de estilo es brutal. El texto de la IA es elocuente y perfecto; el tuyo, más simple. El "Frankenstein" es obvio para cualquiera que lea con atención.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-reelaboracion')">A) Te arremangás y reescribís los párrafos de la IA para que tengan tu voz, usando el original solo como guía.</button><button class="choice-btn" onclick="showSlide('rama-c2')">B) Lo dejás así. Capaz el profe no se da cuenta o piensa que justo en esas partes estuviste muy inspirado.</button></div></div></div></div>
+        <div id="rama-c2" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1740&auto=format&fit=crop" alt="Persona revisando gráficos" class="scenario-image"><div class="scenario-content"><h2>La Defensa Oral</h2><p>El profesor te devuelve el ensayo con una nota provisoria y una invitación a su oficina para "charlar sobre algunos puntos". No hay acusación, solo una conversación. Te va a preguntar sobre los párrafos más elocuentes, los que no escribiste vos.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-competencia-superficial')">A) Te preparás para la defensa. Memorizás los argumentos de la IA como si fueran tuyos para poder defenderlos.</button><button class="choice-btn" onclick="showSlide('final-voz-rota')">B) Te ponés nervioso. Sabés que no vas a poder explicar con profundidad algo que no pensaste vos. Vas a la reunión sin preparación.</button></div></div></div></div>
+
+        <!-- RAMA D: Colaboración -->
+        <div id="rama-d1" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1742&auto=format&fit=crop" alt="Dos estudiantes colaborando" class="scenario-image"><div class="scenario-content"><h2>Una Propuesta Incómoda</h2><p>Clara acepta, pero te mira con cara de duda. "¿Estás seguro de que se puede?", te pregunta. "Tranqui, todo el mundo lo hace, hay que ser vivos", respondés, aunque no muy convencido. La colaboración arranca con el pie izquierdo.</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-tension-social')">A) Te das cuenta de que fue una mala idea. Te retractás y proponés que cada uno haga su parte a la antigua.</button><button class="choice-btn" onclick="showSlide('rama-d2')">B) "No te preocupes, la piloteamos". Seguís adelante, ignorando la señal de alarma.</button></div></div></div></div>
+        <div id="rama-d2" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1740&auto=format&fit=crop" alt="Dos personas debatiendo" class="scenario-image"><div class="scenario-content"><h2>Choque de Métodos</h2><p>Empiezan a laburar y es un caos. Clara quiere generar todo el texto y después "maquillarlo". Vos proponés usarla solo para ideas. Ninguno afloja y el tiempo corre. ¿Cómo resuelven?</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('rama-d3')">A) Proponés un punto medio: usar la IA para el borrador inicial, pero se comprometen a reescribirlo juntos desde cero.</button><button class="choice-btn" onclick="showSlide('final-plagio-compartido')">B) Cedés a la presión de Clara. Usan su método rápido y deshonesto para terminar de una vez y zafar.</button></div></div></div></div>
+        <div id="rama-d3" class="scenario-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1740&auto=format&fit=crop" alt="Equipo de trabajo en una pizarra" class="scenario-image"><div class="scenario-content"><h2>La Hora de la Verdad</h2><p>Tienen el borrador de la IA. Es hora de cumplir el pacto y reescribirlo. Pero están cansados y el borrador se ve "suficientemente bueno". Clara te mira y te dice: "¿Y si le cambiamos un par de palabras y lo entregamos así?".</p><div class="scenario-choices"><button class="choice-btn" onclick="showSlide('final-reelaboracion')">A) "No, quedamos en otra cosa". Insistís en hacer el trabajo pesado de reescribir, aunque les lleve toda la noche.</button><button class="choice-btn" onclick="showSlide('final-monstruo-frankenstein')">B) Estás agotado y cedés. Hacen cambios cosméticos y entregan un trabajo que no es de ninguno de los dos.</button></div></div></div></div>
+
+        <!-- FINALES -->
+        <div id="final-informado" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1600195077909-46e573870d99?q=80&w=1674&auto=format&fit=crop" alt="Persona segura trabajando" class="scenario-image"><div class="scenario-content"><h2>Resultado: Competencia Digital Ética</h2><p>Entregás un trabajo excelente que es auténticamente tuyo. Sabés usar la IA como un copiloto inteligente, no como un piloto automático. No solo aprobás con mérito, sino que desarrollaste una habilidad clave para tu futuro profesional.</p><p class="pregunta-final">Si la integridad requiere un esfuerzo extra que no siempre se ve recompensado en la nota, ¿está el sistema educativo diseñado para castigar a los honestos?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-agotamiento" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1544731158-b6b52c28e8b6?q=80&w=1740&auto=format&fit=crop" alt="Persona agotada sobre libros" class="scenario-image"><div class="scenario-content"><h2>Resultado: Agotamiento Ético</h2><p>El ensayo es 100% original y sacás una buena nota. Pero estás liquidado. Ves cómo otros compañeros que tomaron atajos lograron lo mismo con menos esfuerzo. La integridad te costó carísima en tiempo y energía.</p><p class="pregunta-final">Frente a un sistema que parece premiar los atajos, ¿qué valor real tiene el 'camino difícil' más allá de la satisfacción personal?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-sinergia" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1531482615713-2c65a4497a9b?q=80&w=1740&auto=format&fit=crop" alt="Dos personas colaborando" class="scenario-image"><div class="scenario-content"><h2>Resultado: Sinergia Humano-Máquina</h2><p>El ensayo refleja tu entendimiento profundo del tema. Al meter tu propia tesis sobre la base de la IA, lograste un trabajo innovador y personal. La tecnología potenció tu inteligencia, no la reemplazó. Estás orgulloso del resultado.</p><p class="pregunta-final">Si la IA puede encargarse de las tareas repetitivas, ¿debería la educación enfocarse menos en la memorización y más en enseñar a tener ideas originales?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-error-factico" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1579373903781-fd5c08365875?q=80&w=1668&auto=format&fit=crop" alt="Símbolo de error en pantalla" class="scenario-image"><div class="scenario-content"><h2>Resultado: La Trampa de la Alucinación</h2><p>El profesor te devuelve el trabajo con una nota bajísima. "Lucas, revisá tus fuentes", escribe en el margen. Varias de las citas que te inventó la IA no existen o no tienen nada que ver. El atajo te hizo pisar el palito y perdiste toda credibilidad.</p><p class="pregunta-final">Cuando una tecnología de acceso masivo puede generar falsedades convincentes, ¿de quién es la responsabilidad de educar sobre sus riesgos?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-reelaboracion" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1517842645767-c6f90415ad90?q=80&w=1674&auto=format&fit=crop" alt="Persona reescribiendo notas" class="scenario-image"><div class="scenario-content"><h2>Resultado: Apropiación del Conocimiento</h2><p>Te costó un montón de laburo extra, pero al reescribir y mejorar los textos, te obligaste a entender el tema a un nivel que no esperabas. La IA fue el puntapié inicial, pero el verdadero aprendizaje lo hiciste vos. El trabajo es tuyo, y se nota.</p><p class="pregunta-final">Si el fin es el aprendizaje, ¿es ético usar una herramienta para generar un "borrador" que luego uno mismo deconstruye y mejora? ¿O es una forma sofisticada de autoengaño?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-competencia-superficial" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1542626991-a2f572a6e84e?q=80&w=1740&auto=format&fit=crop" alt="Intersección de caminos" class="scenario-image"><div class="scenario-content"><h2>Resultado: Competencia Superficial</h2><p>Zafaste. La nota es excelente. Pero sabés que tu conocimiento es frágil. Desarrollaste una nueva habilidad: no la de investigar o escribir, sino la de "parecer" que sabés. Una habilidad muy útil, pero también muy vacía.</p><p class="pregunta-final">En un futuro donde la IA pueda ejecutar tareas, ¿será más valiosa la habilidad real o la capacidad de gestionar apariencias de forma convincente?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-tension-social" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1532618793091-ec5fe9635fbd?q=80&w=1740&auto=format&fit=crop" alt="Dos personas dándose la espalda" class="scenario-image"><div class="scenario-content"><h2>Resultado: Tensión Social</h2><p>El trabajo se entrega, pero la relación con Clara quedó por el piso. El choque por la ética del uso de la IA rompió la confianza. Te preguntás si haber mantenido tu postura valió la pena a costa de una amistad y un mal clima de grupo.</p><p class="pregunta-final">En un entorno colaborativo, ¿dónde termina la responsabilidad individual y empieza la del grupo? ¿Vale la pena un conflicto por mantener una postura ética?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-plagio-compartido" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1614036954933-a4a9b518464a?q=80&w=1740&auto=format&fit=crop" alt="Persona sola en un despacho" class="scenario-image"><div class="scenario-content"><h2>Resultado: Plagio Compartido</h2><p>El profesor, al leer, nota una diferencia de estilo y voz tan grande entre las secciones que es imposible de ignorar. Los llama a vos y a Clara a su oficina. No pueden explicar su proceso de forma coherente y terminan confesando. Se comen una falta grave.</p><p class="pregunta-final">¿Puede la presión por el rendimiento y la dinámica de grupo justificar decisiones que uno, individualmente, no tomaría?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        
+        <!-- Nuevos Finales -->
+        <div id="final-voz-rota" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1551009386-34534827c110?q=80&w=1674&auto=format&fit=crop" alt="Máscara teatral rota o dividida" class="scenario-image"><div class="scenario-content"><h2>Resultado: La Voz Rota</h2><p>El profesor te devuelve el ensayo con una nota mediocre y un comentario: "Lucas, el trabajo es inconsistente. Hay partes brillantes y otras que no parecen tuyas. Necesito que encuentres tu propia voz". No te acusa, pero te caló al instante. La deshonestidad no fue detectada, pero la falta de autoría sí.</p><p class="pregunta-final">Si la autenticidad tiene un impacto directo en la evaluación, ¿es la "viveza" una estrategia que se vuelve obsoleta a largo plazo?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        <div id="final-monstruo-frankenstein" class="scenario-slide final-slide"><div class="slide-container"><img src="https://images.unsplash.com/photo-1545389336-cf0906967567?q=80&w=1674&auto=format&fit=crop" alt="Collage de partes de estatuas" class="scenario-image"><div class="scenario-content"><h2>Resultado: El Monstruo de Frankenstein</h2><p>Entregan el trabajo. La nota es un desastre. El profesor comenta: "El ensayo carece de coherencia, salta entre estilos y no defiende una tesis clara. Parece un 'copiar y pegar' de distintas fuentes". El intento de atajo colaborativo resultó en un producto final de bajísima calidad.</p><p class="pregunta-final">Cuando la tecnología facilita la creación de contenido mediocre, ¿se vuelve más importante la habilidad de editar, curar y dar coherencia que la de crear desde cero?</p><button class="choice-btn restart-btn" onclick="showSlide('inicio')">Empezar de nuevo</button></div></div></div>
+        
+    </div>
+
+    <script>
+        function showSlide(slideId) {
+            const allSlides = document.querySelectorAll('.scenario-slide');
+            allSlides.forEach(slide => { slide.classList.remove('active'); });
+            const targetSlide = document.getElementById(slideId);
+            if (targetSlide) { targetSlide.classList.add('active'); }
+            window.scrollTo(0, 0);
+        }
+        document.addEventListener('DOMContentLoaded', () => { showSlide('inicio'); });
+    </script>
+</body>
+</html>
