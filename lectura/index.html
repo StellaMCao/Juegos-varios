@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Detective de Textos - Edición Definitiva</title>
+    <style>
+        /* --- ESTILOS GENERALES Y FONDO --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:ital,wght@0,400;1,500&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-image: url('https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #game-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            padding: 30px 40px;
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1, h2, h3 { font-family: 'Lora', serif; }
+        h1 { font-size: 2.5em; color: #2c3e50; border-bottom: 3px solid #007BFF; padding-bottom: 10px; margin-top: 0; }
+        h2 { font-size: 1.8em; color: #34495e; }
+        p { line-height: 1.7; font-size: 1.1em; }
+        .hidden { display: none; }
+        
+        /* --- ESTILO PARA LA IMAGEN DEL DETECTIVE --- */
+        #detective-mascot {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        /* --- BOTONES --- */
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 8px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        }
+        button:hover { background-color: #0056b3; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3); }
+        button:disabled { background-color: #bdc3c7; cursor: not-allowed; transform: none; box-shadow: none; }
+        .secondary-button { background-color: #6c757d; box-shadow: 0 4px 15px rgba(108, 117, 125, 0.2); }
+        .secondary-button:hover { background-color: #5a6268; }
+
+        /* --- ESTILOS DEL JUEGO --- */
+        #phase-title { font-family: 'Lora', serif; font-style: italic; font-weight: 500; color: #e67e22; font-size: 1.4em; }
+        #timer-display { background-color: #e74c3c; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; display: inline-block; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        #text-area { text-align: left; margin: 20px 0; padding: 25px; background-color: rgba(236, 240, 241, 0.8); border-radius: 12px; border: 2px dashed #bdc3c7; }
+        .sentence { cursor: pointer; transition: all 0.25s; padding: 4px 3px; border-radius: 5px; margin: 1px; display: inline; }
+        .sentence:hover { background-color: #dbe4ff; }
+        .sentence.selected { background-color: #f1c40f; color: #333; box-shadow: 0 0 10px rgba(241, 196, 15, 0.7); }
+        .sentence.correct { background-color: #2ecc71; color: white; }
+        .sentence.incorrect { background-color: #e74c3c; color: white; }
+        #feedback-area { margin-top: 20px; padding: 15px; border-radius: 8px; font-weight: bold; }
+        #feedback-area.success { background-color: #d4edda; color: #155724; }
+        #feedback-area.error { background-color: #f8d7da; color: #721c24; }
+        #final-score { font-size: 2.5em; font-weight: bold; color: #2ecc71; }
+        
+        /* --- MANUAL DEL DETECTIVE --- */
+        #manual-screen { text-align: left; }
+        .manual-section { background-color: rgba(236, 240, 241, 0.7); padding: 20px; margin-top: 20px; border-radius: 12px; border-left: 5px solid #007BFF; }
+        .manual-section h3 { margin-top: 0; color: #0056b3; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .manual-section ul { padding-left: 20px; }
+        .manual-section li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- PANTALLA DE INICIO -->
+        <div id="start-screen">
+            <!-- IMAGEN DEL DETECTIVE (CORREGIDA) -->
+            <img id="detective-mascot" src="detective.png" alt="Mascota del Detective de Textos">
+            
+            <h1>El Detective de Textos</h1>
+            <p>¡Bienvenido, Detective! Elige un caso para comenzar tu investigación o consulta tu manual para repasar las técnicas.</p>
+            <div id="case-selection">
+                <button onclick="startGame('caso1')">Caso #1: El Poder Silencioso de la Lectura</button>
+                <button onclick="startGame('caso2')">Caso #2: El Misterio del Aprendizaje Significativo</button>
+            </div>
+            <div style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
+                 <button class="secondary-button" onclick="showManual()">Consultar Manual del Detective</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA DEL MANUAL -->
+        <div id="manual-screen" class="hidden">
+            <h2>Manual del Detective</h2>
+            <p>Todo buen detective necesita dominar sus herramientas. Estas son tus técnicas de investigación textual.</p>
+            <div class="manual-section">
+                <h3>Lectura Exploratoria: La Inspección Rápida</h3>
+                <p>Es el primer vistazo a la "escena del crimen". El objetivo es obtener una idea general del caso en segundos, no resolverlo.</p>
+                <ul><li><strong>Qué hacer:</strong> Lee el título, subtítulos, palabras en negrita y la primera y última oración de cada párrafo.</li><li><strong>Pregunta clave:</strong> ¿De qué trata este texto a grandes rasgos?</li></ul>
+            </div>
+            <div class="manual-section">
+                <h3>Lectura Comprensiva: El Interrogatorio</h3>
+                <p>Aquí buscas entender los hechos. Lees con atención para saber exactamente qué dice el texto. Es el momento de interrogar cada párrafo.</p>
+                 <ul><li><strong>Qué hacer:</strong> Lee el texto completo de forma pausada, preguntándote: "¿Qué me está diciendo esta sección?".</li><li><strong>Pregunta clave:</strong> ¿Qué información concreta presenta el autor?</li></ul>
+            </div>
+            <div class="manual-section">
+                <h3>Lectura Analítica: La Deducción Final</h3>
+                <p>Aquí te preguntas POR QUÉ y CÓMO dice el autor lo que dice. Buscas la intención oculta, el tono y su estrategia.</p>
+                <ul><li><strong>Qué hacer:</strong> Cuestiona el propósito del autor, analiza su tono y evalúa sus argumentos.</li><li><strong>Pregunta clave:</strong> ¿Cuál es la verdadera intención del autor y qué técnicas usa?</li></ul>
+            </div>
+            <div class="manual-section">
+                <h3>Pistas Clave vs. Evidencia de Apoyo (Ideas Principales y Secundarias)</h3>
+                <p>No todas las pistas tienen el mismo peso. Debes saber diferenciar lo esencial de lo complementario.</p>
+                <ul><li><strong>Idea Principal (Pista Clave):</strong> Es la afirmación más importante de un párrafo. Si la quitas, el párrafo pierde su sentido.</li><li><strong>Idea Secundaria (Evidencia de Apoyo):</strong> Son los detalles, ejemplos o datos que respaldan y dan fuerza a la idea principal.</li></ul>
+            </div>
+            <button style="margin-top: 20px;" onclick="hideManual()">Volver a la Selección de Casos</button>
+        </div>
+
+        <!-- PANTALLAS DEL JUEGO Y RESULTADOS -->
+        <div id="game-screen" class="hidden">
+            <h2 id="case-title"></h2>
+            <p id="phase-title"></p>
+            <div id="timer-display" class="hidden"></div><div id="text-area"></div><div id="interaction-area"></div><div id="feedback-area" class="hidden"></div>
+        </div>
+        <div id="results-screen" class="hidden">
+            <h1>Caso Resuelto</h1>
+            <p>¡Excelente trabajo, Detective!</p><p>Tu puntuación final es:</p><p id="final-score"></p>
+            <button onclick="window.location.reload()">Investigar otro Caso</button>
+        </div>
+    </div>
+
+    <script>
+        // --- DATOS DE TODOS LOS CASOS ---
+        const gameData = {
+            caso1: { /* ... datos del caso 1 sin cambios ... */ },
+            caso2: { /* ... datos del caso 2 sin cambios ... */ }
+        };
+        
+        // --- EL RESTO DEL SCRIPT JAVASCRIPT PERMANECE EXACTAMENTE IGUAL ---
+        
+        // --- DATOS DE TODOS LOS CASOS (los dejo aquí para que el código esté completo)---
+        const gameDataFull = {
+            caso1: {
+                title: "El Poder Silencioso de la Lectura",
+                fullText: "La lectura es una herramienta fundamental para el desarrollo cognitivo. Más que un simple pasatiempo, leer fortalece las conexiones neuronales y expande nuestra capacidad de comprensión y empatía. Numerosos estudios demuestran que los lectores habituales poseen un vocabulario más rico. Además, la lectura analítica nos enseña a cuestionar, a identificar argumentos y a diferenciar entre hechos y opiniones. Esta habilidad es crucial en un mundo saturado de información. Finalmente, sumergirse en un buen libro es una de las mejores formas de reducir el estrés.",
+                sentences: [ { id: 'c1s1', text: "La lectura es una herramienta fundamental para el desarrollo cognitivo.", type: 'main' }, { id: 'c1s2', text: "Más que un simple pasatiempo, leer fortalece las conexiones neuronales y expande nuestra capacidad de comprensión y empatía.", type: 'main' }, { id: 'c1s3', text: "Numerosos estudios demuestran que los lectores habituales poseen un vocabulario más rico.", type: 'secondary', supports: 'c1s2' }, { id: 'c1s4', text: "Además, la lectura analítica nos enseña a cuestionar, a identificar argumentos y a diferenciar entre hechos y opiniones.", type: 'main' }, { id: 'c1s5', text: "Esta habilidad es crucial en un mundo saturado de información.", type: 'secondary', supports: 'c1s4' }, { id: 'c1s6', text: "Finalmente, sumergirse en un buen libro es una de las mejores formas de reducir el estrés.", type: 'secondary', supports: 'c1s1' } ],
+                fase1: { duration: 25, question: { q: "Tras una inspección rápida, ¿cuál es el tema central del texto?", options: ["Los peligros de internet", "Técnicas de estudio", "Los beneficios de la lectura"], answer: "Los beneficios de la lectura" } },
+                fase2: { mainIdeaToSupport: 'c1s4' },
+                fase3: { questions: [ { q: "¿Cuál es el propósito principal del autor?", options: ["Entretener con una anécdota", "Persuadir sobre la importancia de leer", "Vender una app de lectura"], answer: "Persuadir sobre la importancia de leer" }, { q: "¿Qué tono utiliza el autor?", options: ["Irónico y sarcástico", "Informativo y convincente", "Pesimista y alarmante"], answer: "Informativo y convincente" } ] }
+            },
+            caso2: {
+                title: "El Misterio del Aprendizaje Significativo",
+                fullText: "El aprendizaje significativo, un concepto clave en psicopedagogía, es el proceso por el cual una persona relaciona nueva información con la que ya posee. Esto implica una reestructuración activa de los conocimientos previos, no una simple memorización de datos. Para que este aprendizaje ocurra, son necesarias dos condiciones fundamentales: material potencialmente significativo y una disposición favorable del estudiante. La disposición favorable se refiere a la motivación y el deseo del alumno por conectar lo nuevo con su estructura cognitiva. El rol del educador también se transforma; deja de ser un mero transmisor de información para convertirse en un facilitador. Este facilitador debe crear puentes cognitivos, utilizando ejemplos y contextos relevantes para el estudiante. La gran ventaja de este enfoque es que el conocimiento adquirido es más duradero y fácilmente transferible a nuevas situaciones. Así, se fomenta un pensamiento crítico y una comprensión profunda en lugar de una repetición superficial.",
+                sentences: [
+                    { id: 'c2s1', text: "El aprendizaje significativo, un concepto clave en psicopedagogía, es el proceso por el cual una persona relaciona nueva información con la que ya posee.", type: 'main' },
+                    { id: 'c2s2', text: "Esto implica una reestructuración activa de los conocimientos previos, no una simple memorización de datos.", type: 'secondary', supports: 'c2s1' },
+                    { id: 'c2s3', text: "Para que este aprendizaje ocurra, son necesarias dos condiciones fundamentales: material potencialmente significativo y una disposición favorable del estudiante.", type: 'main' },
+                    { id: 'c2s4', text: "La disposición favorable se refiere a la motivación y el deseo del alumno por conectar lo nuevo con su estructura cognitiva.", type: 'secondary', supports: 'c2s3' },
+                    { id: 'c2s5', text: "El rol del educador también se transforma; deja de ser un mero transmisor de información para convertirse en un facilitador.", type: 'main' },
+                    { id: 'c2s6', text: "Este facilitador debe crear puentes cognitivos, utilizando ejemplos y contextos relevantes para el estudiante.", type: 'secondary', supports: 'c2s5' },
+                    { id: 'c2s7', text: "La gran ventaja de este enfoque es que el conocimiento adquirido es más duradero y fácilmente transferible a nuevas situaciones.", type: 'main' },
+                    { id: 'c2s8', text: "Así, se fomenta un pensamiento crítico y una comprensión profunda en lugar de una repetición superficial.", type: 'secondary', supports: 'c2s7' }
+                ],
+                fase1: {
+                    duration: 35,
+                    question: { q: "Tras una inspección rápida, ¿cuál es el tema principal del texto?", options: ["Dificultades de atención en el aula", "El concepto de aprendizaje significativo", "La historia de la psicología"], answer: "El concepto de aprendizaje significativo" }
+                },
+                fase2: { mainIdeaToSupport: 'c2s5' },
+                fase3: {
+                    questions: [
+                        { q: "¿Cuál es el objetivo principal del autor al escribir este texto?", options: ["Criticar los métodos educativos tradicionales", "Persuadir sobre la eficacia de un modelo de aprendizaje", "Narrar la biografía de un psicólogo"], answer: "Persuadir sobre la eficacia de un modelo de aprendizaje" },
+                        { q: "¿Qué tono se emplea en el texto?", options: ["Explicativo y formal", "Coloquial e informal", "Escéptico y dubitativo"], answer: "Explicativo y formal" }
+                    ]
+                }
+            }
+        };
+
+        // --- ELEMENTOS Y ESTADO DEL JUEGO ---
+        const startScreen = document.getElementById('start-screen'), gameScreen = document.getElementById('game-screen'), resultsScreen = document.getElementById('results-screen'), manualScreen = document.getElementById('manual-screen'), caseTitle = document.getElementById('case-title'), phaseTitle = document.getElementById('phase-title'), timerDisplay = document.getElementById('timer-display'), textArea = document.getElementById('text-area'), interactionArea = document.getElementById('interaction-area'), feedbackArea = document.getElementById('feedback-area'), finalScoreDisplay = document.getElementById('final-score');
+        let currentCaseData, currentPhase = 0, score = 0, timer;
+
+        // --- FUNCIONES DE NAVEGACIÓN Y JUEGO ---
+        function showManual() { startScreen.classList.add('hidden'); manualScreen.classList.remove('hidden'); }
+        function hideManual() { manualScreen.classList.add('hidden'); startScreen.classList.remove('hidden'); }
+        function startGame(caseId) {
+            currentCaseData = gameDataFull[caseId]; // Corregido para usar el objeto completo
+            score = 0;
+            startScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            caseTitle.textContent = currentCaseData.title;
+            startPhase1();
+        }
+        function startPhase1() {
+            currentPhase = 1;
+            phaseTitle.textContent = "Fase 1: Lectura Exploratoria";
+            textArea.textContent = currentCaseData.fullText;
+            interactionArea.innerHTML = "";
+            let timeLeft = currentCaseData.fase1.duration;
+            timerDisplay.classList.remove('hidden');
+            timerDisplay.textContent = `Tiempo: ${timeLeft}`;
+            timer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = `Tiempo: ${timeLeft}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = "¡Tiempo!";
+                    textArea.innerHTML = `<p><i>El tiempo de inspección ha terminado.</i></p>`;
+                    showPhase1Question();
+                }
+            }, 1000);
+        }
+        function showPhase1Question() {
+            const q = currentCaseData.fase1.question;
+            let questionHTML = `<p>${q.q}</p>`;
+            q.options.forEach(option => { questionHTML += `<button onclick="checkPhase1Answer('${option}')">${option}</button>`; });
+            interactionArea.innerHTML = questionHTML;
+        }
+        function checkPhase1Answer(selectedOption) {
+            clearInterval(timer);
+            const isCorrect = selectedOption === currentCaseData.fase1.question.answer;
+            if (isCorrect) { score += 10; showFeedback("¡Correcto! Has captado la esencia del caso.", true); } 
+            else { showFeedback("Incorrecto. La pista principal te ha eludido.", false); }
+            interactionArea.querySelectorAll('button').forEach(b => b.disabled = true);
+            setTimeout(startPhase2, 3000);
+        }
+        function startPhase2() {
+            currentPhase = 2.1;
+            phaseTitle.textContent = "Fase 2: Ideas Principales";
+            timerDisplay.classList.add('hidden');
+            feedbackArea.classList.add('hidden');
+            renderSentences();
+            interactionArea.innerHTML = `<p><strong>Instrucción:</strong> Selecciona TODAS las <strong>ideas principales</strong>.</p><button onclick="checkMainIdeas()">Verificar Ideas</button>`;
+        }
+        function renderSentences() {
+            textArea.innerHTML = "";
+            currentCaseData.sentences.forEach(s => {
+                const span = document.createElement('span');
+                span.textContent = s.text + " ";
+                span.className = 'sentence';
+                span.dataset.id = s.id;
+                span.onclick = () => (currentPhase === 2.1 || currentPhase === 2.2) && span.classList.toggle('selected');
+                textArea.appendChild(span);
+            });
+        }
+        function checkMainIdeas() {
+            const selectedSpans = document.querySelectorAll('.sentence.selected');
+            const selectedIds = Array.from(selectedSpans).map(span => span.dataset.id);
+            const mainIdeaIds = currentCaseData.sentences.filter(s => s.type === 'main').map(s => s.id);
+            let allCorrect = selectedIds.length === mainIdeaIds.length && mainIdeaIds.every(id => selectedIds.includes(id));
+            document.querySelectorAll('.sentence').forEach(span => {
+                const id = span.dataset.id, isMain = mainIdeaIds.includes(id), isSelected = selectedIds.includes(id);
+                if (isMain && isSelected) span.classList.add('correct');
+                else if (isMain && !isSelected) span.classList.add('incorrect');
+                else if (!isMain && isSelected) span.classList.add('incorrect');
+            });
+            if (allCorrect) { score += 20; showFeedback("¡Excelente! Has identificado todas las ideas principales.", true); } 
+            else { showFeedback("Algunas pistas son incorrectas. Las correctas están en verde.", false); }
+            interactionArea.querySelector('button').disabled = true;
+            setTimeout(promptForSecondaryIdeas, 4500);
+        }
+        function promptForSecondaryIdeas() {
+            currentPhase = 2.2;
+            phaseTitle.textContent = "Fase 2: Ideas Secundarias";
+            feedbackArea.classList.add('hidden');
+            renderSentences();
+            const mainIdeaId = currentCaseData.fase2.mainIdeaToSupport;
+            const mainIdeaText = currentCaseData.sentences.find(s => s.id === mainIdeaId).text;
+            interactionArea.innerHTML = `<p><strong>Instrucción:</strong> Encuentra la idea secundaria que apoya a esta idea principal:</p><p style="font-style: italic; background: #eee; padding: 10px; border-radius: 5px;">"${mainIdeaText}"</p><button onclick="checkSecondaryIdea('${mainIdeaId}')">Verificar Idea</button>`;
+        }
+        function checkSecondaryIdea(mainIdeaId) {
+            const selectedSpan = document.querySelector('.sentence.selected');
+            if (!selectedSpan) { return showFeedback("Debes seleccionar una oración.", false); }
+            const selectedId = selectedSpan.dataset.id;
+            const correctSecondary = currentCaseData.sentences.find(s => s.type === 'secondary' && s.supports === mainIdeaId);
+            if (correctSecondary && selectedId === correctSecondary.id) {
+                score += 15;
+                showFeedback("¡Perfecto! Esa es la evidencia que apoya la idea principal.", true);
+                setTimeout(startPhase3, 2500);
+            } else {
+                showFeedback("No es la evidencia correcta. Busca una que explique o dé un ejemplo.", false);
+            }
+        }
+        function startPhase3() {
+            currentPhase = 3;
+            phaseTitle.textContent = "Fase 3: Lectura Analítica";
+            feedbackArea.classList.add('hidden');
+            textArea.textContent = currentCaseData.fullText;
+            showPhase3Question(0);
+        }
+        function showPhase3Question(index) {
+            if (index >= currentCaseData.fase3.questions.length) { showResults(); return; }
+            const q = currentCaseData.fase3.questions[index];
+            let questionHTML = `<p><strong>Pregunta Analítica ${index + 1}:</strong> ${q.q}</p>`;
+            q.options.forEach(option => { questionHTML += `<button onclick="checkPhase3Answer('${option}', ${index})">${option}</button>`; });
+            interactionArea.innerHTML = questionHTML;
+        }
+        function checkPhase3Answer(selectedOption, index) {
+            const q = currentCaseData.fase3.questions[index];
+            const isCorrect = selectedOption === q.answer;
+            if (isCorrect) { score += 10; showFeedback("¡Deducción correcta, Detective!", true); } 
+            else { showFeedback(`Incorrecto. La deducción correcta era: "${q.answer}"`, false); }
+            interactionArea.querySelectorAll('button').forEach(b => b.disabled = true);
+            setTimeout(() => showPhase3Question(index + 1), 3000);
+        }
+        function showResults() {
+            gameScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+            finalScoreDisplay.textContent = `${score} Puntos`;
+        }
+        function showFeedback(message, isSuccess) {
+            feedbackArea.textContent = message;
+            feedbackArea.className = isSuccess ? 'feedback-area success' : 'feedback-area error';
+            feedbackArea.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
