@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilemas éticos de la IA en el IES 1 "Alicia Moreau de Justo"</title>
+    <style>
+        /* Estilos básicos CSS incrustados para que funcione directamente */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        #game-container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            width: 95%;
+            max-width: 750px;
+            text-align: center;
+            padding: 25px;
+            box-sizing: border-box;
+            border: 2px solid #00796b;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #introduction-screen {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #b2dfdb;
+            margin-bottom: 20px;
+        }
+        #introduction-screen h2 { /* Título de la introducción */
+            color: #004d40;
+            text-align: center;
+            font-size: 1.5em; /* Ajuste de tamaño */
+            margin-bottom: 15px;
+        }
+        #introduction-screen p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.0em; /* Ajuste de tamaño */
+        }
+        #start-game-button {
+            display: block;
+            background-color: #00796b;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            margin: 20px auto 0 auto;
+        }
+        #start-game-button:hover {
+            background-color: #004d40;
+        }
+
+
+        header {
+            margin-bottom: 25px;
+            border-bottom: 2px solid #b2dfdb;
+            padding-bottom: 15px;
+        }
+
+        h1 { /* Título principal del juego, dentro del header */
+            color: #004d40;
+            margin-bottom: 8px;
+            font-size: 1.7em;
+        }
+
+        #score-display {
+            font-weight: bold;
+            color: #00796b;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        #game-area, #header-game { /* Ocultar inicialmente el área de juego y su cabecera */
+            display: none;
+        }
+
+
+        #game-area {
+            margin-bottom: 25px;
+        }
+
+        #scenario-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            max-height: 350px;
+            object-fit: cover;
+            border: 3px solid #00796b;
+            background-color: #f0f0f0;
+        }
+
+        #scenario-text h3 { /* Títulos de escenarios */
+             color: #00695c;
+             margin-bottom: 10px;
+             font-size: 1.3em;
+        }
+
+        #scenario-text p { /* Descripción del escenario */
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 15px;
+            color: #263238;
+            text-align: left;
+        }
+
+
+        #options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .option-button {
+            background-color: #009688;
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.0em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+        }
+
+        .option-button:hover {
+            background-color: #00796b;
+            transform: translateY(-2px);
+        }
+
+        .option-button.disabled {
+            background-color: #b0bec5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        #continue-button {
+            display: block; 
+            background-color: #ff9800;
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.0em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            margin: 20px auto 0 auto; /* Centrado */
+            width: fit-content; 
+        }
+        #continue-button:hover {
+            background-color: #f57c00; 
+        }
+        #continue-button.disabled {
+            background-color: #b0bec5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        #feedback-area {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #e0f2f1;
+            border-left: 7px solid #00796b;
+            text-align: left;
+            font-style: italic;
+            color: #004d40;
+            border-radius: 8px;
+            min-height: 50px;
+            font-size: 0.95em;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+         #feedback-area p { 
+            margin:0; 
+         }
+
+        #final-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #final-screen img {
+            max-width: 200px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            border: 5px solid #00796b;
+            background-color: #f0f0f0;
+        }
+        
+        #profile-summary h2 { /* Título de la pantalla final */
+            color: #004d40;
+            margin-bottom: 15px;
+            font-size: 1.6em; /* Ajuste */
+        }
+
+        #profile-summary #total-score-info {
+            font-size: 1.0em;
+            color: #00695c;
+            margin-bottom: 15px;
+        }
+
+        #profile-description {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 1.0em;
+            line-height: 1.6;
+            color: #263238;
+            text-align: left;
+        }
+
+        #profile-description ul {
+            list-style-type: none;
+            padding-left: 0;
+            text-align: left;
+        }
+         #profile-description li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+         }
+        #profile-description li::before {
+            content: "🔹";
+            color: #00796b;
+            position: absolute;
+            left: 0;
+            font-size: 0.9em;
+        }
+        #profile-description strong { /* Clave del perfil: Creatividad, etc. */
+            color: #004d40; 
+        }
+        #profile-description .explanation {
+            font-size: 0.9em;
+            color: #546e7a;
+            display: block;
+            margin-top: 3px;
+            padding-left: 5px;
+        }
+
+
+        #final-message {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #00796b;
+            margin-top: 20px;
+        }
+
+        #restart-button {
+            background-color: #e57373;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+        }
+
+        #restart-button:hover {
+            background-color: #ef5350;
+            transform: translateY(-2px);
+        }
+        footer p {
+            font-size: 0.9em;
+            color: #004d40;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="introduction-screen">
+            <h2>Bienvenido/a a "Dilemas éticos de la IA"</h2>
+            <p>En este juego, te enfrentarás a una serie de escenarios comunes en los que la inteligencia artificial (IA) juega un papel importante. Tu tarea será analizar cada situación y tomar la decisión que consideres más ética y responsable.</p>
+            <p>No hay respuestas únicas "correctas" o "incorrectas" en todos los casos, pero tus elecciones reflejarán tu comprensión sobre el uso consciente de la IA. Cada decisión tendrá un impacto en tus "puntos éticos" (PE) y ayudará a definir tu perfil ético al final del juego.</p>
+            <p>Lee cada dilema con atención, reflexiona sobre las posibles consecuencias y elige la opción que mejor represente un uso informado y considerado de la tecnología. ¡El objetivo es aprender y fomentar un diálogo constructivo sobre la IA en nuestro día a día!</p>
+            <button id="start-game-button">Comenzar el juego</button>
+        </div>
+
+        <header id="header-game" style="display: none;"> <!-- Ocultar inicialmente -->
+            <h1>Dilemas éticos de la IA en el IES 1 "Alicia Moreau de Justo"</h1>
+            <div id="score-display">Puntos éticos (PE): <span id="current-score">0</span></div>
+        </header>
+
+        <main id="game-area"> <!-- Esta área se mostrará después de la intro -->
+            <div id="scenario-image">
+                <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1" alt="Ilustración genérica del escenario">
+            </div>
+            <div id="scenario-text">
+                <h3>Cargando escenario...</h3>
+                <p>Por favor, espera.</p>
+            </div>
+            <div id="options-container">
+                <button class="option-button disabled">Cargando opciones...</button>
+            </div>
+            <div id="feedback-area" style="display: none;"> <!-- Ocultar inicialmente -->
+            </div>
+            <button id="continue-button" style="display: none;">Continuar</button>
+        </main>
+
+        <div id="final-screen"> <!-- Esta área se mostrará al final -->
+            <img id="profile-image" src="https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&dpr=1" alt="Imagen de perfil ético">
+            <div id="profile-summary">
+                <h2>Tu perfil ético de IA</h2>
+                <div id="total-score-info"></div>
+                <div id="profile-description">
+                </div>
+                <div id="final-message">
+                </div>
+            </div>
+            <button id="restart-button">Volver a jugar</button>
+        </div>
+
+        <footer>
+            <p>© 2025 IES 1 "Alicia Moreau de Justo" | Educación responsable con IA</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- FUNCIÓN AUXILIAR PARA CAPITALIZAR ---
+        function capitalizeFirstLetter(string) {
+            if (!string) return string;
+            // Manejar casos especiales como frases que empiezan con "¡" o "¿"
+            if (string.startsWith('¡') || string.startsWith('¿')) {
+                if (string.length > 1) {
+                    return string.charAt(0) + string.charAt(1).toUpperCase() + string.slice(2);
+                }
+                return string;
+            }
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // --- DATOS DEL JUEGO ---
+        const profileKeyExplanations = {
+            creatividad: { name: "Creatividad", explanation: "Capacidad de generar ideas y soluciones novedosas, y cómo la IA influye en ella." },
+            originalidad: { name: "Originalidad", explanation: "Grado en que tus trabajos son únicos y no meras reproducciones o adaptaciones superficiales." },
+            conciencia_etica: { name: "Conciencia ética", explanation: "Comprensión de las implicaciones morales y sociales del uso de la IA." },
+            adopcion_tecnologica: { name: "Adopción tecnológica", explanation: "Disposición a integrar y utilizar nuevas tecnologías como la IA de forma efectiva." },
+            pensamiento_critico: { name: "Pensamiento crítico", explanation: "Habilidad para analizar información objetivamente y cuestionar supuestos, especialmente con contenido de IA." },
+            habilidades_investigacion: { name: "Habilidades de investigación", explanation: "Capacidad para buscar, evaluar y sintetizar información de manera rigurosa." },
+            integridad: { name: "Integridad", explanation: "Honestidad y coherencia entre tus valores y acciones al usar la IA (ej. evitar plagio)." },
+            resolucion_problemas: { name: "Resolución de problemas", explanation: "Enfoque para abordar desafíos, utilizando la IA como herramienta o no." },
+            toma_decisiones: { name: "Toma de decisiones", explanation: "Proceso para elegir entre alternativas, considerando la información (de IA o propia)." },
+            prevision: { name: "Previsión", explanation: "Capacidad de anticipar consecuencias de tus acciones con la IA." },
+            innovacion: { name: "Innovación", explanation: "Apertura a nuevas formas de hacer las cosas, incluyendo el uso creativo de la IA." },
+            etica_redes_sociales: { name: "Ética en redes sociales", explanation: "Uso responsable y auténtico de la IA en plataformas sociales." },
+            autenticidad: { name: "Autenticidad", explanation: "Grado en que tu comunicación y trabajos reflejan tu propia voz y pensamiento." },
+            habilidades_comunicacion: { name: "Habilidades de comunicación", explanation: "Cómo la IA afecta la claridad, efectividad y personalidad de tu comunicación." },
+            alfabetizacion_informacional_critica: { name: "Alfabetización informacional crítica", explanation: "Capacidad de evaluar críticamente la información encontrada online, especialmente la generada o curada por IA." },
+            apertura_mental: { name: "Apertura mental", explanation: "Disposición a considerar diversas perspectivas y no encerrarse en burbujas informativas." },
+            consumo_medios: { name: "Consumo de medios", explanation: "Forma en que interactúas con el contenido mediático, ya sea pasiva o activamente crítica." },
+            autonomia_creativa: { name: "Autonomía creativa", explanation: "Capacidad de dirigir tu propio proceso creativo, usando la IA como apoyo y no como sustituto." },
+            integridad_artistica: { name: "Integridad artística", explanation: "Honestidad sobre la autoría y el proceso en creaciones personales." },
+            desarrollo_personal: { name: "Desarrollo personal", explanation: "Cómo el uso de la IA contribuye (o no) a tu crecimiento y aprendizaje." },
+            exploracion_tecnologica: { name: "Exploración tecnológica", explanation: "Curiosidad y disposición a experimentar con nuevas herramientas tecnológicas." },
+            consulta_docente: { name: "Consulta docente", explanation: "Importancia de dialogar con tus profesores sobre el uso adecuado de la IA en el ámbito académico." },
+            mapeo_conceptual: { name: "Mapeo conceptual", explanation: "Uso de la IA para organizar ideas y crear mapas conceptuales, y la reflexión sobre su efectividad." }
+        };
+
+
+        const scenarios = [
+            {
+                id: 1,
+                title: "Creación de contenido original",
+                description: "Necesitas crear una presentación visualmente atractiva para un proyecto personal. Las herramientas de IA pueden generar imágenes y diseños rápidamente. ¿Cómo procedes para asegurar que tu trabajo sea original y ético?",
+                image: "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1",
+                options: [
+                    {
+                        text: "Usar la IA para generar todas las imágenes y el diseño base, haciendo solo pequeños ajustes.",
+                        pe_change: -3,
+                        feedback: "La presentación se ve bien, pero carece de un toque personal distintivo. Podrías estar dependiendo demasiado de la IA, limitando tu propio desarrollo creativo.",
+                        profile_impact: { creatividad: "Dependiente de IA", originalidad: "Baja", conciencia_etica: "Media" }
+                    },
+                    {
+                        text: "Utilizar la IA para inspirarte, generar bocetos o ideas iniciales, pero crear el contenido final tú mismo/a, combinando elementos o diseñando desde cero.",
+                        pe_change: 3,
+                        feedback: "¡Excelente enfoque! Usas la IA como una herramienta de apoyo, pero tu creatividad y esfuerzo personal brillan en el resultado final. Demuestras un uso ético y productivo.",
+                        profile_impact: { creatividad: "Potenciada por IA", originalidad: "Alta", conciencia_etica: "Alta" }
+                    },
+                    {
+                        text: "Evitar la IA por completo y hacerlo todo manualmente, aunque te tome mucho más tiempo y el resultado no sea tan pulido visualmente.",
+                        pe_change: 0,
+                        feedback: "Tu esfuerzo es admirable y el trabajo es tuyo, pero podrías haber usado la IA para optimizar ciertas partes y enfocarte más en la estrategia creativa. No usarla también es una elección.",
+                        profile_impact: { creatividad: "Tradicional", originalidad: "Alta", adopcion_tecnologica: "Cautelosa" }
+                    }
+                ],
+                next_scenario: 2
+            },
+            {
+                id: 2,
+                title: "Investigación y verificación de información",
+                description: "Estás investigando para un debate sobre un tema controversial. Encuentras artículos y resúmenes generados por IA que parecen muy completos. ¿Cómo te aseguras de la fiabilidad de esta información?",
+                image: "https://images.pexels.com/photos/7567434/pexels-photo-7567434.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1",
+                options: [
+                    {
+                        text: "Confiar en los resúmenes de la IA, ya que procesan grandes cantidades de datos y parecen coherentes.",
+                        pe_change: -4,
+                        feedback: "Aunque la IA puede ser útil, basarte solo en sus resúmenes sin verificar las fuentes originales es arriesgado. Podrías estar propagando desinformación o sesgos no detectados.",
+                        profile_impact: { pensamiento_critico: "Bajo", habilidades_investigacion: "Superficiales", integridad: "Comprometida" }
+                    },
+                    {
+                        text: "Usar la IA para obtener una visión general y identificar fuentes clave, pero luego verificar y contrastar la información en las fuentes originales.",
+                        pe_change: 3,
+                        feedback: "¡Muy bien! Utilizas la IA como punto de partida eficiente, pero aplicas tu pensamiento crítico para validar y profundizar en la información. Este es un uso responsable.",
+                        profile_impact: { pensamiento_critico: "Alto", habilidades_investigacion: "Sólidas", integridad: "Alta" }
+                    },
+                    {
+                        text: "Descartar cualquier información donde la IA haya intervenido y buscar todo manualmente, aunque sea mucho más lento.",
+                        pe_change: 1,
+                        feedback: "Tu dedicación a la verificación es buena, pero podrías usar la IA para agilizar la fase inicial de búsqueda y enfocarte más en el análisis crítico de las fuentes primarias.",
+                        profile_impact: { pensamiento_critico: "Medio-alto", habilidades_investigacion: "Tradicionales", adopcion_tecnologica: "Muy cautelosa" }
+                    }
+                ],
+                next_scenario: 3
+            },
+            {
+                id: 3,
+                title: "Resolución de problemas complejos",
+                description: "Te enfrentas a un desafío que requiere una solución innovadora (ej. organizar un evento, proponer una solución a un problema comunitario). La IA puede ofrecerte múltiples enfoques.",
+                image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1",
+                options: [
+                    { text: "Implementar la solución más popular o la primera que sugiera la IA sin mayor análisis.", pe_change: -3, feedback: "La IA puede dar buenas ideas, pero no siempre considera el contexto específico. Una elección apresurada podría no ser la mejor.", profile_impact: { resolucion_problemas: "Impulsivo", toma_decisiones: "Dependiente", prevision: "Limitada" } },
+                    { text: "Pedir a la IA varias alternativas, analizarlas críticamente, considerar sus pros/contras y adaptarlas o combinarlas con tu propio criterio.", pe_change: 3, feedback: "¡Excelente estrategia! Usas la IA como fuente de ideas, pero aplicas tu juicio para llegar a la mejor solución. Demuestras liderazgo.", profile_impact: { resolucion_problemas: "Estratégico", toma_decisiones: "Informado", prevision: "Desarrollada" } },
+                    { text: "Ignorar las sugerencias de la IA y tratar de resolverlo todo por tu cuenta, confiando únicamente en tus métodos conocidos.", pe_change: 0, feedback: "Es valioso confiar en tus habilidades, pero la IA podría haberte ofrecido perspectivas nuevas. Abrirse a nuevas herramientas puede enriquecer tu proceso.", profile_impact: { resolucion_problemas: "Autosuficiente", toma_decisiones: "Tradicional", innovacion: "Limitada" } }
+                ],
+                next_scenario: 4
+            },
+            {
+                id: 4,
+                title: "IA en redes sociales y comunicación",
+                description: "Quieres mejorar tu presencia en redes sociales. Una IA te ofrece generar publicaciones virales o respuestas ingeniosas. ¿Cómo la usas?",
+                image: "https://images.pexels.com/photos/4559533/pexels-photo-4559533.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1",
+                options: [
+                    {
+                        text: "Dejar que la IA genere la mayoría de tus publicaciones y respuestas para ahorrar tiempo y sonar 'actual'.",
+                        pe_change: -4,
+                        feedback: "Si bien puede ser rápido, tu comunicación podría volverse impersonal. La autenticidad es valiosa.",
+                        profile_impact: { etica_redes_sociales: "Cuestionable", autenticidad: "Baja", habilidades_comunicacion: "Delegadas" }
+                    },
+                    {
+                        text: "Usar la IA para obtener ideas de temas, mejorar la redacción de tus propios mensajes, pero siempre añadiendo tu voz y perspectiva personal.",
+                        pe_change: 3,
+                        feedback: "¡Buen equilibrio! Aprovechas la IA para inspirarte y pulir, pero mantienes tu autenticidad. Esto fomenta una comunicación genuina.",
+                        profile_impact: { etica_redes_sociales: "Responsable", autenticidad: "Alta", habilidades_comunicacion: "Mejoradas" }
+                    },
+                    {
+                        text: "No usar IA para nada relacionado con tus redes o comunicación personal, prefiriendo que todo sea 100% espontáneo.",
+                        pe_change: 1,
+                        feedback: "La espontaneidad es genial, pero la IA podría ayudarte a estructurar ideas sin quitar tu toque personal si la usas como editor.",
+                        profile_impact: { etica_redes_sociales: "Conservadora", autenticidad: "Alta", adopcion_tecnologica: "Resistente" }
+                    }
+                ],
+                next_scenario: 5
+            },
+            {
+                id: 5,
+                title: "Consumo de noticias y contenido curado por IA",
+                description: "Tu feed de noticias usa IA para recomendarte contenido. Notas que cada vez ves más artículos que confirman tus propias opiniones.",
+                image: "https://images.pexels.com/photos/8879653/pexels-photo-8879653.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1",
+                options: [
+                    {
+                        text: "Seguir consumiendo lo que la IA me recomienda, es más cómodo y afín a mis gustos.",
+                        pe_change: -3,
+                        feedback: "Esto puede llevarte a una 'burbuja de filtro', limitando tu exposición a ideas diversas.",
+                        profile_impact: { alfabetizacion_informacional_critica: "Baja", apertura_mental: "Limitada", consumo_medios: "Pasiva" }
+                    },
+                    {
+                        text: "Buscar activamente fuentes de noticias y opiniones diversas, incluso si la IA no me las sugiere. Cuestionar por qué se me recomienda cierto contenido.",
+                        pe_change: 3,
+                        feedback: "¡Excelente actitud crítica! Eres consciente de los sesgos algorítmicos y te esfuerzas por tener una visión más amplia y equilibrada.",
+                        profile_impact: { alfabetizacion_informacional_critica: "Alta", apertura_mental: "Amplia", consumo_medios: "Activa y crítica" }
+                    },
+                    {
+                        text: "Intentar 'engañar' al algoritmo interactuando con contenido opuesto para ver si cambia, pero sin un plan claro.",
+                        pe_change: 0,
+                        feedback: "Es un intento interesante, pero sin una estrategia clara, podrías terminar confundiendo al algoritmo sin enriquecer tu perspectiva.",
+                        profile_impact: { alfabetizacion_informacional_critica: "Emergente", apertura_mental: "Curiosa", consumo_medios: "Experimental" }
+                    }
+                ],
+                next_scenario: 6
+            },
+            {
+                id: 6,
+                title: "IA para hobbies y creación artística personal",
+                description: "Te gusta componer música (o escribir, dibujar) como hobby. Una IA puede ayudarte a generar melodías, letras, o imágenes. ¿Cómo integras esto?",
+                image: "https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1",
+                options: [
+                    {
+                        text: "Dejar que la IA genere obras completas y presentarlas como si fueran principalmente mías, disfrutando del resultado final.",
+                        pe_change: -5,
+                        feedback: "Apropiarte del trabajo de una IA como tuyo disminuye el valor de tu propio aprendizaje y expresión. La satisfacción de la creación personal es única.",
+                        profile_impact: { autonomia_creativa: "Baja", integridad_artistica: "Comprometida", desarrollo_personal: "Estancado" }
+                    },
+                    {
+                        text: "Usar la IA como colaboradora: para superar un bloqueo, generar variaciones, o encargarle partes técnicas, manteniendo mi dirección.",
+                        pe_change: 3,
+                        feedback: "¡Fantástico! Estás usando la IA como una herramienta que expande tus capacidades creativas sin reemplazar tu voz.",
+                        profile_impact: { autonomia_creativa: "Alta", integridad_artistica: "Intacta", desarrollo_personal: "En crecimiento" }
+                    },
+                    {
+                        text: "Experimentar con la IA para ver qué puede hacer, pero mantener mis creaciones personales separadas, hechas 100% por mí.",
+                        pe_change: 1,
+                        feedback: "Es una postura válida. Sin embargo, no descartes que la IA, bien usada, podría ofrecerte nuevas herramientas para tu expresión.",
+                        profile_impact: { autonomia_creativa: "Tradicional", integridad_artistica: "Alta", exploracion_tecnologica: "Curiosa pero separada" }
+                    }
+                ],
+                next_scenario: 7
+            },
+            {
+                id: 7,
+                title: "IA para crear mapas conceptuales y la consulta docente",
+                description: "Para estudiar un tema complejo, decides usar una IA que genera mapas conceptuales. El resultado parece bueno, pero no estás seguro/a si es la forma más adecuada de representar las ideas o si cumple con las expectativas de tu profesor/a para una evaluación.",
+                image: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&dpr=1",
+                options: [
+                    {
+                        text: "Usar el mapa conceptual generado por la IA tal cual, asumiendo que es correcto y completo.",
+                        pe_change: -3,
+                        feedback: "Confiar ciegamente en la IA puede llevar a errores o a una comprensión superficial. Es importante verificar y adaptar las herramientas a tus necesidades y a los criterios académicos.",
+                        profile_impact: { mapeo_conceptual: "Dependiente", pensamiento_critico: "Bajo", consulta_docente: "Omitida" }
+                    },
+                    {
+                        text: "Revisar el mapa de la IA, modificarlo según tu comprensión y, antes de darlo por definitivo, consultar con tu profesor/a si ese uso de la IA es apropiado y si el mapa refleja bien los conceptos clave.",
+                        pe_change: 4,
+                        feedback: "¡Excelente iniciativa! Revisas críticamente, personalizas la herramienta y, muy importante, buscas la guía de tu docente. Esto demuestra madurez y compromiso con tu aprendizaje.",
+                        profile_impact: { mapeo_conceptual: "Reflexivo y adaptado", pensamiento_critico: "Alto", consulta_docente: "Proactiva", integridad: "Alta" }
+                    },
+                    {
+                        text: "Hacer el mapa conceptual completamente a mano, sin IA, porque dudas de su utilidad o de la opinión del profesor/a sobre su uso.",
+                        pe_change: 0,
+                        feedback: "Hacerlo manualmente es válido, pero podrías estar perdiendo una herramienta útil. Consultar al docente sobre el uso de IA podría aclarar tus dudas y abrir nuevas posibilidades.",
+                        profile_impact: { mapeo_conceptual: "Tradicional", adopcion_tecnologica: "Escéptica", consulta_docente: "Evitada por duda" }
+                    }
+                ],
+                next_scenario: null
+            }
+        ];
+
+        // --- LÓGICA DEL JUEGO ---
+        const initialScore = 0;
+        let maxPossibleScore = 0; 
+
+        function calculateMaxPossibleScore() {
+            maxPossibleScore = scenarios.reduce((sum, scenario) => {
+                const maxOptionScore = scenario.options.reduce((max, opt) => Math.max(max, opt.pe_change), -Infinity);
+                return sum + (maxOptionScore > 0 ? maxOptionScore : 0);
+            }, 0);
+        }
+        
+        let currentScore = initialScore;
+        let currentScenarioId = 1;
+        let currentScenarioData = null; 
+
+        let playerProfile = {}; 
+        function initializeProfile() {
+            playerProfile = {};
+            for (const key in profileKeyExplanations) {
+                playerProfile[key] = "No evaluado"; 
+            }
+        }
+        
+        const introductionScreen = document.getElementById('introduction-screen');
+        const startGameButton = document.getElementById('start-game-button');
+        const headerGame = document.getElementById('header-game');
+        const scenarioImageElement = document.getElementById('scenario-image').querySelector('img');
+        const scenarioTextElement = document.getElementById('scenario-text');
+        const optionsContainer = document.getElementById('options-container');
+        const feedbackArea = document.getElementById('feedback-area');
+        const scoreDisplay = document.getElementById('current-score');
+        const gameArea = document.getElementById('game-area');
+        const finalScreen = document.getElementById('final-screen');
+        const profileImageElement = document.getElementById('profile-image');
+        const profileDescriptionElement = document.getElementById('profile-description');
+        const finalMessageElement = document.getElementById('final-message');
+        const restartButton = document.getElementById('restart-button');
+        const continueButton = document.getElementById('continue-button');
+        const totalScoreInfoElement = document.getElementById('total-score-info');
+
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        startGameButton.addEventListener('click', () => {
+            introductionScreen.style.display = 'none';
+            headerGame.style.display = 'block'; 
+            gameArea.style.display = 'block'; 
+            calculateMaxPossibleScore();
+            initializeProfile();
+            loadScenario(currentScenarioId);
+        });
+
+        function loadScenario(scenarioId) {
+            const scenario = scenarios.find(s => s.id === scenarioId);
+            if (!scenario) {
+                endGame();
+                return;
+            }
+            currentScenarioData = scenario; 
+
+            scenarioImageElement.src = scenario.image;
+            scenarioImageElement.alt = `Ilustración del escenario: ${scenario.title}`;
+            scenarioTextElement.innerHTML = `<h3>${scenario.title}</h3><p>${scenario.description}</p>`;
+            optionsContainer.innerHTML = '';
+            feedbackArea.innerHTML = ''; 
+            feedbackArea.style.display = 'none'; 
+            continueButton.style.display = 'none'; 
+
+            const shuffledOptions = [...scenario.options];
+            shuffleArray(shuffledOptions);
+
+            shuffledOptions.forEach((option) => {
+                const button = document.createElement('button');
+                button.textContent = option.text;
+                button.classList.add('option-button');
+                button.addEventListener('click', () => handleOptionClick(option)); 
+                optionsContainer.appendChild(button);
+            });
+            document.querySelectorAll('.option-button').forEach(btn => {
+                 btn.classList.remove('disabled');
+                 btn.disabled = false;
+            });
+        }
+
+        function handleOptionClick(option) { 
+            currentScore += option.pe_change;
+            scoreDisplay.textContent = currentScore;
+
+            feedbackArea.innerHTML = `<p>${capitalizeFirstLetter(option.feedback)}</p>`; // Capitalizar feedback
+            feedbackArea.style.display = 'block';
+
+
+            if (option.profile_impact) {
+                for (const key in option.profile_impact) {
+                    if (playerProfile.hasOwnProperty(key)) { 
+                        playerProfile[key] = option.profile_impact[key];
+                    }
+                }
+            }
+
+            document.querySelectorAll('.option-button').forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true; 
+            });
+            
+            continueButton.style.display = 'block'; 
+        }
+
+        continueButton.addEventListener('click', () => {
+            feedbackArea.style.display = 'none'; 
+            continueButton.style.display = 'none';
+
+            if (currentScenarioData && currentScenarioData.next_scenario) {
+                currentScenarioId = currentScenarioData.next_scenario;
+                loadScenario(currentScenarioId);
+            } else {
+                endGame();
+            }
+        });
+
+
+        function getProfileImage(score) {
+            const tempMinPossibleScore = scenarios.reduce((sum, scenario) => {
+                 const minOptionScore = scenario.options.reduce((min, opt) => Math.min(min, opt.pe_change), Infinity);
+                 return sum + (minOptionScore < 0 ? minOptionScore : 0);
+            }, 0);
+            const tempScoreRange = maxPossibleScore - tempMinPossibleScore || 1;
+            const normalizedScore = (score - tempMinPossibleScore) / tempScoreRange;
+
+            if (normalizedScore >= 0.7) return { src: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&dpr=1", alt: "Imagen de perfil indicando un desempeño excelente y ético" }; 
+            if (normalizedScore >= 0.4) return { src: "https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&dpr=1", alt: "Imagen de perfil indicando un buen desempeño, con áreas de mejora" }; 
+            return { src: "https://images.pexels.com/photos/3760852/pexels-photo-3760852.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&dpr=1", alt: "Imagen de perfil indicando que se necesita reflexionar y mejorar el enfoque ético" }; 
+        }
+        
+
+        function getFinalMessage(score) {
+            const tempMinPossibleScore = scenarios.reduce((sum, scenario) => {
+                 const minOptionScore = scenario.options.reduce((min, opt) => Math.min(min, opt.pe_change), Infinity);
+                 return sum + (minOptionScore < 0 ? minOptionScore : 0);
+            }, 0);
+            const tempScoreRange = maxPossibleScore - tempMinPossibleScore || 1;
+            const normalizedScore = (score - tempMinPossibleScore) / tempScoreRange;
+            
+            let message = "";
+            if (normalizedScore >= 0.7) {
+                message = "¡Felicidades! Demuestras un uso ético y muy responsable de la IA. Tu enfoque equilibra la innovación con la integridad y el pensamiento crítico.";
+            } else if (normalizedScore >= 0.4) {
+                message = "Vas por buen camino. Muestras una comprensión general de la ética de la IA, pero hay oportunidades para profundizar tu pensamiento crítico y autonomía.";
+            } else {
+                message = "Es importante reflexionar más sobre cómo usas la IA. Considera cómo tus elecciones impactan tu aprendizaje, tu originalidad y la ética digital. ¡Sigue aprendiendo!";
+            }
+            return capitalizeFirstLetter(message); // Capitalizar mensaje final
+        }
+        
+        function endGame() {
+            gameArea.style.display = 'none';
+            headerGame.style.display = 'none';
+            finalScreen.style.display = 'flex';
+            
+            totalScoreInfoElement.innerHTML = `Obtuviste <strong>${currentScore} puntos éticos</strong> de un máximo posible de <strong>${maxPossibleScore}</strong> en esta configuración de escenarios.`;
+
+
+            let profileDescriptionHTML = `<ul>`;
+            const definedAspects = Object.entries(playerProfile).filter(([key, value]) => value !== "No evaluado");
+
+            if (definedAspects.length > 0) {
+                 definedAspects.forEach(([aspectKey, value]) => {
+                    const aspectInfo = profileKeyExplanations[aspectKey] || { name: aspectKey, explanation: "Descripción no disponible." };
+                    const capitalizedAspectName = capitalizeFirstLetter(aspectInfo.name);
+                    const capitalizedExplanation = capitalizeFirstLetter(aspectInfo.explanation); // Capitalizar explicación
+                    profileDescriptionHTML += `<li>
+                                                <strong>${capitalizedAspectName}:</strong> ${value}
+                                                <span class="explanation">${capitalizedExplanation}</span>
+                                               </li>`;
+                });
+            } else {
+                profileDescriptionHTML += `<li>No se han evaluado aspectos específicos del perfil en esta partida. ¡Juega de nuevo para explorar más dilemas!</li>`;
+            }
+            profileDescriptionHTML += `</ul>`;
+            
+            const profileImageData = getProfileImage(currentScore);
+            profileImageElement.src = profileImageData.src;
+            profileImageElement.alt = profileImageData.alt;
+            profileDescriptionElement.innerHTML = profileDescriptionHTML;
+            finalMessageElement.textContent = getFinalMessage(currentScore);
+        }
+
+        function restartGame() {
+            currentScore = initialScore;
+            currentScenarioId = 1;
+            
+            scoreDisplay.textContent = currentScore;
+            finalScreen.style.display = 'none'; 
+            
+            introductionScreen.style.display = 'block';
+            headerGame.style.display = 'none'; 
+            gameArea.style.display = 'none'; 
+            
+            feedbackArea.innerHTML = ''; 
+            feedbackArea.style.display = 'none';
+            continueButton.style.display = 'none';
+        }
+
+        restartButton.addEventListener('click', restartGame);
+
+        document.addEventListener('DOMContentLoaded', () => {
+             gameArea.style.display = 'none'; 
+             headerGame.style.display = 'none';
+        });
+
+        /*
+        --- SUGERENCIAS PARA OTROS ESCENARIOS POSIBLES ---
+        (Como estaban antes, sin cambios de capitalización aquí ya que son comentarios)
+        */
+    </script>
+</body>
+</html>
