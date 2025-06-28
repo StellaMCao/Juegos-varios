@@ -1,3 +1,4 @@
+html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,6 +29,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      overflow: auto; /* Permite scroll si el contenido es demasiado largo */
     }
     .container {
       max-width: 850px;
@@ -38,6 +40,7 @@
       box-shadow: 0 10px 30px var(--box-shadow-medium);
       border: 1px solid rgba(0,0,0,0.05);
       transition: all 0.3s ease-in-out;
+      width: 100%; /* Asegura que el contenedor ocupe el ancho disponible */
     }
     h1, h2 {
       color: var(--secondary-color);
@@ -183,13 +186,14 @@
     </div>
 
     <div id="gameArea" style="display:none;">
+      <!-- Contenido inicial que será reemplazado/actualizado -->
       <div class="status-bar">
-        <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue">3</span></div>
-        <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue">0</span></div>
+        <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
+        <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
       </div>
       <h2 id="stationTitle"></h2>
       <p class="narrative" id="stationNarrative"></p>
-      <p class="question" id="questionText">Cargando...</p>
+      <p class="question" id="questionText"></p>
       <button onclick="answer(true)">Verdadero</button>
       <button onclick="answer(false)">Falso</button>
       <div class="feedback" id="feedback"></div>
@@ -286,25 +290,41 @@
     let claridadMental = 3; // Equivalente a 'vidas'
     let puntuacion = 0;
 
-    // Referencias a elementos del DOM
+    // Declaramos como `let` porque se reasignarán después de modificar `innerHTML`
+    let clarityValueSpan;
+    let scoreValueSpan;
+    let stationTitle;
+    let stationNarrative;
+    let questionText;
+    let feedbackDiv;
+    let feedbackDetailDiv;
+    let answerButtons; // NodeList de botones
+
+    // Referencias a las pantallas principales
     const startScreen = document.getElementById("startScreen");
     const gameArea = document.getElementById("gameArea");
     const endScreen = document.getElementById("endScreen");
-    const clarityValueSpan = document.getElementById("clarityValue");
-    const scoreValueSpan = document.getElementById("scoreValue");
-    const stationTitle = document.getElementById("stationTitle");
-    const stationNarrative = document.getElementById("stationNarrative");
-    const questionText = document.getElementById("questionText");
-    const feedbackDiv = document.getElementById("feedback");
-    const feedbackDetailDiv = document.getElementById("feedbackDetail");
     const endMessage = document.getElementById("endMessage");
     const endNarrative = document.getElementById("endNarrative");
     const finalScore = document.getElementById("finalScore");
-    const answerButtons = document.querySelectorAll('#gameArea button');
+
+    // Función para obtener las referencias a los elementos del juego *después* de que se han renderizado
+    function getGameElements() {
+        clarityValueSpan = document.getElementById("clarityValue");
+        scoreValueSpan = document.getElementById("scoreValue");
+        stationTitle = document.getElementById("stationTitle");
+        stationNarrative = document.getElementById("stationNarrative");
+        questionText = document.getElementById("questionText");
+        feedbackDiv = document.getElementById("feedback");
+        feedbackDetailDiv = document.getElementById("feedbackDetail");
+        answerButtons = document.querySelectorAll('#gameArea button');
+    }
 
     function updateStatusDisplay() {
-      clarityValueSpan.textContent = claridadMental;
-      scoreValueSpan.textContent = puntuacion;
+      if (clarityValueSpan && scoreValueSpan) { // Asegurarse de que los elementos existan
+          clarityValueSpan.textContent = claridadMental;
+          scoreValueSpan.textContent = puntuacion;
+      }
     }
 
     function startGame() {
@@ -315,9 +335,30 @@
       aciertosEstacion = 0;
       claridadMental = 3;
       puntuacion = 0;
+      getGameElements(); // Obtener las referencias de los elementos del juego
       updateStatusDisplay();
       cargarEstacion();
     }
+
+    // Renderiza la estructura de preguntas/respuestas dentro de gameArea
+    function renderQuestionScreen() {
+        gameArea.innerHTML = `
+            <div class="status-bar">
+                <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
+                <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
+            </div>
+            <h2 id="stationTitle"></h2>
+            <p class="narrative" id="stationNarrative"></p>
+            <p class="question" id="questionText"></p>
+            <button onclick="answer(true)">Verdadero</button>
+            <button onclick="answer(false)">Falso</button>
+            <div class="feedback" id="feedback"></div>
+            <div class="feedback-detail" id="feedbackDetail" style="display:none;"></div>
+        `;
+        getGameElements(); // ¡CRÍTICO! Re-obtener las referencias después de cambiar el innerHTML
+        updateStatusDisplay();
+    }
+
 
     function cargarEstacion() {
       if (estacionActual >= estaciones.length) {
@@ -328,6 +369,7 @@
       stationTitle.textContent = `Estación ${estacionActual + 1}: ${estacion.titulo}`;
       stationNarrative.textContent = estacion.narrativa;
       feedbackDiv.textContent = "";
+      feedbackDiv.className = "feedback"; // Limpiar clases
       feedbackDetailDiv.style.display = "none";
       feedbackDetailDiv.textContent = "";
       preguntaActual = 0; // Reiniciar preguntas al cargar estación
@@ -402,9 +444,8 @@
         <p class="narrative">${estacion.pista}</p>
         <button onclick="siguienteEstacion()">Continuar el Viaje</button>
       `;
-      // Actualizar los spans de claridad y puntuación que se recrearon
-      document.getElementById('clarityValue').textContent = claridadMental;
-      document.getElementById('scoreValue').textContent = puntuacion;
+      getGameElements(); // Re-obtener referencias para la pantalla de éxito
+      updateStatusDisplay();
     }
 
     function reiniciarEstacion() {
@@ -417,35 +458,14 @@
         <p class="narrative">No lograste obtener toda la claridad necesaria para avanzar. Necesitás responder correctamente todas las preguntas de la estación. Inténtalo de nuevo, ¡tu mente es fuerte!</p>
         <button onclick="reintentarEstacion()">Reintentar esta estación</button>
       `;
-      document.getElementById('clarityValue').textContent = claridadMental;
-      document.getElementById('scoreValue').textContent = puntuacion;
+      getGameElements(); // Re-obtener referencias para la pantalla de fallo
+      updateStatusDisplay();
     }
 
     function siguienteEstacion() {
       estacionActual++;
       if (estacionActual < estaciones.length) {
-        gameArea.innerHTML = `
-            <div class="status-bar">
-                <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
-                <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
-            </div>
-            <h2 id="stationTitle"></h2>
-            <p class="narrative" id="stationNarrative"></p>
-            <p class="question" id="questionText"></p>
-            <button onclick="answer(true)">Verdadero</button>
-            <button onclick="answer(false)">Falso</button>
-            <div class="feedback" id="feedback"></div>
-            <div class="feedback-detail" id="feedbackDetail" style="display:none;"></div>
-        `;
-        // Actualizar referencias a elementos DOM
-        clarityValueSpan = document.getElementById("clarityValue");
-        scoreValueSpan = document.getElementById("scoreValue");
-        stationTitle.id = "stationTitle"; // Re-asignar ID
-        stationNarrative.id = "stationNarrative"; // Re-asignar ID
-        questionText.id = "questionText"; // Re-asignar ID
-        feedbackDiv.id = "feedback"; // Re-asignar ID
-        feedbackDetailDiv.id = "feedbackDetail"; // Re-asignar ID
-        answerButtons = document.querySelectorAll('#gameArea button'); // Re-obtener botones
+        renderQuestionScreen(); // Vuelve a la pantalla de preguntas para la nueva estación
         cargarEstacion();
       } else {
         finDelJuego(true);
@@ -453,28 +473,7 @@
     }
 
     function reintentarEstacion() {
-      gameArea.innerHTML = `
-            <div class="status-bar">
-                <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
-                <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
-            </div>
-            <h2 id="stationTitle"></h2>
-            <p class="narrative" id="stationNarrative"></p>
-            <p class="question" id="questionText"></p>
-            <button onclick="answer(true)">Verdadero</button>
-            <button onclick="answer(false)">Falso</button>
-            <div class="feedback" id="feedback"></div>
-            <div class="feedback-detail" id="feedbackDetail" style="display:none;"></div>
-      `;
-      // Actualizar referencias a elementos DOM
-      clarityValueSpan = document.getElementById("clarityValue");
-      scoreValueSpan = document.getElementById("scoreValue");
-      stationTitle.id = "stationTitle"; // Re-asignar ID
-      stationNarrative.id = "stationNarrative"; // Re-asignar ID
-      questionText.id = "questionText"; // Re-asignar ID
-      feedbackDiv.id = "feedback"; // Re-asignar ID
-      feedbackDetailDiv.id = "feedbackDetail"; // Re-asignar ID
-      answerButtons = document.querySelectorAll('#gameArea button'); // Re-obtener botones
+      renderQuestionScreen(); // Vuelve a la pantalla de preguntas para la estación actual
       cargarEstacion();
     }
 
@@ -507,3 +506,9 @@
   </script>
 </body>
 </html>
+"""
+
+# NOTA: Se ha eliminado la parte de Python que guarda el archivo.
+# Puedes copiar directamente este contenido como un archivo .html
+# para probarlo en tu navegador.
+print(html_content)
