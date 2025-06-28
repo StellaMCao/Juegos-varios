@@ -1,30 +1,33 @@
+# Crear un archivo HTML largo con una estructura narrativa interactiva para 8 estaciones
+html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Verdadero o Falso – Psicología Cognitiva</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viaje Cognitivo: Aventura en 8 Estaciones</title>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ece9e6, #ffffff);
+      margin: 0;
       padding: 30px;
+      color: #2c3e50;
+      text-align: center;
     }
     .container {
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
-      background: white;
+      background: #fff;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
-    h1 {
-      color: #2c3e50;
+    h1, h2 {
+      color: #34495e;
     }
     .question {
-      font-size: 1.3em;
+      font-size: 1.2em;
       margin: 20px 0;
     }
     button {
@@ -32,89 +35,209 @@
       padding: 10px 20px;
       font-size: 1em;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
       background-color: #3498db;
       color: white;
+      transition: background 0.3s;
     }
     button:hover {
-      background-color: #2980b9;
+      background-color: #2e86c1;
     }
     .feedback {
+      margin: 20px 0;
       font-weight: bold;
-      margin: 15px 0;
     }
-    .score {
-      margin-top: 20px;
-      font-size: 1.1em;
+    .narrative {
+      background: #ecf0f1;
+      border-left: 5px solid #3498db;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>¿Verdadero o Falso?</h1>
-    <p class="question" id="question">Cargando pregunta...</p>
-    <button onclick="answer(true)">Verdadero</button>
-    <button onclick="answer(false)">Falso</button>
-    <p class="feedback" id="feedback"></p>
-    <p class="score" id="score">Puntaje: 0 / 0</p>
+    <h1>Viaje Cognitivo: Aventura en 8 Estaciones</h1>
+    <div id="gameArea">
+      <h2>Estación 1: Atalaya de la Atención</h2>
+      <p class="narrative">
+        Todo comienza en la Atalaya de la Atención. Fijás la mirada, escuchás lo esencial. Dos enigmas activarán tu foco.
+      </p>
+      <p class="question" id="question">Cargando...</p>
+      <button onclick="answer(true)">Verdadero</button>
+      <button onclick="answer(false)">Falso</button>
+      <p class="feedback" id="feedback"></p>
+    </div>
   </div>
 
   <script>
-    const questions = [
+    const estaciones = [
       {
-        text: "El modelo de memoria de trabajo de Baddeley incluye el ejecutivo central.",
-        correct: true
+        titulo: "Atalaya de la Atención",
+        narrativa: "Todo comienza en la Atalaya de la Atención. Fijás la mirada, escuchás lo esencial. Dos enigmas activarán tu foco.",
+        preguntas: [
+          { texto: "La atención selectiva permite ignorar estímulos irrelevantes.", correcta: true },
+          { texto: "La atención dividida mejora cuando hay muchas tareas similares.", correcta: false }
+        ],
+        pista: "Avanzás hacia la Galería de la Memoria, donde lo fugaz se vuelve duradero."
       },
       {
-        text: "Los esquemas mentales son estructuras cognitivas innatas e inmodificables.",
-        correct: false
+        titulo: "Galería de la Memoria",
+        narrativa: "En esta galería se exhiben recuerdos y fantasmas. Tu misión: distinguir lo estable de lo efímero.",
+        preguntas: [
+          { texto: "La memoria sensorial retiene información durante varios minutos.", correcta: false },
+          { texto: "La memoria a largo plazo tiene capacidad ilimitada.", correcta: true }
+        ],
+        pista: "Una puerta se abre hacia el Laboratorio de Esquemas. Las ideas se ordenan allí."
       },
       {
-        text: "La atención selectiva permite centrarse en información relevante y suprimir la irrelevante.",
-        correct: true
+        titulo: "Laboratorio de Esquemas",
+        narrativa: "Aquí se modela el pensamiento. Lo nuevo se pliega a lo viejo. ¿Podrás flexibilizar tus esquemas?",
+        preguntas: [
+          { texto: "Los esquemas mentales ayudan a interpretar la información nueva.", correcta: true },
+          { texto: "Los esquemas son siempre conscientes y deliberados.", correcta: false }
+        ],
+        pista: "Los engranajes mentales giran y te impulsan al Taller de Constructos."
       },
       {
-        text: "El constructo es un concepto observable directamente.",
-        correct: false
+        titulo: "Taller de Constructos",
+        narrativa: "Diseñás tus propios conceptos para entender el mundo. Pero, ¿sabés lo que realmente son?",
+        preguntas: [
+          { texto: "Un constructo es un concepto observable directamente.", correcta: false },
+          { texto: "La ansiedad, como constructo, requiere definición operativa para investigarse.", correcta: true }
+        ],
+        pista: "Construiste sentido. Caminás hacia la Cámara de Conciencia Cognitiva."
       },
       {
-        text: "La psicología cognitiva estudia procesos como percepción, memoria y razonamiento.",
-        correct: true
+        titulo: "Cámara de Conciencia Cognitiva",
+        narrativa: "Todo converge aquí: decisiones, atención, introspección. Solo lo lúcido avanzará.",
+        preguntas: [
+          { texto: "La conciencia cognitiva permite supervisar nuestros propios procesos mentales.", correcta: true },
+          { texto: "La metacognición no tiene implicancias en el aprendizaje.", correcta: false }
+        ],
+        pista: "Tu conciencia se amplía. Llegás al Valle de los Sesgos."
+      },
+      {
+        titulo: "Valle de los Sesgos",
+        narrativa: "Tus juicios tambalean. Lo automático, lo aprendido, lo emocional... ¿cuál prevalecerá?",
+        preguntas: [
+          { texto: "El sesgo de confirmación hace que busquemos pruebas que contradigan nuestras creencias.", correcta: false },
+          { texto: "Los heurísticos son atajos mentales que a veces producen errores.", correcta: true }
+        ],
+        pista: "Lográs distinguir entre intuición y razonamiento. Ascendés al Reloj de la Función Ejecutiva."
+      },
+      {
+        titulo: "Reloj de la Función Ejecutiva",
+        narrativa: "Planificás, inhibís, decidís. El tiempo es mental: tu coherencia depende de ello.",
+        preguntas: [
+          { texto: "La inhibición cognitiva permite suprimir respuestas automáticas inadecuadas.", correcta: true },
+          { texto: "La función ejecutiva no se relaciona con la toma de decisiones.", correcta: false }
+        ],
+        pista: "Has coordinado tu mente. Te enfrentás al Espejo Metacognitivo final."
+      },
+      {
+        titulo: "Espejo Metacognitivo",
+        narrativa: "Aquí te observás pensando. ¿Qué aprendiste? ¿Cómo aprendiste? Las respuestas revelan tu viaje.",
+        preguntas: [
+          { texto: "La evaluación metacognitiva implica monitorear el propio aprendizaje.", correcta: true },
+          { texto: "La metacognición es irrelevante para la autorregulación.", correcta: false }
+        ],
+        pista: "🎉 Completaste el viaje cognitivo. Sos un viajero de la mente entrenado."
       }
     ];
 
-    let current = 0;
-    let score = 0;
+    let estacionActual = 0;
+    let preguntaActual = 0;
+    let aciertosEstacion = 0;
 
-    function loadQuestion() {
-      document.getElementById("feedback").textContent = "";
-      if (current < questions.length) {
-        document.getElementById("question").textContent = questions[current].text;
-        document.getElementById("score").textContent = `Puntaje: ${score} / ${current}`;
-      } else {
-        document.getElementById("question").textContent = "¡Juego terminado!";
-        document.getElementById("feedback").textContent = `Tu puntaje final es ${score} de ${questions.length}.`;
-        document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
-      }
+    function cargarPregunta() {
+      const estacion = estaciones[estacionActual];
+      const pregunta = estacion.preguntas[preguntaActual];
+      document.getElementById("gameArea").innerHTML = `
+        <h2>Estación ${estacionActual + 1}: ${estacion.titulo}</h2>
+        <p class="narrative">${estacion.narrativa}</p>
+        <p class="question" id="question">${pregunta.texto}</p>
+        <button onclick="answer(true)">Verdadero</button>
+        <button onclick="answer(false)">Falso</button>
+        <p class="feedback" id="feedback"></p>
+      `;
     }
 
     function answer(userAnswer) {
-      const correct = questions[current].correct;
+      const estacion = estaciones[estacionActual];
+      const pregunta = estacion.preguntas[preguntaActual];
       const feedback = document.getElementById("feedback");
-      if (userAnswer === correct) {
-        feedback.textContent = "✅ ¡Correcto!";
+
+      if (userAnswer === pregunta.correcta) {
+        feedback.textContent = "✅ Correcto.";
         feedback.style.color = "green";
-        score++;
+        aciertosEstacion++;
       } else {
         feedback.textContent = "❌ Incorrecto.";
         feedback.style.color = "red";
       }
-      current++;
-      setTimeout(loadQuestion, 1000);
+
+      preguntaActual++;
+
+      setTimeout(() => {
+        if (preguntaActual < estacion.preguntas.length) {
+          cargarPregunta();
+        } else if (aciertosEstacion === estacion.preguntas.length) {
+          avanzarEstacion();
+        } else {
+          reiniciarEstacion();
+        }
+      }, 1500);
     }
 
-    window.onload = loadQuestion;
+    function avanzarEstacion() {
+      const estacion = estaciones[estacionActual];
+      document.getElementById("gameArea").innerHTML = `
+        <h2>✔ Estación superada: ${estacion.titulo}</h2>
+        <p class="narrative">${estacion.pista}</p>
+        <button onclick="siguiente()">Continuar</button>
+      `;
+    }
+
+    function reiniciarEstacion() {
+      document.getElementById("gameArea").innerHTML = `
+        <h2>❌ Estación fallida: ${estaciones[estacionActual].titulo}</h2>
+        <p class="narrative">Necesitás responder correctamente ambas preguntas para avanzar.</p>
+        <button onclick="reintentar()">Reintentar esta estación</button>
+      `;
+    }
+
+    function siguiente() {
+      estacionActual++;
+      preguntaActual = 0;
+      aciertosEstacion = 0;
+      if (estacionActual < estaciones.length) {
+        cargarPregunta();
+      } else {
+        document.getElementById("gameArea").innerHTML = `
+          <h2>✨ ¡Has completado el Viaje Cognitivo!</h2>
+          <p class="narrative">Tu mente ha recorrido las rutas más complejas del pensamiento. Compartí este logro con otros viajeros del saber.</p>
+        `;
+      }
+    }
+
+    function reintentar() {
+      preguntaActual = 0;
+      aciertosEstacion = 0;
+      cargarPregunta();
+    }
+
+    window.onload = cargarPregunta;
   </script>
 </body>
 </html>
+"""
+
+with open("/mnt/data/viaje-cognitivo.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+"/mnt/data/viaje-cognitivo.html"
+
+
