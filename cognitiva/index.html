@@ -1,74 +1,206 @@
-# Crear un archivo HTML largo con una estructura narrativa interactiva para 8 estaciones
-html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Viaje Cognitivo: Aventura en 8 Estaciones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --accent-color: #e74c3c;
+      --success-color: #27ae60;
+      --background-light: #ecf0f1;
+      --text-light: #fdfdfd;
+      --box-shadow-light: rgba(0,0,0,0.1);
+      --box-shadow-medium: rgba(0,0,0,0.2);
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: linear-gradient(to right, #ece9e6, #ffffff);
       margin: 0;
       padding: 30px;
-      color: #2c3e50;
+      color: var(--secondary-color);
       text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
     .container {
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      background: var(--text-light);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px var(--box-shadow-medium);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease-in-out;
     }
     h1, h2 {
-      color: #34495e;
+      color: var(--secondary-color);
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+    }
+    h1 {
+        font-size: 2.8em;
+        margin-top: 0;
+    }
+    h2 {
+        font-size: 2em;
     }
     .question {
-      font-size: 1.2em;
-      margin: 20px 0;
+      font-size: 1.3em;
+      margin: 30px 0;
+      font-weight: 500;
+      color: var(--secondary-color);
     }
     button {
       margin: 10px;
-      padding: 10px 20px;
-      font-size: 1em;
+      padding: 12px 28px;
+      font-size: 1.1em;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      background-color: #3498db;
-      color: white;
-      transition: background 0.3s;
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     button:hover {
       background-color: #2e86c1;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .feedback {
-      margin: 20px 0;
+      margin: 25px 0;
       font-weight: bold;
+      font-size: 1.1em;
+      min-height: 50px; /* Evita saltos de diseño */
+      line-height: 1.4;
+    }
+    .feedback.correct {
+      color: var(--success-color);
+    }
+    .feedback.incorrect {
+      color: var(--accent-color);
+    }
+    .feedback-detail {
+        font-size: 0.95em;
+        color: #555;
+        margin-top: 10px;
+        background: #f0f0f0;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border-left: 4px solid #ddd;
     }
     .narrative {
-      background: #ecf0f1;
-      border-left: 5px solid #3498db;
+      background: var(--background-light);
+      border-left: 6px solid var(--primary-color);
       padding: 20px;
-      margin: 20px 0;
-      border-radius: 10px;
+      margin: 25px 0;
+      border-radius: 12px;
+      font-style: italic;
+      line-height: 1.6;
+      color: #444;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+    }
+    .status-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background: #f8f8f8;
+        border-radius: 10px;
+        border: 1px solid #eee;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .status-item {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: var(--secondary-color);
+    }
+    .status-item .icon {
+        margin-right: 8px;
+        font-size: 1.2em;
+    }
+    .clarity .icon { color: var(--primary-color); }
+    .score .icon { color: #f39c12; }
+
+    #startScreen, #endScreen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    #startScreen h1 {
+        font-size: 3.5em;
+        margin-bottom: 30px;
+        color: var(--primary-color);
+    }
+    #startScreen p {
+        font-size: 1.3em;
+        line-height: 1.6;
+        margin-bottom: 40px;
+        max-width: 600px;
+        color: #555;
+    }
+    #endScreen h2 {
+        font-size: 2.5em;
+        color: var(--success-color);
+        margin-bottom: 20px;
+    }
+    #endScreen p {
+        font-size: 1.2em;
+        line-height: 1.5;
+        margin-bottom: 30px;
+    }
+    #endScreen #finalScore {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Viaje Cognitivo: Aventura en 8 Estaciones</h1>
-    <div id="gameArea">
-      <h2>Estación 1: Atalaya de la Atención</h2>
-      <p class="narrative">
-        Todo comienza en la Atalaya de la Atención. Fijás la mirada, escuchás lo esencial. Dos enigmas activarán tu foco.
-      </p>
-      <p class="question" id="question">Cargando...</p>
+    <div id="startScreen">
+      <h1>🧠 Viaje Cognitivo 🧠</h1>
+      <p>Embárcate en una aventura a través de las profundidades de tu propia mente. Cada estación pondrá a prueba tu conocimiento y claridad mental. ¡Responde correctamente para avanzar y no dejes que tu claridad llegue a cero!</p>
+      <button onclick="startGame()">Comenzar el Viaje</button>
+    </div>
+
+    <div id="gameArea" style="display:none;">
+      <div class="status-bar">
+        <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue">3</span></div>
+        <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue">0</span></div>
+      </div>
+      <h2 id="stationTitle"></h2>
+      <p class="narrative" id="stationNarrative"></p>
+      <p class="question" id="questionText">Cargando...</p>
       <button onclick="answer(true)">Verdadero</button>
       <button onclick="answer(false)">Falso</button>
-      <p class="feedback" id="feedback"></p>
+      <div class="feedback" id="feedback"></div>
+      <div class="feedback-detail" id="feedbackDetail" style="display:none;"></div>
+    </div>
+
+    <div id="endScreen" style="display:none;">
+      <h2 id="endMessage"></h2>
+      <p id="endNarrative"></p>
+      <p id="finalScore"></p>
+      <button onclick="restartGame()">Volver a empezar</button>
     </div>
   </div>
 
@@ -78,8 +210,8 @@ html_content = """
         titulo: "Atalaya de la Atención",
         narrativa: "Todo comienza en la Atalaya de la Atención. Fijás la mirada, escuchás lo esencial. Dos enigmas activarán tu foco.",
         preguntas: [
-          { texto: "La atención selectiva permite ignorar estímulos irrelevantes.", correcta: true },
-          { texto: "La atención dividida mejora cuando hay muchas tareas similares.", correcta: false }
+          { texto: "La atención selectiva permite ignorar estímulos irrelevantes.", correcta: true, feedbackCorrect: "¡Exacto! La atención selectiva es clave para concentrarse en lo importante y filtrar distracciones.", feedbackIncorrect: "No del todo. La atención selectiva es precisamente nuestra habilidad para enfocarnos en algo mientras ignoramos lo demás." },
+          { texto: "La atención dividida mejora cuando hay muchas tareas similares.", correcta: false, feedbackCorrect: "¡Correcto! La atención dividida se dificulta, no mejora, con tareas similares, ya que compiten por los mismos recursos cognitivos.", feedbackIncorrect: "Cuidado. La atención dividida se vuelve más difícil cuando las tareas son parecidas porque nuestros recursos se saturan." }
         ],
         pista: "Avanzás hacia la Galería de la Memoria, donde lo fugaz se vuelve duradero."
       },
@@ -87,8 +219,8 @@ html_content = """
         titulo: "Galería de la Memoria",
         narrativa: "En esta galería se exhiben recuerdos y fantasmas. Tu misión: distinguir lo estable de lo efímero.",
         preguntas: [
-          { texto: "La memoria sensorial retiene información durante varios minutos.", correcta: false },
-          { texto: "La memoria a largo plazo tiene capacidad ilimitada.", correcta: true }
+          { texto: "La memoria sensorial retiene información durante varios minutos.", correcta: false, feedbackCorrect: "¡Así es! La memoria sensorial es muy breve, apenas segundos, para impresiones inmediatas.", feedbackIncorrect: "Incorrecto. La memoria sensorial dura solo fracciones de segundo a unos pocos segundos, no minutos." },
+          { texto: "La memoria a largo plazo tiene capacidad ilimitada.", correcta: true, feedbackCorrect: "¡Correcto! Aunque no es perfecta, se considera que su capacidad es virtualmente ilimitada.", feedbackIncorrect: "La memoria a largo plazo tiene una capacidad sorprendentemente vasta, cercana a lo ilimitado. ¿Seguro que es falso?" }
         ],
         pista: "Una puerta se abre hacia el Laboratorio de Esquemas. Las ideas se ordenan allí."
       },
@@ -96,8 +228,8 @@ html_content = """
         titulo: "Laboratorio de Esquemas",
         narrativa: "Aquí se modela el pensamiento. Lo nuevo se pliega a lo viejo. ¿Podrás flexibilizar tus esquemas?",
         preguntas: [
-          { texto: "Los esquemas mentales ayudan a interpretar la información nueva.", correcta: true },
-          { texto: "Los esquemas son siempre conscientes y deliberados.", correcta: false }
+          { texto: "Los esquemas mentales ayudan a interpretar la información nueva.", correcta: true, feedbackCorrect: "¡Absolutamente! Son estructuras cognitivas que organizan el conocimiento y guían la interpretación de nuevas experiencias.", feedbackIncorrect: "Piensa de nuevo. Los esquemas son fundamentales para cómo procesamos y entendemos la nueva información basándonos en lo que ya sabemos." },
+          { texto: "Los esquemas son siempre conscientes y deliberados.", correcta: false, feedbackCorrect: "¡Perfecto! Gran parte de nuestros esquemas operan de forma automática e inconsciente, moldeando nuestra percepción.", feedbackIncorrect: "No necesariamente. Muchos esquemas funcionan a nivel inconsciente, influyendo en cómo vemos el mundo sin que lo notemos." }
         ],
         pista: "Los engranajes mentales giran y te impulsan al Taller de Constructos."
       },
@@ -105,8 +237,8 @@ html_content = """
         titulo: "Taller de Constructos",
         narrativa: "Diseñás tus propios conceptos para entender el mundo. Pero, ¿sabés lo que realmente son?",
         preguntas: [
-          { texto: "Un constructo es un concepto observable directamente.", correcta: false },
-          { texto: "La ansiedad, como constructo, requiere definición operativa para investigarse.", correcta: true }
+          { texto: "Un constructo es un concepto observable directamente.", correcta: false, feedbackCorrect: "¡Bien! Los constructos son conceptos abstractos que inferimos, como la inteligencia o la personalidad, no directamente observables.", feedbackIncorrect: "Un constructo, como la 'ansiedad' o la 'autoestima', no es algo que podamos observar directamente; es una idea que creamos para entender fenómenos." },
+          { texto: "La ansiedad, como constructo, requiere definición operativa para investigarse.", correcta: true, feedbackCorrect: "¡Correcto! Para estudiar constructos abstractos, necesitamos definirlos en términos observables y medibles.", feedbackIncorrect: "Precisamente. Para poder medir o investigar algo como la ansiedad, necesitamos especificar cómo se manifestará observablemente, es decir, operacionalizarlo." }
         ],
         pista: "Construiste sentido. Caminás hacia la Cámara de Conciencia Cognitiva."
       },
@@ -114,8 +246,8 @@ html_content = """
         titulo: "Cámara de Conciencia Cognitiva",
         narrativa: "Todo converge aquí: decisiones, atención, introspección. Solo lo lúcido avanzará.",
         preguntas: [
-          { texto: "La conciencia cognitiva permite supervisar nuestros propios procesos mentales.", correcta: true },
-          { texto: "La metacognición no tiene implicancias en el aprendizaje.", correcta: false }
+          { texto: "La conciencia cognitiva permite supervisar nuestros propios procesos mentales.", correcta: true, feedbackCorrect: "¡Exacto! Es la capacidad de ser conscientes y monitorear nuestros pensamientos y aprendizajes.", feedbackIncorrect: "De hecho, la conciencia cognitiva se trata precisamente de la capacidad de observar y entender nuestros procesos internos." },
+          { texto: "La metacognición no tiene implicancias en el aprendizaje.", correcta: false, feedbackCorrect: "¡Genial! La metacognición, el 'pensar sobre el pensamiento', es fundamental para la autorregulación y mejora del aprendizaje.", feedbackIncorrect: "Piénsalo bien. La metacognición es clave para saber cómo aprendemos mejor, qué estrategias nos funcionan, y cómo planificar nuestro estudio." }
         ],
         pista: "Tu conciencia se amplía. Llegás al Valle de los Sesgos."
       },
@@ -123,8 +255,8 @@ html_content = """
         titulo: "Valle de los Sesgos",
         narrativa: "Tus juicios tambalean. Lo automático, lo aprendido, lo emocional... ¿cuál prevalecerá?",
         preguntas: [
-          { texto: "El sesgo de confirmación hace que busquemos pruebas que contradigan nuestras creencias.", correcta: false },
-          { texto: "Los heurísticos son atajos mentales que a veces producen errores.", correcta: true }
+          { texto: "El sesgo de confirmación hace que busquemos pruebas que contradigan nuestras creencias.", correcta: false, feedbackCorrect: "¡Así es! El sesgo de confirmación nos impulsa a buscar información que *confirme* nuestras creencias preexistentes, no que las contradiga.", feedbackIncorrect: "Al contrario, el sesgo de confirmación es la tendencia a buscar e interpretar información que *apoya* nuestras creencias ya existentes." },
+          { texto: "Los heurísticos son atajos mentales que a veces producen errores.", correcta: true, feedbackCorrect: "¡Correcto! Son reglas simples y rápidas que nos ayudan a tomar decisiones, pero pueden llevarnos a errores sistemáticos.", feedbackIncorrect: "Sí, los heurísticos son como 'reglas del pulgar' que simplifican la toma de decisiones, pero su velocidad puede comprometer la precisión, llevando a sesgos." }
         ],
         pista: "Lográs distinguir entre intuición y razonamiento. Ascendés al Reloj de la Función Ejecutiva."
       },
@@ -132,8 +264,8 @@ html_content = """
         titulo: "Reloj de la Función Ejecutiva",
         narrativa: "Planificás, inhibís, decidís. El tiempo es mental: tu coherencia depende de ello.",
         preguntas: [
-          { texto: "La inhibición cognitiva permite suprimir respuestas automáticas inadecuadas.", correcta: true },
-          { texto: "La función ejecutiva no se relaciona con la toma de decisiones.", correcta: false }
+          { texto: "La inhibición cognitiva permite suprimir respuestas automáticas inadecuadas.", correcta: true, feedbackCorrect: "¡Absolutamente! Es vital para el control de impulsos y para mantener la atención en tareas.", feedbackIncorrect: "Piénsalo de nuevo. La inhibición es justamente la capacidad de frenar o evitar acciones o pensamientos automáticos que no son útiles." },
+          { texto: "La función ejecutiva no se relaciona con la toma de decisiones.", correcta: false, feedbackCorrect: "¡Exacto! La función ejecutiva es central en la toma de decisiones, la planificación y la resolución de problemas complejos.", feedbackIncorrect: "¡Error! La función ejecutiva incluye procesos cruciales para tomar decisiones, como la planificación, la memoria de trabajo y la flexibilidad cognitiva." }
         ],
         pista: "Has coordinado tu mente. Te enfrentás al Espejo Metacognitivo final."
       },
@@ -141,8 +273,8 @@ html_content = """
         titulo: "Espejo Metacognitivo",
         narrativa: "Aquí te observás pensando. ¿Qué aprendiste? ¿Cómo aprendiste? Las respuestas revelan tu viaje.",
         preguntas: [
-          { texto: "La evaluación metacognitiva implica monitorear el propio aprendizaje.", correcta: true },
-          { texto: "La metacognición es irrelevante para la autorregulación.", correcta: false }
+          { texto: "La evaluación metacognitiva implica monitorear el propio aprendizaje.", correcta: true, feedbackCorrect: "¡Perfecto! Es el acto de reflexionar sobre tu progreso y entendimiento en una tarea de aprendizaje.", feedbackIncorrect: "¡Falso! La evaluación metacognitiva es justamente la capacidad de supervisar y juzgar tu propio rendimiento en una tarea de aprendizaje." },
+          { texto: "La metacognición es irrelevante para la autorregulación.", correcta: false, feedbackCorrect: "¡Correcto! La metacognición es la base para la autorregulación del aprendizaje, ya que nos permite planificar y ajustar nuestras estrategias.", feedbackIncorrect: "¡Error! La metacognición es fundamental para la autorregulación; sin ella, no podrías ajustar tus estrategias de estudio o de pensamiento." }
         ],
         pista: "🎉 Completaste el viaje cognitivo. Sos un viajero de la mente entrenado."
       }
@@ -151,93 +283,227 @@ html_content = """
     let estacionActual = 0;
     let preguntaActual = 0;
     let aciertosEstacion = 0;
+    let claridadMental = 3; // Equivalente a 'vidas'
+    let puntuacion = 0;
+
+    // Referencias a elementos del DOM
+    const startScreen = document.getElementById("startScreen");
+    const gameArea = document.getElementById("gameArea");
+    const endScreen = document.getElementById("endScreen");
+    const clarityValueSpan = document.getElementById("clarityValue");
+    const scoreValueSpan = document.getElementById("scoreValue");
+    const stationTitle = document.getElementById("stationTitle");
+    const stationNarrative = document.getElementById("stationNarrative");
+    const questionText = document.getElementById("questionText");
+    const feedbackDiv = document.getElementById("feedback");
+    const feedbackDetailDiv = document.getElementById("feedbackDetail");
+    const endMessage = document.getElementById("endMessage");
+    const endNarrative = document.getElementById("endNarrative");
+    const finalScore = document.getElementById("finalScore");
+    const answerButtons = document.querySelectorAll('#gameArea button');
+
+    function updateStatusDisplay() {
+      clarityValueSpan.textContent = claridadMental;
+      scoreValueSpan.textContent = puntuacion;
+    }
+
+    function startGame() {
+      startScreen.style.display = "none";
+      gameArea.style.display = "block";
+      estacionActual = 0;
+      preguntaActual = 0;
+      aciertosEstacion = 0;
+      claridadMental = 3;
+      puntuacion = 0;
+      updateStatusDisplay();
+      cargarEstacion();
+    }
+
+    function cargarEstacion() {
+      if (estacionActual >= estaciones.length) {
+        finDelJuego(true); // Gana el juego
+        return;
+      }
+      const estacion = estaciones[estacionActual];
+      stationTitle.textContent = `Estación ${estacionActual + 1}: ${estacion.titulo}`;
+      stationNarrative.textContent = estacion.narrativa;
+      feedbackDiv.textContent = "";
+      feedbackDetailDiv.style.display = "none";
+      feedbackDetailDiv.textContent = "";
+      preguntaActual = 0; // Reiniciar preguntas al cargar estación
+      aciertosEstacion = 0; // Reiniciar aciertos para la estación
+      cargarPregunta();
+    }
 
     function cargarPregunta() {
       const estacion = estaciones[estacionActual];
       const pregunta = estacion.preguntas[preguntaActual];
-      document.getElementById("gameArea").innerHTML = `
-        <h2>Estación ${estacionActual + 1}: ${estacion.titulo}</h2>
-        <p class="narrative">${estacion.narrativa}</p>
-        <p class="question" id="question">${pregunta.texto}</p>
-        <button onclick="answer(true)">Verdadero</button>
-        <button onclick="answer(false)">Falso</button>
-        <p class="feedback" id="feedback"></p>
-      `;
+      questionText.textContent = pregunta.texto;
+      feedbackDiv.textContent = "";
+      feedbackDiv.className = "feedback"; // Limpiar clases
+      feedbackDetailDiv.style.display = "none";
+      feedbackDetailDiv.textContent = "";
+
+      // Habilitar botones de respuesta
+      answerButtons.forEach(button => button.disabled = false);
     }
 
     function answer(userAnswer) {
+      // Deshabilitar botones para evitar múltiples clics
+      answerButtons.forEach(button => button.disabled = true);
+
       const estacion = estaciones[estacionActual];
       const pregunta = estacion.preguntas[preguntaActual];
-      const feedback = document.getElementById("feedback");
 
       if (userAnswer === pregunta.correcta) {
-        feedback.textContent = "✅ Correcto.";
-        feedback.style.color = "green";
+        feedbackDiv.textContent = "✅ ¡Correcto!";
+        feedbackDiv.classList.add("correct");
+        feedbackDetailDiv.textContent = pregunta.feedbackCorrect;
+        puntuacion += 10; // Sumar puntos por acierto
         aciertosEstacion++;
       } else {
-        feedback.textContent = "❌ Incorrecto.";
-        feedback.style.color = "red";
+        feedbackDiv.textContent = "❌ Incorrecto.";
+        feedbackDiv.classList.add("incorrect");
+        feedbackDetailDiv.textContent = pregunta.feedbackIncorrect;
+        claridadMental--; // Perder claridad mental por error
+      }
+      feedbackDetailDiv.style.display = "block";
+      updateStatusDisplay(); // Actualizar el display de claridad y puntuación
+
+      if (claridadMental <= 0) {
+        setTimeout(() => finDelJuego(false), 2000); // Perdiste
+        return;
       }
 
       preguntaActual++;
 
       setTimeout(() => {
         if (preguntaActual < estacion.preguntas.length) {
-          cargarPregunta();
-        } else if (aciertosEstacion === estacion.preguntas.length) {
-          avanzarEstacion();
+          cargarPregunta(); // Siguiente pregunta de la estación
         } else {
-          reiniciarEstacion();
+          // Todas las preguntas de la estación respondidas
+          if (aciertosEstacion === estacion.preguntas.length) {
+            avanzarEstacion();
+          } else {
+            reiniciarEstacion();
+          }
         }
-      }, 1500);
+      }, 2500); // Dar tiempo para leer el feedback
     }
 
     function avanzarEstacion() {
       const estacion = estaciones[estacionActual];
-      document.getElementById("gameArea").innerHTML = `
-        <h2>✔ Estación superada: ${estacion.titulo}</h2>
+      gameArea.innerHTML = `
+        <div class="status-bar">
+          <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
+          <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
+        </div>
+        <h2>✔ ¡Estación Superada: ${estacion.titulo}!</h2>
         <p class="narrative">${estacion.pista}</p>
-        <button onclick="siguiente()">Continuar</button>
+        <button onclick="siguienteEstacion()">Continuar el Viaje</button>
       `;
+      // Actualizar los spans de claridad y puntuación que se recrearon
+      document.getElementById('clarityValue').textContent = claridadMental;
+      document.getElementById('scoreValue').textContent = puntuacion;
     }
 
     function reiniciarEstacion() {
-      document.getElementById("gameArea").innerHTML = `
-        <h2>❌ Estación fallida: ${estaciones[estacionActual].titulo}</h2>
-        <p class="narrative">Necesitás responder correctamente ambas preguntas para avanzar.</p>
-        <button onclick="reintentar()">Reintentar esta estación</button>
+      gameArea.innerHTML = `
+        <div class="status-bar">
+          <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
+          <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
+        </div>
+        <h2>❌ Estación ${estacionActual + 1} Fallida: ${estaciones[estacionActual].titulo}</h2>
+        <p class="narrative">No lograste obtener toda la claridad necesaria para avanzar. Necesitás responder correctamente todas las preguntas de la estación. Inténtalo de nuevo, ¡tu mente es fuerte!</p>
+        <button onclick="reintentarEstacion()">Reintentar esta estación</button>
       `;
+      document.getElementById('clarityValue').textContent = claridadMental;
+      document.getElementById('scoreValue').textContent = puntuacion;
     }
 
-    function siguiente() {
+    function siguienteEstacion() {
       estacionActual++;
-      preguntaActual = 0;
-      aciertosEstacion = 0;
       if (estacionActual < estaciones.length) {
-        cargarPregunta();
-      } else {
-        document.getElementById("gameArea").innerHTML = `
-          <h2>✨ ¡Has completado el Viaje Cognitivo!</h2>
-          <p class="narrative">Tu mente ha recorrido las rutas más complejas del pensamiento. Compartí este logro con otros viajeros del saber.</p>
+        gameArea.innerHTML = `
+            <div class="status-bar">
+                <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
+                <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
+            </div>
+            <h2 id="stationTitle"></h2>
+            <p class="narrative" id="stationNarrative"></p>
+            <p class="question" id="questionText"></p>
+            <button onclick="answer(true)">Verdadero</button>
+            <button onclick="answer(false)">Falso</button>
+            <div class="feedback" id="feedback"></div>
+            <div class="feedback-detail" id="feedbackDetail" style="display:none;"></div>
         `;
+        // Actualizar referencias a elementos DOM
+        clarityValueSpan = document.getElementById("clarityValue");
+        scoreValueSpan = document.getElementById("scoreValue");
+        stationTitle.id = "stationTitle"; // Re-asignar ID
+        stationNarrative.id = "stationNarrative"; // Re-asignar ID
+        questionText.id = "questionText"; // Re-asignar ID
+        feedbackDiv.id = "feedback"; // Re-asignar ID
+        feedbackDetailDiv.id = "feedbackDetail"; // Re-asignar ID
+        answerButtons = document.querySelectorAll('#gameArea button'); // Re-obtener botones
+        cargarEstacion();
+      } else {
+        finDelJuego(true);
       }
     }
 
-    function reintentar() {
-      preguntaActual = 0;
-      aciertosEstacion = 0;
-      cargarPregunta();
+    function reintentarEstacion() {
+      gameArea.innerHTML = `
+            <div class="status-bar">
+                <div class="status-item clarity"><span class="icon">💡</span> Claridad Mental: <span id="clarityValue"></span></div>
+                <div class="status-item score"><span class="icon">✨</span> Puntuación: <span id="scoreValue"></span></div>
+            </div>
+            <h2 id="stationTitle"></h2>
+            <p class="narrative" id="stationNarrative"></p>
+            <p class="question" id="questionText"></p>
+            <button onclick="answer(true)">Verdadero</button>
+            <button onclick="answer(false)">Falso</button>
+            <div class="feedback" id="feedback"></div>
+            <div class="feedback-detail" id="feedbackDetail" style="display:none;"></div>
+      `;
+      // Actualizar referencias a elementos DOM
+      clarityValueSpan = document.getElementById("clarityValue");
+      scoreValueSpan = document.getElementById("scoreValue");
+      stationTitle.id = "stationTitle"; // Re-asignar ID
+      stationNarrative.id = "stationNarrative"; // Re-asignar ID
+      questionText.id = "questionText"; // Re-asignar ID
+      feedbackDiv.id = "feedback"; // Re-asignar ID
+      feedbackDetailDiv.id = "feedbackDetail"; // Re-asignar ID
+      answerButtons = document.querySelectorAll('#gameArea button'); // Re-obtener botones
+      cargarEstacion();
     }
 
-    window.onload = cargarPregunta;
+    function finDelJuego(ganaste) {
+      gameArea.style.display = "none";
+      endScreen.style.display = "flex";
+      if (ganaste) {
+        endMessage.textContent = "✨ ¡Viaje Cognitivo Completado! ✨";
+        endNarrative.textContent = "Has demostrado una increíble agudeza mental y perseverancia. Tu viaje por las 8 estaciones ha sido un éxito rotundo. ¡Felicidades, viajero de la mente!";
+        endMessage.style.color = "var(--success-color)";
+      } else {
+        endMessage.textContent = "💔 Fin del Viaje... 💔";
+        endNarrative.textContent = "Tu claridad mental se ha agotado. El camino de la mente es desafiante, pero cada intento te hace más fuerte. ¡No te rindas, vuelve a intentarlo y domina las estaciones!";
+        endMessage.style.color = "var(--accent-color)";
+      }
+      finalScore.textContent = `Puntuación Final: ${puntuacion} puntos`;
+    }
+
+    function restartGame() {
+      endScreen.style.display = "none";
+      startScreen.style.display = "flex"; // Volver a la pantalla de inicio
+    }
+
+    // Inicializar el juego al cargar la página mostrando la pantalla de inicio
+    window.onload = () => {
+      startScreen.style.display = "flex";
+      gameArea.style.display = "none";
+      endScreen.style.display = "none";
+    };
   </script>
 </body>
 </html>
-"""
-
-with open("/mnt/data/viaje-cognitivo.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-"/mnt/data/viaje-cognitivo.html"
-
-
