@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verdadero o Falso – Psicología Cognitiva</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .question {
+      font-size: 1.3em;
+      margin: 20px 0;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: white;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .feedback {
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    .score {
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>¿Verdadero o Falso?</h1>
+    <p class="question" id="question">Cargando pregunta...</p>
+    <button onclick="answer(true)">Verdadero</button>
+    <button onclick="answer(false)">Falso</button>
+    <p class="feedback" id="feedback"></p>
+    <p class="score" id="score">Puntaje: 0 / 0</p>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "El modelo de memoria de trabajo de Baddeley incluye el ejecutivo central.",
+        correct: true
+      },
+      {
+        text: "Los esquemas mentales son estructuras cognitivas innatas e inmodificables.",
+        correct: false
+      },
+      {
+        text: "La atención selectiva permite centrarse en información relevante y suprimir la irrelevante.",
+        correct: true
+      },
+      {
+        text: "El constructo es un concepto observable directamente.",
+        correct: false
+      },
+      {
+        text: "La psicología cognitiva estudia procesos como percepción, memoria y razonamiento.",
+        correct: true
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      document.getElementById("feedback").textContent = "";
+      if (current < questions.length) {
+        document.getElementById("question").textContent = questions[current].text;
+        document.getElementById("score").textContent = `Puntaje: ${score} / ${current}`;
+      } else {
+        document.getElementById("question").textContent = "¡Juego terminado!";
+        document.getElementById("feedback").textContent = `Tu puntaje final es ${score} de ${questions.length}.`;
+        document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
+      }
+    }
+
+    function answer(userAnswer) {
+      const correct = questions[current].correct;
+      const feedback = document.getElementById("feedback");
+      if (userAnswer === correct) {
+        feedback.textContent = "✅ ¡Correcto!";
+        feedback.style.color = "green";
+        score++;
+      } else {
+        feedback.textContent = "❌ Incorrecto.";
+        feedback.style.color = "red";
+      }
+      current++;
+      setTimeout(loadQuestion, 1000);
+    }
+
+    window.onload = loadQuestion;
+  </script>
+</body>
+</html>
