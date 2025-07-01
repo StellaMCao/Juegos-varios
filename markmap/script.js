@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {  
     // Referencias a los elementos del DOM
     const markdownInput = document.getElementById('markdown-input');
     const preview = document.getElementById('markmap-preview');
