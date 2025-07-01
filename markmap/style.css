@@ -1,0 +1,119 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f7f9;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+#save-html-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#save-html-btn:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+    padding: 2rem;
+    grid-template-areas:
+        "editor preview"
+        "options preview";
+}
+
+.panel {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+#editor-panel { grid-area: editor; }
+#options-panel { grid-area: options; }
+#preview-panel { grid-area: preview; display: flex; flex-direction: column;}
+
+.panel h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#markdown-input {
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-family: "Fira Code", "Courier New", monospace;
+    font-size: 14px;
+    box-sizing: border-box; /* Importante */
+}
+
+#markmap-preview {
+    flex-grow: 1; /* Hace que el SVG ocupe el espacio disponible */
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+}
+
+.option-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.option-group label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.option-group input, .option-group select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.option-group input[type="range"] {
+    padding: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1.5rem 0;
+}
+
+.option-group-inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.option-group-inline label {
+    margin-left: 0.5rem;
+    font-weight: normal;
+}
