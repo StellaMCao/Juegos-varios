@@ -1,1 +1,253 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Tarot de la IA</title>
+	<link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica&amp;display=swap" rel="stylesheet" />
+	<style type="text/css">
+    /* Estilos generales */
+    body {
+      position: relative;
+      background: url('tarotim/fondo.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'IM Fell DW Pica', serif;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.6);
+      z-index: -1;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 10px 20px;
+      font-size: 2rem;
+    }
+    .tarot-grid {
+      display: grid;
+      gap: 20px;
+      justify-items: center;
+      transition: all 0.5s ease;
+      width: 100%;
+      max-width: 1200px;
+    }
+    @media (min-width: 1024px) {
+      .tarot-grid {
+        grid-template-columns: repeat(8, 1fr);
+      }
+    }
+    @media (max-width: 1023px) and (min-width: 768px) {
+      .tarot-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+    @media (max-width: 767px) {
+      .tarot-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .tarot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .card {
+      width: 140px;
+      height: 210px;
+      perspective: 1000px;
+      cursor: pointer;
+      transition: all 1s ease;
+      position: relative;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      transform-origin: center;
+    }
+    .card.enlarged {
+      z-index: 1000;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(2.5);
+    }
+    .card.flip .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border: 3px solid #000;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-front {
+      background: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Ajustes para que el título ocupe una sola línea */
+    .card-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 10px;
+      font-weight: bold;
+      text-align: center;
+      padding: 2px;
+      box-sizing: border-box;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: 1.1;
+    }
+    .card-back {
+      background: #fff;
+      padding: 2px;
+      transform: rotateY(180deg);
+    }
+    .card-text {
+      font-size: 10px;
+      line-height: 1.2;
+      text-align: center;
+    }
+    #closeButton {
+      display: none;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      background: #fff;
+      border: 2px solid #000;
+      cursor: pointer;
+      z-index: 2000;
+    }
+	</style>
+</head>
+<body>
+<h1>Tarot de la Inteligencia Artificial</h1>
+<div class="tarot-grid"></div>
+<p><button id="closeButton">✕</button><script>
+const cartas = ["bot", "clasinte", "curadu", "diagnos", "espejo", "guia", "memoria", "nose", "ojo", "oraculo", "predice", "recomenda", "redaccio", "retro", "simula", "tutor"];
+const grid = document.querySelector('.tarot-grid');
+const closeButton = document.getElementById('closeButton');
+let currentFlipped = null;
+function mezclarCartas() {
+  for (let i = cartas.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cartas[i], cartas[j]] = [cartas[j], cartas[i]];
+  }
+}
+function crearCartas() {
+  grid.innerHTML = '';
+  cartas.forEach(nombre => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.dataset.name = nombre;
+    div.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="tarotim/${nombre}.png" alt="${nombre}">
+          <div class="card-title" id="title-${nombre}">Cargando título...</div>
+        </div>
+        <div class="card-back">
+          <div class="card-text" id="texto-${nombre}">Cargando...</div>
+          <div class="card-title" id="back-title-${nombre}">Cargando título...</div>
+        </div>
+      </div>`;
+    grid.appendChild(div);
+  });
+}
+function cargarTextos() {
+  fetch('tarotim/textos.html')
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      cartas.forEach(nombre => {
+        const texto = doc.getElementById(nombre);
+        const destino = document.getElementById(`texto-${nombre}`);
+        const titleDestino = document.getElementById(`title-${nombre}`);
+        const backTitleDestino = document.getElementById(`back-title-${nombre}`);
+        if (texto && destino && titleDestino && backTitleDestino) {
+          const lineas = texto.textContent.trim().split('\n');
+          const primeraLinea = lineas[0]?.trim() || "Misterio";
+          const restoDelTexto = lineas.slice(1).join('\n') || "Sin descripción.";
+          titleDestino.innerHTML = primeraLinea;
+          backTitleDestino.innerHTML = primeraLinea;
+          const parrafos = restoDelTexto.split('\n').map(parrafo => `<p>${parrafo}</p>`).join('');
+          destino.innerHTML = parrafos;
+        }
+      });
+    });
+}
+mezclarCartas();
+crearCartas();
+cargarTextos();
+closeButton.addEventListener('click', () => {
+  if (currentFlipped) {
+    currentFlipped.classList.remove('flip', 'enlarged');
+    currentFlipped.dataset.step = 0;
+    currentFlipped = null;
+    closeButton.style.display = 'none';
+  }
+});
+document.addEventListener('click', (event) => {
+  const clickedCard = event.target.closest('.card');
+  if (!clickedCard) return;
+  let step = Number(clickedCard.dataset.step || 0);
+  if (clickedCard !== currentFlipped && currentFlipped) {
+    currentFlipped.classList.remove('flip', 'enlarged');
+    currentFlipped.dataset.step = 0;
+    currentFlipped = null;
+    closeButton.style.display = 'none';
+  }
+  if (step === 0) {
+    clickedCard.classList.add('enlarged');
+    clickedCard.dataset.step = 1;
+    currentFlipped = clickedCard;
+    closeButton.style.display = 'block';
+  } else if (step === 1) {
+    clickedCard.classList.add('flip');
+    clickedCard.dataset.step = 2;
+  } else {
+    clickedCard.classList.remove('flip', 'enlarged');
+    clickedCard.dataset.step = 0;
+    currentFlipped = null;
+    closeButton.style.display = 'none';
+  }
+});
+</script></p>
+</body>
+</html>
