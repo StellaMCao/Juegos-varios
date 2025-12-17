@@ -1,1067 +1,1343 @@
-// script.js - Psicohoróscopo de la esperanza 2026
+// script.js - Psicohoróscopo de la esperanza 2026 (v7.6 - Mensaje Final limpio y en su propio div)
 
 const textos = {
   docente: {
     aries: {
       verano: `
-        El verano llega como una bocanada de aire fresco que necesitabas para resetearte.
-        los primeros días se sienten extraños; tu cuerpo sigue en modo "carrera", con la adrenalina de diciembre aún corriendo por las venas.
-        es clave que busques conscientemente bajar la velocidad: caminá sin apuro, recuperá la siesta, dejá que el sol te deshaga un poco la coraza rígida de la docencia.
-        aries, siempre lista para la acción, empieza a comprender una verdad fundamental: descansar no es detener la marcha, sino afinar la estrategia para lo que viene.
-        la clave es el ritmo, no la velocidad: entendés que para sostener los desafíos del 2026, necesitás un ritmo más humano y sostenible.
+        El verano llegará como una bocanada de aire fresco que necesitarás para resetearte.
+        los primeros días se sentirán extraños; tu cuerpo seguirá en modo "carrera".
+        será clave que busques conscientemente bajar la velocidad: caminarás sin apuro, recuperarás la siesta, dejarás que el sol te deshaga un poco la coraza rígida de la docencia.
+        aries, siempre lista para la acción, empezará a comprender una verdad fundamental: descansar no es detener la marcha, sino afinar la estrategia para lo que vendrá.
+        la clave será el ritmo, no la velocidad: entenderás que para sostener los desafíos del 2026, necesitarás un ritmo más humano y sostenible.
       `,
       primer: `
-        El primer cuatrimestre te encuentra entrando al instituto con esa mezcla de entusiasmo y alerta que te caracteriza.
-        algo en el aire está desordenado; indicaciones que bajan sin demasiada lógica, plazos que cambian de un mail a otro, y la sensación de que la estructura se mueve más rápido que el sentido pedagógico.
-        vos, que te encendés rápido, salís a decir lo que no cierra; ponés palabras a lo que otros mastican en silencio.
-        el desafío del cuatrimestre es regular la marcha: no cada confusión amerita una embestida, y no cada diferencia es un combate.
-        empezás a notar dónde conviene poner el cuerpo y dónde alcanza con una pregunta bien formulada que impulse el debate colectivo.
+        El primer cuatrimestre te encontrará entrando al instituto con esa mezcla de entusiasmo y alerta que te caracterizará.
+        habrá ruido en el aire, se percibirán movimientos que irán en contra de la autonomía académica y aumentará la sensación de que la estructura se moverá más rápido que el sentido pedagógico.
+        vos, que te encenderás rápido, saldrás a decir lo que no cierra, pondrás palabras a lo que otros mastican en silencio.
+        el desafío del cuatrimestre será regular la marcha: no cada confusión demandará una embestida, sino que deberás elegir dónde poner el cuerpo para impulsar el debate colectivo en defensa de la educación.
       `,
       segundo: `
-        A mitad de año aparece algo nuevo: aprendés a esperar sin pasividad, es pura estrategia.
-        descubrís que no tenés que estar en cada frente; algunas discusiones se van ordenando cuando dejás que circulen entre colegas y no monopolizás el impulso de la queja o la acción.
-        aries, sin resignar su potencia, se vuelve más táctico y selectivo en sus batallas.
-        charlas de pasillo que antes te irritaban ahora empiezan a darte pistas valiosas, y te encontrás escuchando más que explicando tus planes.
-        empezás a notar que las alianzas de verdad no se arman en el fragor del conflicto, sino en esos pequeños intercambios cotidianos donde se reconoce al que tenés al lado como un par.
+        A mitad de año aparecerá algo nuevo: aprenderás a esperar sin pasividad, será pura estrategia.
+        descubrirás que no tendrás que estar en cada frente; algunas discusiones se ordenarán cuando dejes que circulen y no monopolices el impulso de la acción.
+        aries, sin resignar su potencia, se volverá más táctico y selectivo en sus batallas.
+        empezarás a notar que las alianzas de verdad no se armarán en el fragor del conflicto, sino en esos pequeños intercambios cotidianos donde se reconocerá al que tendrás al lado como un par.
       `,
       cierre: `
-        El fin de año llega con el cansancio lógico de quien caminó demasiado rápido durante meses, pero también con una claridad que te sorprende.
-        no resolviste todos los problemas institucionales, pero seleccionaste mejor cuáles eran urgentes y cuáles podían esperar.
-        te descubrís más compañero, menos impulsivo, más dispuesto a construir algo que no dependa únicamente de tu energía individual.
-        salís del 2026 con menos peleas innecesarias y más vínculos que te reconocen como alguien que empuja, sí, pero también acompaña.
-        este crecimiento en la dimensión vincular es un logro enorme para aries.
+        El fin de año llegará con el cansancio lógico de quien caminó demasiado rápido, pero también con una claridad que te sorprenderá.
+        seleccionarás mejor cuáles serán urgentes y cuáles podrán esperar.
+        te descubrirás más compañero, menos impulsivo, más dispuesto a construir algo que no dependerá únicamente de tu energía individual, blindando tu espacio de trabajo de la vorágine externa.
       `
     },
     tauro: {
       verano: `
-        El verano te saca de encima una capa de responsabilidad que cargabas incluso sin darte cuenta.
-        los primeros días necesitás silencio, rutina simple, y contacto con lo que te ordena el cuerpo: comidas sin apuro, siestas que duran lo que tienen que durar, conversaciones que no terminan en la urgencia del trabajo.
-        tauro no empieza un año difícil sin antes asegurarse un piso firme; y este verano se vuelve exactamente eso, una base inamovible.
-        recién después de esa estabilización aparece la posibilidad de pensar suavemente en lo que vendrá, pero sin ansiedad; como quien prueba la temperatura del agua antes de entrar.
-        tu energía se recarga a través de la conexión con lo material y lo predecible, no busques grandes aventuras, buscá calma.
+        El verano te sacará de encima una capa de responsabilidad que cargarás incluso sin darte cuenta.
+        los primeros días necesitarás silencio, rutina simple, y contacto con lo que te ordene el cuerpo.
+        tauro no empezará un año difícil sin antes asegurarse un piso firme; y este verano se volverá exactamente eso, una base inamovible frente a los movimientos del campo educativo.
+        deberás buscar calma y no grandes aventuras.
       `,
       primer: `
-        El primer cuatrimestre trae su propio temblor: cambios institucionales que no se explican del todo, reglas nuevas que no contemplan la realidad cotidiana del aula, formularios que crecen como si fueran plantas sin poda ni sentido.
-        vos, fiel a vos mismo, no entrás en la corrida general; te dedicás a sostener lo que importa de tu práctica, aunque alrededor todo tenga un ritmo más frenético y disperso.
-        a veces esa constancia parece lenta para otros, pero con el tiempo revela su potencia; en medio de la confusión, tu estabilidad es un punto de apoyo para más de un colega que no sabe bien por dónde empezar.
-        tu desafío es mantener tu eje sin volverte totalmente resistente a cualquier cambio.
+        El primer cuatrimestre traerá su propio temblor: cambios institucionales que no se explicarán del todo, reglas nuevas que no contemplarán la realidad cotidiana del aula. se verán intentos de limitar la injerencia de la comunidad en las decisiones clave.
+        vos, fiel a vos mismo, no entrarás en la corrida general; te dedicarás a sostener lo que importa de tu práctica.
+        tu estabilidad será un punto de apoyo para más de un colega. tu desafío será mantener tu eje sin volverte totalmente resistente a cualquier cambio necesario.
       `,
       segundo: `
-        En el segundo tramo del año, algo empieza a volverse más visible, y no por un gran esfuerzo de tu parte.
-        no es porque hagas grandes discursos ni exijas reconocimiento; simplemente porque tu modo de trabajar, firme pero sin estridencias, empieza a ordenar ambientes que venían dispersos.
-        tauro tiene una manera particular de crear comunidad: ofreciendo un mate, sosteniendo un proyecto que parecía caerse, recordando un acuerdo que otros pasaron por alto o priorizando el cuidado de los tiempos.
-        es ahí, en esa tenacidad silenciosa, donde tu presencia adquiere un valor profundo y se consolida tu liderazgo de base.
+        en el segundo tramo del año, algo empezará a volverse más visible: tu modo de trabajar, firme pero sin estridencias, ordenará ambientes que vendrán dispersos.
+        tauro tendrá una manera particular de crear comunidad: ofreciendo un mate, sosteniendo un proyecto que parecerá caerse.
+        será en esa tenacidad silenciosa donde tu presencia adquirirá un valor profundo y se consolidará tu liderazgo de base, protegiendo los espacios de práctica de injerencias externas.
       `,
       cierre: `
-        Al llegar a diciembre sentís el peso lógico del año, el cuerpo te pide un descanso merecido, pero también una satisfacción silenciosa que no necesitás exhibir.
-        lo que se sostuvo —y muchas cosas se sostuvieron— fue gracias a personas como vos, que no perdieron el eje y que actuaron como ancla.
-        te llevás del 2026 la certeza de que tu modo, lento y firme, no solo funciona; sostiene instituciones enteras porque da confianza en un contexto incierto.
-        el próximo paso será aprender a delegar esa carga sin sentir que la calidad del trabajo se resiente.
+        al llegar a diciembre sentirás el peso lógico del año, pero también una satisfacción silenciosa que no necesitarás exhibir.
+        lo que se sostuvo —y muchas cosas se sostendrán— será gracias a personas como vos, que no perderán el eje y que actuarán como ancla.
+        te llevarás la certeza de que tu modo, lento y firme, no solo funcionará sino que sostendrá instituciones enteras porque dará confianza en un contexto incierto y hostil a la educación pública.
       `
     },
     géminis: {
       verano: `
-        El verano te encuentra con la cabeza hiperactiva: ideas que se superponen, curiosidades que te llevan de un libro a otro, conversaciones que abren más puertas de las que cierran.
-        disfrutás de la vorágine mental, pero poco a poco te das cuenta de que necesitás filtrar, no por obligación, sino para que la dispersión no se vuelva ruido paralizante.
-        empezás a distinguir qué te interesa de verdad y qué solo te entretiene un rato, y ese filtrado suave empieza a darte un descanso mental que no sabías que podías tener.
-        aprovechá para conectar con personas que te nutren intelectualmente, esa es tu mejor recarga.
+        el verano te encontrará con la cabeza hiperactiva: ideas que se superpondrán, curiosidades que te llevarán de un libro a otro.
+        disfrutarás de la vorágine mental, pero poco a poco te darás cuenta de que necesitarás filtrar, no por obligación, sino para que la dispersión no se vuelva ruido paralizante.
+        tu mejor recarga será la expansión de la curiosidad y la conexión con personas que te nutran intelectualmente.
       `,
       primer: `
-        El primer cuatrimestre tiene la marca típica de tu signo: múltiples frentes, tareas simultáneas, mensajes que llegan por tres canales distintos y todos parecen urgentes.
-        sos quien capta rápido lo que se mueve, quien entiende dónde está el verdadero problema aunque nadie lo haya dicho, y esa rapidez mental es una herramienta valiosa.
-        a veces eso te acelera y te lleva al borde del agotamiento, pero otras te salva; intuís desajustes antes de que estallen.
-        el desafío no es entender o explicar, sino no agotarte explicando lo que otros aún no vieron o simplemente no quieren ver.
+        el primer cuatrimestre tendrá la marca típica de tu signo: múltiples frentes, tareas simultáneas, y mensajes por canales distintos.
+        serás quien capte rápido lo que se mueva y entienda dónde estará el verdadero problema, aunque nadie lo haya dicho. esa rapidez mental será una herramienta valiosa para detectar los intentos de desfinanciamiento o desarticulación educativa.
+        el desafío no será entender o explicar, sino no agotarte explicando lo que otros aún no quieren ver.
       `,
       segundo: `
-        En el segundo cuatrimestre, tu habilidad para circular información se vuelve clave para la comunidad.
-        no es como chisme, sino como tejido fino: conectar a quien necesita algo con quien lo puede resolver, avisar a tiempo lo que nadie comunicó formalmente, recordar la letra chica que evita un malentendido institucional.
-        en ese intercambio constante, sostenés más comunidad de lo que imaginás, actuando como un nodo de coherencia en el sistema.
-        la comunicación deja de ser solo una habilidad para volverse una herramienta de cuidado colectivo, que alivia tensiones antes de que exploten.
+        en el segundo cuatrimestre, tu habilidad para circular información se volverá clave para la comunidad.
+        actuarás como tejido fino: conectarás a quien necesite algo con quien lo pueda resolver, avisarás a tiempo lo que nadie comunicó formalmente.
+        en ese intercambio constante, sostendrás más comunidad de lo que imaginarás, actuando como un nodo de coherencia en el sistema ante la falta de claridad oficial.
+        la comunicación dejará de ser solo una habilidad para volverse una herramienta de cuidado colectivo, que aliviará tensiones antes de que exploten.
       `,
       cierre: `
-        El cierre del año te encuentra con una certeza nueva: comunicar no es solo hablar rápido, sino ordenar el clima emocional y cognitivo del lugar de trabajo.
-        este año descubriste que tu manera de intervenir —rápida, lúcida, movediza— puede ser un resorte de coherencia y esperanza para muchos colegas.
-        y eso te acomoda en otro lugar, más sereno y más consciente de tu aporte esencial, que es el de conectar los puntos.
-        el reto para el próximo ciclo es defender ese espacio de calma mental.
+        el cierre del año te encontrará con una certeza nueva: comunicar no será solo hablar rápido, sino ordenar el clima emocional y cognitivo del lugar de trabajo.
+        este año descubrirás que tu manera de intervenir —rápida, lúcida, movediza— podrá ser un resorte de coherencia y esperanza para muchos colegas.
+        el reto para el próximo ciclo será defender ese espacio de calma mental que te permitirá seguir pensando alternativas.
       `
     },
     cáncer: {
       verano: `
-        El verano te da un respiro emocional profundo.
-        necesitás espacios conocidos, afectos confiables y una dosis de quietud que permita recomponer lo que se desgastó durante la vorágine del año lectivo anterior.
-        los primeros días son casi de hibernación: series, comidas caseras, agua fresca, y mucho silencio para procesar.
-        solo después de esa reparación aparece el deseo de volver a vincularte con el mundo, pero desde un lugar más protegido y menos permeable a las demandas externas.
-        aprovechá este tiempo para establecer límites afectivos que te sostendrán en el 2026.
+        el verano te dará un respiro emocional profundo.
+        necesitarás espacios conocidos, afectos confiables y una dosis de quietud que permita recomponer lo que se desgastó durante la vorágine del año lectivo anterior, donde el clima institucional te habrá pesado demasiado.
+        los primeros días serán casi de hibernación para procesar ese peso.
+        solo después de esa reparación aparecerá el deseo de volver a vincularte con el mundo, pero desde un lugar más protegido y menos permeable.
+        aprovecharás este tiempo para establecer límites afectivos que te sostendrán en el 2026.
       `,
       primer: `
-        El primer cuatrimestre te golpea en el costado más sensible: el clima institucional está cargado, hay malestar no dicho, compañeros desbordados, y estudiantes que piden más de lo que podés dar en tu jornada.
-        cáncer cuida por naturaleza: escucha, acompaña, ofrece un espacio seguro.
-        el riesgo es el mismo de siempre: quedar agotado por sostener a otros sin pedir sostén para vos, absorbiendo toda la emocionalidad del ambiente.
-        tu energía es valiosa; aprendé a diferenciar entre empatizar y cargar con la mochila ajena.
+        el primer cuatrimestre te golpeará en el costado más sensible: el clima institucional estará cargado, habrá malestar no dicho, y sentirás la tensión de los recortes de presupuesto afectando el día a día.
+        cáncer cuidará por naturaleza: escucharás, acompañarás, ofrecerás un espacio seguro a tus colegas.
+        el riesgo será el mismo de siempre: quedar agotado por sostener a otros sin pedir sostén para vos, absorbiendo toda la emocionalidad del ambiente.
+        tu energía será valiosa; deberás aprender a diferenciar entre empatizar y cargar con la mochila ajena.
       `,
       segundo: `
-        A mitad de año aparece un aprendizaje que venías postergando: permitirte ser cuidado.
-        empezás a practicar el decir “no puedo”, “hasta acá llego”, “esto necesito que me ayuden”.
-        lo que antes vivías como un fracaso personal o una señal de debilidad empieza a sentirse como un acto de verdad y autoafirmación.
-        y, curiosamente, eso fortalece tus vínculos: cuando vos mostrás tu límite de manera honesta, otros entienden que también pueden tener uno, y la red de contención se amplía.
+        a mitad de año aparecerá un aprendizaje que venías postergando: permitirte ser cuidado.
+        empezarás a practicar el decir “no puedo”, “hasta acá llego”, “esto necesito que me ayuden” sin culpa.
+        lo que antes vivías como una señal de debilidad empezará a sentirse como un acto de verdad y autoafirmación.
+        y, curiosamente, eso fortalecerá tus vínculos: cuando vos muestres tu límite de manera honesta, otros entenderán que también pueden tener uno, y la red de contención se ampliará.
       `,
       cierre: `
-        El fin de año te encuentra más acompañado y menos victimizado por la sobrecarga.
-        no es que el contexto institucional haya mejorado mágicamente, sino que vos empezaste a transitarlo de otro modo, con una estrategia de autocuidado renovada.
-        la fórmula es menos sacrificio, más reciprocidad: menos absorberlo todo, más compartir lo que pesa con la gente que te quiere.
-        este es el logro más grande de tu 2026: haber fortalecido tu caparazón desde la conexión, no desde el aislamiento.
+        el fin de año te encontrará más acompañado y menos victimizado por la sobrecarga.
+        no es que el contexto institucional haya mejorado mágicamente, sino que vos habrás aprendido a transitarlo de otro modo, con una estrategia de autocuidado renovada.
+        la fórmula será menos sacrificio, más reciprocidad: menos absorberlo todo, más compartir lo que pesa con la gente que te quiere.
+        este será el logro más grande de tu 2026: haber fortalecido tu caparazón desde la conexión, no desde el aislamiento.
       `
     },
     leo: {
       verano: `
-        El verano te devuelve algo del brillo que habías ido apagando bajo el peso de las responsabilidades rutinarias.
-        leo necesita sentirse vivo, creativo, conectado con su deseo y propósito, y este es el momento de recuperarlo.
-        en enero reaparece un impulso que no es de rendimiento, sino de vitalidad pura: cocinar algo rico, bailar un rato, charlar sin horarios o retomar un hobby olvidado.
-        ese reencuentro con tu chispa interna va a ser clave; es tu combustible para el resto del año.
-        dejá de lado la necesidad de planificar y simplemente disfrutá de la luz.
+        el verano te devolverá algo del brillo que habías ido apagando bajo el peso de las responsabilidades rutinarias.
+        leo necesitará sentirse vivo, creativo, conectado con su deseo y propósito.
+        en enero reaparecerá un impulso que no será de rendimiento, sino de vitalidad pura: cocinar algo rico, bailar un rato, retomar un hobby olvidado.
+        ese reencuentro con tu chispa interna será clave; será tu combustible para el resto del año, que te pedirá ser referente sin necesidad de imponer.
+        dejarás de lado la necesidad de planificar y simplemente disfrutarás de la luz.
       `,
       primer: `
-        El inicio del año trae un golpe sutil pero fuerte: la falta de reconocimiento explícito.
-        el esfuerzo pasa desapercibido, las horas extras se naturalizan como parte del contrato, y vos sentís una mezcla de frustración e injusticia profunda.
-        la pregunta que aparece es directa y punzante: ¿para quién hago todo esto si a nadie le importa?
-        aunque duela, esa pregunta abre el camino hacia un nuevo tipo de liderazgo, uno que no depende de la validación externa.
-        aprendé a ser tu propio público, tu propia fuente de energía.
+        el inicio del año traerá un golpe sutil pero fuerte: la falta de reconocimiento explícito por parte de las estructuras superiores.
+        tu esfuerzo pasará desapercibido, las horas extras se naturalizarán como parte del contrato, y vos sentirás una mezcla de frustración e injusticia profunda.
+        aunque duela, esa pregunta abrirá el camino hacia un nuevo tipo de liderazgo, uno que no dependerá de la validación externa ni de los aplausos del poder de turno.
+        aprenderás a ser tu propio público, tu propia fuente de energía.
       `,
       segundo: `
-        A medida que avanza el año, entendés que ser un referente no significa brillar en solitario o acaparar la atención.
-        empezás a dar lugar, a habilitar el talento de otros, a sostener en silencio los proyectos de tus colegas y estudiantes.
-        leo descubre que la autoridad más sólida y duradera no se impone con gestos grandilocuentes, se transmite por presencia, coherencia y generosidad.
-        ese cambio de eje, de protagonista a mentor o facilitador, te da una calma y una satisfacción inesperada.
+        a medida que avance el año, entenderás que ser un referente no significará brillar en solitario o acaparar la atención.
+        empezarás a dar lugar, a habilitar el talento de otros, a sostener en silencio los proyectos de tus colegas y estudiantes que luchan por la autonomía del instituto.
+        leo descubrirá que la autoridad más sólida y duradera no se impondrá con gestos grandilocuentes, se transmitirá por presencia, coherencia y generosidad.
+        ese cambio de eje, de protagonista a mentor o facilitador, te dará una calma y una satisfacción inesperada.
       `,
       cierre: `
-        Llegás a diciembre con menos necesidad de aplauso y más confianza interna en tu propio valor.
-        descubriste un modo de brillar que no compite, que no exige validación, que simplemente está disponible para iluminar a otros.
-        este año te diste cuenta de que el verdadero éxito es inspirar a los que te rodean.
-        y ese modo, para leo, es una conquista enorme que te prepara para nuevos desafíos en el ámbito de la gestión y la influencia.
+        llegarás a diciembre con menos necesidad de aplauso y más confianza interna en tu propio valor.
+        habrás descubierto un modo de brillar que no competirá, que no exigirá validación, que simplemente estará disponible para iluminar a otros en la oscuridad de la coyuntura.
+        este año te darás cuenta de que el verdadero éxito será inspirar a los que te rodean a defender la institución.
       `
     },
     virgo: {
       verano: `
-        El verano te recibe con una energía peculiar: al principio querés ordenar todo, incluso el descanso.
-        organizás horarios, listas de libros para leer, pendientes mentales para no olvidar nada en marzo.
-        pero a los pocos días aparece una rendición necesaria: no se puede controlar la marea de la vida, y es inútil intentarlo.
-        cuando finalmente aflojás la estructura mental, algo se acomoda por dentro, encontrando una paz inesperada.
-        el descanso deja de ser una tarea que hay que cumplir y empieza a ser una experiencia regeneradora que te conecta con el cuerpo.
+        el verano te recibirá con una energía peculiar: al principio querrás ordenar todo, incluso el descanso.
+        organizarás listas de libros para leer y planificarás pendientes mentales para no olvidar nada en marzo.
+        pero a los pocos días aparecerá una rendición necesaria: no se podrá controlar la marea de la vida.
+        cuando finalmente aflojes la estructura mental, algo se acomodará por dentro, encontrando una paz inesperada.
+        el descanso dejará de ser una tarea que hay que cumplir y empezará a ser una experiencia regeneradora que te conectará con el cuerpo.
       `,
       primer: `
-        El primer cuatrimestre despliega su clásico catálogo de imperfecciones: errores en las plataformas, pedidos imprecisos de las autoridades, comunicaciones que se pisan y datos inconsistentes.
-        virgo detecta todo con una rapidez quirúrgica, a veces incluso antes de que el problema exista.
-        el riesgo es absorber cada falla como responsabilidad personal y agotarte corrigiendo lo que no te corresponde.
-        el aprendizaje que empieza a insinuarse es otro: no todo merece ser corregido de inmediato, y no todo error exige tu intervención directa; hay que saber cuándo soltar el control.
+        el primer cuatrimestre desplegará su clásico catálogo de imperfecciones: errores en las plataformas, pedidos imprecisos de las autoridades, y datos inconsistentes, potenciados por la falta de inversión educativa.
+        virgo detectará todo con una rapidez quirúrgica, a veces incluso antes de que el problema exista.
+        el riesgo será absorber cada falla como responsabilidad personal y agotarte corrigiendo lo que no te corresponderá.
+        el aprendizaje que empezará a insinuarse será: no todo merecerá ser corregido de inmediato, y no todo error exigirá tu intervención directa; deberás saber cuándo soltar el control para sostener la estructura.
       `,
       segundo: `
-        Con el correr de los meses empezás a soltar el rigor.
-        delegás tareas, compartís responsabilidades, aceptás que cierto desorden funcional no es una catástrofe institucional.
-        lo que antes te crispaba —la ineficiencia ajena— ahora lo mirás con un margen más amplio y compasivo.
-        al bajar la autoexigencia, el trabajo se vuelve respirable, y vos recuperás energía para aquello que realmente requiere tu precisión y expertise.
-        la verdadera esperanza está en la eficiencia compartida, no en la perfección individual.
+        con el correr de los meses empezarás a soltar el rigor.
+        delegarás tareas, compartirás responsabilidades, aceptarás que cierto desorden funcional no será una catástrofe institucional.
+        lo que antes te crispaba —la ineficiencia ajena— ahora lo mirarás con un margen más amplio y compasivo, entendiendo que el contexto excederá a las personas.
+        al bajar la autoexigencia, el trabajo se volverá respirable, y vos recuperarás energía para aquello que realmente requiera tu precisión y expertise.
+        la verdadera esperanza estará en la eficiencia compartida, no en la perfección individual.
       `,
       cierre: `
-        El año termina sin haber alcanzado la perfección absoluta, y eso ya no te angustia ni te quita el sueño.
-        aprendiste que la calidad no se pierde por aceptar límites de tiempo y recursos, y que cuidarte también es parte esencial del trabajo bien hecho.
-        tu gran logro es haber transformado la crítica interna en discernimiento estratégico.
-        te vas del 2026 con la convicción de que la estructura que se sostiene es la que tiene flexibilidad.
+        el año terminará sin haber alcanzado la perfección absoluta, y eso ya no te angustiará ni te quitará el sueño.
+        habrás aprendido que la calidad no se perderá por aceptar límites de tiempo y recursos, y que cuidarte también será parte esencial del trabajo bien hecho.
+        tu gran logro será haber transformado la crítica interna en discernimiento estratégico, utilizando tu agudeza para blindar el funcionamiento pedagógico de las amenazas externas.
       `
     },
     libra: {
       verano: `
-        El verano te encuentra buscando equilibrio en todas las áreas de tu vida.
-        no solo en el cuerpo, también en los vínculos; repasás mentalmente cómo volver al ruedo sin romper la delicada red de acuerdos que fuiste tejiendo durante años con colegas y directivos.
-        el descanso no es aislamiento, sino un profundo reacomodamiento interno.
-        necesitás restaurar la armonía en tu propia balanza antes de volver a mediar en las tensiones institucionales.
-        aprovechá para rodearte de belleza y conversaciones estéticas que nutran tu espíritu.
+        el verano te encontrará buscando equilibrio en todas las áreas de tu vida.
+        repasarás mentalmente cómo volver al ruedo sin romper la delicada red de acuerdos que fuiste tejiendo con colegas y directivos.
+        el descanso no será aislamiento, sino un profundo reacomodamiento interno.
+        necesitarás restaurar la armonía en tu propia balanza antes de volver a mediar en las tensiones institucionales que se agudizarán por la incertidumbre económica.
+        aprovecharás para rodearte de belleza y conversaciones estéticas que nutran tu espíritu.
       `,
       primer: `
-        El inicio del año trae tensiones conocidas, pero más intensas.
-        aparecen opiniones encontradas, decisiones mal comunicadas, y climas que se enrarecen rápido en las salas de profesores.
-        libra escucha con atención, media con diplomacia, y traduce las posturas para que todos se entiendan.
-        el riesgo es el mismo de siempre: mediar tanto que te corrés de tu propio eje o desaparecés detrás de la armonía que intentás sostener.
-        el desafío del cuatrimestre es practicar el desacuerdo amable, es decir tu verdad sin buscar la aprobación total.
+        el inicio del año traerá tensiones conocidas, pero más intensas.
+        aparecerán opiniones encontradas y decisiones poco transparentes, y los climas se enrarecerán rápido.
+        libra escuchará con atención, mediará con diplomacia, y traducirá las posturas para que todos se entiendan, manteniendo el diálogo abierto en la comunidad.
+        el riesgo será el mismo de siempre: mediar tanto que te corras de tu propio eje.
+        el desafío del cuatrimestre será practicar el desacuerdo amable, es decir tu verdad y defender la postura institucional, sin buscar la aprobación total de las esferas de poder.
       `,
       segundo: `
-        A mitad de año empezás a notar el peso real de tu trabajo invisible: muchas situaciones de conflicto no estallaron porque alguien (vos) sostuvo el diálogo en el momento justo.
-        aunque nadie lo enumere en un informe o en la carga horaria, tu capacidad de construir puentes mantiene la convivencia institucional y previene desgastes mayores.
-        el ambiente se vuelve más liviano a tu alrededor porque ejerciste tu influencia de forma sutil y constante.
-        descubrís que la justicia no siempre es un balance perfecto, sino la posibilidad de que todas las voces sean escuchadas.
+        a mitad de año empezarás a notar el peso real de tu trabajo invisible: muchas situaciones de conflicto no estallarán porque alguien (vos) sostuvo el diálogo en el momento justo.
+        tu capacidad de construir puentes mantendrá la convivencia institucional y prevendrá desgastes mayores.
+        el ambiente se volverá más liviano a tu alrededor porque ejercerás tu influencia de forma sutil y constante.
+        descubrirás que la justicia no siempre será un balance perfecto, sino la posibilidad de que todas las voces, especialmente las disidentes, sean escuchadas y contenidas.
       `,
       cierre: `
-        El año termina sin grandes rupturas en el sistema, y en el contexto complejo que te tocó, eso es muchísimo.
-        aprendiste que cuidar el equilibrio colectivo también requiere cuidarte a vos en primer lugar: ponerte primero no es egoísmo, es sostenibilidad.
-        te llevás la lección de que tu aporte no es ser la balanza, sino ser el punto de encuentro.
-        el 2026 te reafirma como un pacificador esencial, un estratega de la convivencia que necesita reconocer su propio valor.
+        el año terminará sin grandes rupturas en el sistema que vos ayudaste a contener, y en el contexto que te tocó, eso será muchísimo.
+        habrás aprendido que cuidar el equilibrio colectivo también requerirá cuidarte a vos en primer lugar.
+        ponerte primero no será egoísmo, sino sostenibilidad.
+        el 2026 te reafirmará como un pacificador esencial, un estratega de la convivencia que necesita reconocer su propio valor.
       `
     },
     escorpio: {
       verano: `
-        El verano es un tiempo de introspección profunda e inevitable.
-        necesitás silencio, profundidad, tiempo sin la necesidad de dar explicaciones superficiales a nadie.
-        descansar para vos no es distraerte con ruido, es procesar todo lo que quedó pendiente a nivel emocional y estratégico.
-        algo estructural se está moviendo en tu interior; estás evaluando qué vínculos y qué compromisos laborales merecen seguir.
-        aprovechá para purificar tu energía y prepararte para las transformaciones del año, que serán internas y externas.
+        el verano será un tiempo de introspección profunda e inevitable.
+        necesitarás silencio, profundidad, y tiempo sin la necesidad de dar explicaciones superficiales a nadie.
+        descansar para vos no será distraerte con ruido, será procesar todo lo que quedó pendiente a nivel emocional y estratégico, evaluando qué vínculos y qué compromisos laborales merecerán seguir en pie.
+        aprovecharás para purificar tu energía y prepararte para las transformaciones del año, que serán internas y externas, sobre todo en lo que respecta a la defensa de los recursos.
       `,
       primer: `
-        El primer cuatrimestre no esquiva el conflicto: de hecho, lo atrae para poder depurarlo.
-        aparecen tensiones reales, juegos de poder soterrados, decisiones que incomodan a la mayoría, pero que vos sentís que es necesario sacar a la luz.
-        escorpio no rodea el problema: va directamente al núcleo, aunque eso lo exponga a la incomprensión de otros.
-        no todos lo entienden, pero tu manera de ir a la verdad de las cosas es honesta y brutalmente necesaria en un ambiente que tiende a la simulación.
-        el riesgo es el aislamiento; la clave es elegir aliados que valoren tu lucidez, no tu dureza.
+        el primer cuatrimestre no esquivará el conflicto, de hecho, lo atraerá para poder depurarlo.
+        aparecerán tensiones reales, juegos de poder soterrados, y decisiones que incomodarán a la mayoría, pero que vos sentirás que será necesario sacar a la luz para sanear la institución.
+        escorpio no rodeará el problema: irá directamente al núcleo, aunque eso te exponga a la incomprensión de otros.
+        tu manera de ir a la verdad de las cosas será honesta y brutalmente necesaria en un ambiente que tenderá a la simulación y a las medias verdades.
+        la clave será elegir aliados que valoren tu lucidez, no tu dureza.
       `,
       segundo: `
-        A mitad de año las transformaciones empiezan a sentirse, aunque no siempre se vean en la superficie de los informes.
-        hay cambios en las relaciones, en los límites personales y profesionales que pusiste, y en lo que ya no estás dispuesto a tolerar bajo ninguna excusa.
-        escorpio no busca comodidad institucional, busca verdad y autenticidad en la práctica.
-        este proceso de soltar lo viejo puede ser doloroso, pero es lo que te permite renacer con más fuerza y claridad.
-        confiá en la depuración: lo que se va, deja espacio para algo más real.
+        a mitad de año, el sistema empezará a moverse gracias a las preguntas incómodas que vos pusiste sobre la mesa.
+        no será una revolución visible, será una depuración interna de procesos que eran ineficientes o injustos.
+        tu gestión se volverá más austera y más coherente, sirviendo de ejemplo.
+        descubrirás que la fuerza estará en el silencio; no necesitarás gritar para ser escuchado, tu coherencia será tu poder para blindar el instituto.
+        te volverás un referente de la ética en la gestión.
       `,
       cierre: `
-        El año termina y nada está igual que al comienzo.
-        perdiste algunas certezas que eran ilusiones, pero ganaste profundidad y una visión más aguda de la realidad institucional.
+        el año terminará y nada estará igual que al comienzo.
+        habrás perdido algunas certezas que eran ilusiones, pero ganarás profundidad y una visión más aguda de la realidad institucional.
         lo que se transformó en tu vida profesional y tus vínculos era estructural, y vos lo sabías desde el inicio.
-        te llevás la fuerza de haber atravesado la crisis sin negociar tu esencia.
-        el próximo año te encontrará anclado en un nuevo tipo de poder personal: el de la coherencia.
+        te llevarás la fuerza de haber atravesado la crisis sin negociar tu esencia.
+        el próximo año te encontrará anclado en un nuevo tipo de poder personal: el de la coherencia en la defensa de lo público.
       `
     },
     sagitario: {
       verano: `
-        El verano activa tu necesidad de horizonte y de sentido.
-        leés, pensás, imaginás otros modos de estar en la educación; te negás a que el año que empieza sea solo supervivencia o repetición de formatos agotados.
-        necesitás sentir que hay una meta más alta, un propósito pedagógico que trascienda la burocracia.
-        tu descanso es mental; te recargás expandiendo tus conocimientos y soñando con el futuro.
-        aprovechá para conectar con filosofías o ideas que te den un marco de esperanza.
+        el verano activará tu necesidad de horizonte y de sentido.
+        leerás, pensarás, e imaginarás otros modos de estar en la educación; te negarás a que el año que empiece sea solo supervivencia o repetición de formatos agotados.
+        necesitarás sentir que habrá una meta más alta, un propósito pedagógico que trascenderá la burocracia.
+        tu descanso será mental; te recargarás expandiendo tus conocimientos y soñando con el futuro.
+        aprovecharás para conectar con filosofías o ideas que te den un marco de esperanza frente al pesimismo reinante.
       `,
       primer: `
-        El primer cuatrimestre aprieta con calendarios rígidos y exigencias de corto plazo, lo que genera fricción con tu necesidad de amplitud.
-        vos seguís mirando más allá del día a día, buscando el sentido de cada tarea.
-        sagitario necesita propósito para sostener el esfuerzo, y cuando ese sentido flaquea, aparece el cansancio y el desgano.
-        no te disperses en discusiones menores; recordá tu visión y usala como brújula.
-        tu energía está en la inspiración, no en la rutina.
+        el primer cuatrimestre apretará con calendarios rígidos y exigencias de corto plazo, lo que generará fricción con tu necesidad de amplitud.
+        vos seguirás mirando más allá del día a día, buscando el sentido de cada tarea y la justificación pedagógica de las medidas que se impongan.
+        sagitario necesitará propósito para sostener el esfuerzo, y cuando ese sentido flaquee, aparecerá el cansancio.
+        no te dispersarás en discusiones menores; recordarás tu visión y la usarás como brújula para inspirar a tus colegas.
+        tu energía estará en la inspiración, no en la rutina.
       `,
       segundo: `
-        A mitad de año compartís ideas, abrís debates inesperados, proponés miradas que oxigenan la conversación institucional que venía estancada.
-        no todo se implementa de inmediato, pero lográs inyectar una dosis de optimismo y posibilidad en el ambiente.
-        ese movimiento, esa apertura de mente, renueva la energía colectiva de tus colegas.
-        descubrís que tu rol es el del visionario, el que recuerda por qué están todos ahí.
-        tu entusiasmo se vuelve contagioso y moviliza recursos que estaban dormidos.
+        a mitad de año, compartirás ideas, abrirás debates inesperados, y propondrás miradas que oxigenarán la conversación institucional que venía estancada.
+        no todo se implementará de inmediato, pero lograrás inyectar una dosis de optimismo y posibilidad en el ambiente.
+        ese movimiento, esa apertura de mente, renovará la energía colectiva de tus colegas.
+        descubrirás que tu rol será el del visionario, el que recordará por qué están todos ahí, defendiendo la educación pública y su misión.
+        tu entusiasmo se volverá contagioso y movilizará recursos que parecían dormidos.
       `,
       cierre: `
-        El año termina con fatiga física, pero no con vacío existencial.
-        el sentido sigue ahí, intacto y fortalecido por las acciones que emprendiste.
-        tal vez no lograste la gran reforma educativa que soñabas, pero sembraste preguntas que van a germinar.
-        para vos, que el propósito se mantenga vivo es imprescindible; es el verdadero éxito.
-        te vas sabiendo que inspiraste a otros a ver un poco más lejos.
+        el año terminará con fatiga física, pero no con vacío existencial.
+        el sentido seguirá ahí, intacto y fortalecido por las acciones que emprendiste.
+        tal vez no lograste la gran reforma educativa que soñabas, pero sembraste preguntas que van a germinar en el próximo ciclo.
+        para vos, que el propósito se mantenga vivo será imprescindible; será el verdadero éxito.
+        te irás sabiendo que inspiraste a otros a ver un poco más lejos.
       `
     },
     capricornio: {
       verano: `
-        Incluso en verano te cuesta soltar la responsabilidad: es como un interruptor que no podés apagar del todo.
-        la mente sigue repasando pendientes y planificando el inicio, porque tu seguridad reside en la estructura.
-        descansar de verdad implica aprender a confiar en que, por un rato, no todo depende de tu control y supervisión.
-        tu mayor tarea estival es delegar mentalmente; dejá que el mundo gire sin que vos lo impulses.
-        conectá con tu cuerpo; el descanso físico es la mejor inversión para tu rendimiento a largo plazo.
+        incluso en verano te costará soltar la responsabilidad: será como un interruptor que no podrás apagar del todo.
+        tu mente seguirá repasando pendientes y planificando el inicio, porque tu seguridad residirá en la estructura.
+        descansar de verdad implicará aprender a confiar en que, por un rato, no todo dependerá de tu control y supervisión.
+        tu mayor tarea estival será delegar mentalmente; deberás dejar que el mundo gire sin que vos lo impulses.
+        conectarás con tu cuerpo; el descanso físico será la mejor inversión para tu rendimiento a largo plazo en la defensa de la estabilidad institucional.
       `,
       primer: `
-        El inicio del año te coloca, una vez más, en el lugar de sostén y de columna vertebral de la institución.
-        estructuras, organización, continuidad, cumplimiento de los tiempos; muchas cosas funcionan porque alguien las mantiene en marcha, y muchas veces ese alguien sos vos, en silencio.
-        tu seriedad y compromiso son pilares, pero el riesgo es normalizar la sobrecarga.
-        trabajá en la delegación activa: empezá a formar a otros para que puedan tomar parte de tu carga, no como un riesgo, sino como una necesidad estratégica para el sistema.
+        el inicio del año te colocará, una vez más, en el lugar de sostén y de columna vertebral de la institución.
+        estructuras, organización, continuidad; muchas cosas funcionarán porque alguien las mantendrá en marcha, y muchas veces ese alguien serás vos, en silencio.
+        tu seriedad y compromiso serán pilares frente a la desorganización que buscarán imponer los ataques externos.
+        el riesgo será normalizar la sobrecarga.
+        trabajarás en la delegación activa: empezarás a formar a otros para que puedan tomar parte de tu carga, no como un riesgo, sino como una necesidad estratégica para blindar el sistema.
       `,
       segundo: `
-        A mitad de año el peso se hace sentir con fuerza, y por primera vez, la resistencia no es la respuesta.
-        capricornio empieza a reconocer que sostener el sistema no significa hacerlo en solitario.
-        pedir ayuda se vuelve una posibilidad real, no una señal de debilidad o fracaso personal.
-        descubrís la eficiencia en la colaboración; te sorprendés al ver que el trabajo compartido se hace más rápido y mejor, y que no por eso perdés autoridad.
-        este es tu gran cambio: transformar la responsabilidad solitaria en un liderazgo distribuido.
+        a mitad de año el peso se hará sentir con fuerza, y por primera vez, la resistencia no será la respuesta.
+        capricornio empezará a reconocer que sostener el sistema no significará hacerlo en solitario.
+        pedir ayuda se volverá una posibilidad real, no una señal de debilidad o fracaso personal.
+        descubrirás la eficiencia en la colaboración; te sorprenderás al ver que el trabajo compartido se hará más rápido y mejor, y que no por eso perderás autoridad.
+        este será tu gran cambio: transformar la responsabilidad solitaria en un liderazgo distribuido que fortalecerá las bases del profesorado.
       `,
       cierre: `
-        El año termina gracias al trabajo silencioso y constante de quienes cargaron más de lo justo.
-        esta vez te vas reconociendo en esa tarea, pero sin romantizar el desgaste o la autoexigencia extrema.
-        entendiste que tu valor no está solo en lo que producís, sino en tu capacidad para construir estructuras duraderas.
-        te llevás la lección de que el verdadero éxito es alcanzar la meta sin haber sacrificado tu bienestar en el camino.
+        el año terminará gracias al trabajo silencioso y constante de quienes cargaron más de lo justo.
+        esta vez te irás reconociendo en esa tarea, pero sin romantizar el desgaste o la autoexigencia extrema.
+        entenderás que tu valor no estará solo en lo que produzcas, sino en tu capacidad para construir estructuras duraderas que contengan a la comunidad.
+        te llevarás la lección de que el verdadero éxito será alcanzar la meta sin haber sacrificado tu bienestar en el camino de la defensa institucional.
       `
     },
     acuario: {
       verano: `
-        El verano es un laboratorio mental: un espacio donde pensás alternativas, imaginás cambios radicales, y cuestionás lo dado sin tener que justificarlo.
-        la pausa alimenta ideas que no encajan en los formularios ni en los diseños curriculares oficiales.
-        tu energía se recarga en la desconexión social y en el pensamiento libre; es el momento ideal para leer temas fuera de tu área o sumergirte en proyectos creativos personales.
-        mantené esas ideas frescas; serán tu arsenal para enfrentar la rigidez del sistema en marzo.
+        el verano será un laboratorio mental: un espacio donde pensarás alternativas, imaginarás cambios radicales, y cuestionarás lo dado sin tener que justificarlo.
+        la pausa alimentará ideas que no encajarán en los formularios ni en los diseños curriculares oficiales.
+        tu energía se recargará en la desconexión social y en el pensamiento libre; será el momento ideal para leer temas fuera de tu área o sumergirte en proyectos creativos personales.
+        mantendrás esas ideas frescas; serán tu arsenal para enfrentar la rigidez del sistema y las imposiciones externas en marzo.
       `,
       primer: `
-        El primer cuatrimestre te enfrenta a normas rígidas y a lógicas que no contemplan la diversidad real del trabajo educativo y de las personas.
-        acuario siente el roce constante entre lo posible (lo que la teoría y el deseo permiten) y lo permitido (lo que la burocracia impone).
-        podés sentir frustración, pero tu rol es agitar las preguntas difíciles.
-        evitá el cinismo y canalizá esa energía en buscar soluciones ingeniosas y no convencionales.
-        el valor de tu signo es ser la voz del cambio.
+        el primer cuatrimestre te enfrentará a normas rígidas y a lógicas que no contemplarán la diversidad real del trabajo educativo y de las personas.
+        acuario sentirá el roce constante entre lo posible (lo que la teoría y el deseo permiten) y lo permitido (lo que la burocracia impone).
+        podrás sentir frustración, pero tu rol será agitar las preguntas difíciles que cuestionen los recortes de autonomía.
+        evitarás el cinismo y canalizarás esa energía en buscar soluciones ingeniosas y no convencionales que defiendan el espacio institucional.
+        el valor de tu signo será ser la voz del cambio y la innovación.
       `,
       segundo: `
-        A mitad de año, las redes humanas se vuelven tu refugio y tu motor.
-        ideas que no prosperan oficialmente o que fueron rechazadas en las reuniones encuentran circulación y apoyo en conversaciones laterales con colegas afines.
-        lo nuevo no desaparece, se disemina por canales informales que vos ayudás a crear y sostener.
-        descubrís la potencia de la comunidad y del trabajo en red; no tenés que convencer a todos, solo a los que están listos para la próxima etapa.
-        la esperanza florece en los márgenes, y vos sos el jardinero.
+        a mitad de año, las redes humanas se volverán tu refugio y tu motor.
+        ideas que no prosperarán oficialmente o que fueron rechazadas en las reuniones encontrarán circulación y apoyo en conversaciones laterales con colegas afines, generando focos de resistencia activa.
+        lo nuevo no desaparecerá, se diseminará por canales informales que vos ayudarás a crear y sostener.
+        descubrirás la potencia de la comunidad y del trabajo en red; no tendrás que convencer a todos, solo a los que estén listos para la próxima etapa.
+        la esperanza florecerá en los márgenes, y vos serás el jardinero.
       `,
       cierre: `
-        El año termina sin una revolución visible, pero con muchas semillas plantadas en la cabeza de tus colegas y estudiantes.
-        tu influencia fue silenciosa pero profunda, moviendo los cimientos de lo que parecía inamovible.
-        y vos sabés que eso también cuenta; un cambio de mentalidad precede siempre al cambio de estructura.
-        te vas con la certeza de que tu visión de futuro ya está circulando, y eso es un gran logro acuariano.
+        el año terminará sin una revolución visible, pero con muchas semillas plantadas en la cabeza de tus colegas y estudiantes.
+        tu influencia habrá sido silenciosa pero profunda, moviendo los cimientos de lo que parecía inamovible.
+        un cambio de mentalidad precede siempre al cambio de estructura.
+        te irás con la certeza de que tu visión de futuro ya estará circulando, y eso será un gran logro acuariano en la defensa del sentido de la educación pública.
       `
     },
     piscis: {
       verano: `
-        El verano te vuelve permeable y sensible a los climas emocionales de tu entorno.
-        necesitás pausa, retiro, y mucho contacto con la naturaleza o el arte para no saturarte con la energía residual del año.
-        el primer paso es desintoxicarte de las emociones ajenas que absorbiste durante el ciclo anterior.
-        buscá actividades que te permitan la evasión creativa, como la música, el cine, o la escritura; es la mejor forma de purificación.
-        la recarga es psíquica, no física.
+        el verano te volverá permeable y sensible a los climas emocionales de tu entorno.
+        necesitarás pausa, retiro, y mucho contacto con la naturaleza o el arte para no saturarte con la energía residual del año anterior, que habrá sido pesada.
+        el primer paso será desintoxicarte de las emociones ajenas que absorbiste durante el ciclo anterior.
+        buscarás actividades que te permitan la evasión creativa, como la música, el cine, o la escritura; será la mejor forma de purificación.
+        la recarga será psíquica, no física.
       `,
       primer: `
-        El inicio del año puede ser abrumador si no ponés límites claros.
-        absorvés los climas, las exigencias, y los estados de ánimo que no siempre son tuyos, lo que te drena la energía vital para el estudio.
-        al comienzo, te cuesta poner límites por temor a ser insensible o a alejar a otros.
-        el desafío es aprender que podés ser empático sin sacrificar tu propio espacio.
-        tu sensibilidad es una brújula, no una esponja.
+        el inicio del año podrá ser abrumador si no pones límites claros.
+        absorberás los climas, las exigencias, y los estados de ánimo que no siempre serán tuyos, lo que te drenará la energía vital. sentirás la angustia de los demás colegas por las incertidumbres económicas y la fragilidad del sistema.
+        al comienzo, te costará poner límites por temor a ser insensible o a alejar a otros.
+        el desafío será aprender que podrás ser empático sin sacrificar tu propio espacio.
+        tu sensibilidad deberá ser una brújula, no una esponja.
       `,
       segundo: `
-        A mitad de año aprendés a compartir lo que sentís, a verbalizar la carga emocional.
-        poner palabras a lo difuso ordena tu mundo interior, y delimitar tu espacio protege tu energía.
-        descubrís que no todo tiene que pasar por dentro, y que al hablar, tus compañeros no te juzgan, sino que te ofrecen contención.
-        esta práctica de poner límites de forma suave es tu gran logro del cuatrimestre.
-        la conexión sana te da un nuevo anclaje.
+        a mitad de año aprenderás a compartir lo que sientas, a verbalizar la carga emocional.
+        poner palabras a lo difuso ordenará tu mundo interior, y delimitar tu espacio protegerá tu energía.
+        descubrirás que no todo tendrá que pasar por dentro, y que al hablar, tus compañeros no te juzgarán, sino que te ofrecerán contención.
+        esta práctica de poner límites de forma suave será tu gran logro del cuatrimestre, creando un espacio de refugio y verdad compartida.
+        la conexión sana te dará un nuevo anclaje.
       `,
       cierre: `
-        El año termina con más contención y menos confusión interna.
-        no porque te hayas endurecido o aislado, sino porque sos más consciente de tus límites y de tus inmensos recursos internos de empatía.
-        el 2026 fue el año donde aprendiste a navegar las aguas emocionales sin ahogarte en ellas.
-        tu esperanza reside en la conexión profunda que ahora podés elegir.
+        el fin de año te encontrará más acompañado y menos victimizado por la sobrecarga.
+        no es que el contexto institucional haya mejorado mágicamente, sino que vos habrás aprendido a transitarlo de otro modo, con una estrategia de autocuidado renovada.
+        la fórmula será menos sacrificio, más reciprocidad: menos absorberlo todo, más compartir lo que pesa con la gente que te quiere.
+        este será el logro más grande de tu 2026: haber fortalecido tu caparazón desde la conexión, no desde el aislamiento.
       `
     }
   },
-  "tecnico-administrativo": {
+ 
+"personal-auxiliar": {
+  aries: {
+    verano: `
+      El verano te va a encontrar un poco cansado, pero con esa sensación satisfecha de haber sostenido mucho durante el año anterior.
+      venís de un período intenso donde resolviste rápido, estuviste siempre disponible y apagaste incendios chicos y grandes.
+      ahora este tiempo te va a pedir bajar la urgencia, cambiar el ritmo y dejar de correr tanto.
+      no se trata de no hacer nada, sino de hacer las cosas sin presión, sin el reloj encima, recuperando fuerza y energía para todo lo que viene después.
+    `,
+    primer: `
+      El inicio del año va a ser bastante movido y con cierto desorden inevitable.
+      van a surgir pedidos de último momento, tareas imprevistas y situaciones que requieren respuesta rápida.
+      tu capacidad para actuar con agilidad va a ser muy valiosa y te va a destacar.
+      el desafío principal va a ser no cargar con todo solo y aprender a decir con claridad hasta dónde sí y hasta dónde no.
+    `,
+    segundo: `
+      A mitad de año tu trabajo y tu presencia se van a notar mucho más de lo que imaginás.
+      muchas cosas van a funcionar bien simplemente porque vos estás ahí, poniendo orden y practicidad.
+      vas a encontrar formas simples y efectivas de organizar el día a día y aliviar la carga de los demás.
+      el equipo va a ser fundamental para mantener el ritmo sin que te agotes por completo.
+    `,
+    cierre: `
+      El año va a terminar con algo de cansancio acumulado, pero también con un orgullo profundo y justificado.
+      todo lo que hiciste en lo cotidiano, aunque no siempre visible, va a haber sido fundamental para que muchas cosas salieran bien.
+      vas a cerrar el año sabiendo que tu tarea sostuvo mucho más de lo que los demás perciben.
+    `
+  },
+
+  tauro: {
+    verano: `
+      El verano te va a permitir recuperar tu propio ritmo natural, ese que a veces perdés en la rutina.
+      vas a necesitar días más previsibles, descanso de verdad y una buena dosis de calma.
+      no va a hacer falta estar pensando en todo lo que viene más adelante.
+      este período va a servir para volver a sentir estabilidad interna y preparar una base firme y sólida para el resto del año.
+    `,
+    primer: `
+      El inicio del año va a traer algunos cambios repentinos y exigencias que te van a pedir apuro.
+      muchas cosas no te van a terminar de convencer o cerrar del todo.
+      tu mayor fortaleza va a ser sostener lo que ya funciona bien y no dejar que se desarme.
+      el desafío va a consistir en no dejarte arrastrar por movimientos o decisiones innecesarios.
+    `,
+    segundo: `
+      A mitad de año tu manera tranquila y constante de trabajar va a ordenar el entorno de forma natural.
+      los demás van a apoyarse en tu constancia y en esa tranquilidad que transmitís.
+      sin necesidad de decir demasiado, vas a sostener el funcionamiento diario y hacer que todo fluya mejor.
+    `,
+    cierre: `
+      El año va a terminar con la satisfacción tranquila del trabajo bien cumplido.
+      tu constancia va a haber actuado como un sostén silencioso pero esencial.
+      vas a cerrar sabiendo que tu forma de estar y de hacer fue realmente importante para el equipo.
+    `
+  },
+
+  géminis: {
+    verano: `
+      El verano te va a dar la distancia necesaria para pensar con mucha más claridad.
+      con menos ruido y obligaciones diarias, vas a entender mejor qué cosas se traban y por qué sucede eso.
+      descansar, para vos, va a significar cambiar de foco: leer, conversar, mover ideas y ordenarlas mentalmente.
+      esa claridad que ganes ahora te va a servir muchísimo para todo lo que viene después.
+    `,
+    primer: `
+      El inicio del año va a ser cambiante, muy activo y lleno de interacciones.
+      vas a estar en contacto con muchas personas diferentes y situaciones variadas.
+      tu capacidad para comunicar claro y rápido va a ser absolutamente central.
+      el desafío va a ser no convertirte en la única persona que conecta todo y resuelve los cruces.
+    `,
+    segundo: `
+      A mitad de año tu forma de comunicar va a prevenir y evitar varios conflictos.
+      avisar a tiempo, explicar bien las cosas y conectar información va a marcar una gran diferencia.
+      tu trabajo diario va a ayudar a que los demás puedan desempeñarse mejor y con menos obstáculos.
+    `,
+    cierre: `
+      El año va a terminar con la sensación de haber ordenado muchas cosas que antes estaban dispersas.
+      aunque no siempre se vea o se reconozca, tu claridad mental va a haber sido clave en varios momentos.
+      vas a cerrar con la certeza de que comunicar bien también es una forma de cuidar al equipo.
+    `
+  },
+
+  cáncer: {
+    verano: `
+      El verano te va a pedir un descanso más emocional que físico.
+      vas a necesitar bajar la guardia, estar con gente de mucha confianza y permitirte recibir.
+      este tiempo te va a ayudar a recuperar el equilibrio interno que a veces perdés.
+      recordá que no todo se sostiene solo dando; también se sostiene recibiendo apoyo y cariño.
+    `,
+    primer: `
+      El inicio del año te va a encontrar acompañando y conteniendo a muchas personas.
+      los demás se van a apoyar bastante en vos, tanto emocional como prácticamente.
+      el desafío principal va a ser no absorber todo ese peso y empezar a poner límites que te cuiden.
+    `,
+    segundo: `
+      A mitad de año esos límites que empezaste a marcar van a comenzar a funcionar de verdad.
+      vas a poder estar presente y ayudar sin agotarte tanto.
+      tu manera sensible de estar va a cuidar los vínculos y mejorar el clima general de trabajo.
+    `,
+    cierre: `
+      El año va a terminar con un equilibrio mucho mayor del que tenías al empezar.
+      vas a sentir menos desgaste emocional y físico.
+      vas a cerrar sabiendo que cuidarte a vos mismo también formó parte importante de tu aporte al equipo.
+    `
+  },
+
+  leo: {
+    verano: `
+      El verano te va a devolver algo de disfrute personal que quizás habías dejado de lado.
+      vas a necesitar reconectar con lo que realmente te gusta y te hace sentir bien.
+      descansar, para vos, va a ser volver a sentir ganas y entusiasmo por las cosas simples.
+    `,
+    primer: `
+      El inicio del año va a exigir mucha presencia, compromiso y esfuerzo continuo.
+      muchas veces tu trabajo no va a recibir un reconocimiento directo o visible.
+      el desafío va a ser no desanimarte por eso y seguir adelante a tu manera, con tu estilo.
+    `,
+    segundo: `
+      A mitad de año tu ejemplo personal va a empezar a ordenar y guiar a los demás.
+      otros se van a apoyar en tu forma de hacer las cosas y en tu energía.
+      vas a sostener mucho desde el hacer concreto, más que desde las palabras.
+    `,
+    cierre: `
+      El año va a terminar con una tranquilidad interna bastante mayor.
+      vas a saber en profundidad lo que valió cada esfuerzo que pusiste.
+      vas a cerrar con una satisfacción personal, aunque sea silenciosa y solo tuya.
+    `
+  },
+
+  virgo: {
+    verano: `
+      El verano va a ayudarte a aflojar un poco esa exigencia tan alta que suele tener.
+      no todo va a necesitar estar perfecto o controlado al 100%.
+      descansar va a significar permitirte soltar algo de control y aceptar lo imperfecto.
+    `,
+    primer: `
+      El inicio del año va a traer errores ajenos, desorden y detalles que fallan.
+      vos, como siempre, los vas a notar rápido y con precisión.
+      el desafío va a ser no cargar con la responsabilidad de arreglar todo como si fuera solo tuyo.
+    `,
+    segundo: `
+      A mitad de año vas a empezar a compartir tareas y a delegar más.
+      eso va a aliviar tu carga y, al mismo tiempo, mejorar el trabajo general.
+      el equipo va a funcionar mejor cuando no intentes hacerlo absolutamente todo solo.
+    `,
+    cierre: `
+      El año va a terminar con bastante menos tensión de la habitual.
+      la calidad del trabajo se va a mantener sin que tengas que agotarte tanto.
+      vas a cerrar con un aprendizaje valioso sobre tus propios límites y cómo respetarlos.
+    `
+  },
+
+  libra: {
+    verano: `
+      El verano te va a ayudar a recuperar el equilibrio que a veces perdés en la vorágine diaria.
+      vas a necesitar calma y silencio para volver a centrarte y ordenarte por dentro.
+      este tiempo te va a ser sanador y te va a dejar más firme.
+    `,
+    primer: `
+      El inicio del año va a traer algunos roces, tensiones y desacuerdos en el entorno.
+      tu forma natural de mediar y buscar armonía va a ayudar a ordenar el clima.
+      el desafío va a ser no desaparecer o diluirte en el intento de mantener la paz a cualquier precio.
+    `,
+    segundo: `
+      A mitad de año tu presencia calma va a suavizar varios conflictos potenciales.
+      vas a sostener el diálogo abierto cuando más haga falta.
+      eso va a ser clave para que el equipo siga unido y funcionando bien.
+    `,
+    cierre: `
+      El año va a terminar sin grandes rupturas ni conflictos graves.
+      tu trabajo silencioso de mediación va a haber sostenido la buena convivencia.
+      vas a cerrar sabiendo que ese aporte, aunque no siempre visible, valió mucho.
+    `
+  },
+
+  escorpio: {
+    verano: `
+      El verano va a ser un tiempo ideal de limpieza interna y externa.
+      vas a soltar tareas, responsabilidades y formas de hacer que ya no te sirven ni tienen sentido.
+      descansar va a significar recuperar coherencia entre lo que hacés y lo que realmente querés.
+    `,
+    primer: `
+      El inicio del año va a poner al descubierto algunas tensiones reales que estaban ocultas.
+      vos las vas a percibir con mucha claridad y profundidad.
+      el desafío va a ser elegir con cuidado dónde y cómo involucrarte.
+    `,
+    segundo: `
+      A mitad de año tu coherencia personal va a pesar más que cualquier discurso.
+      no vas a necesitar imponerte ni alzar la voz.
+      simplemente tu claridad y tu forma de actuar van a ordenar lo que esté desajustado.
+    `,
+    cierre: `
+      El año va a terminar con bastante menos desgaste emocional del habitual.
+      vas a cerrar con una sensación profunda de verdad, alivio y autenticidad.
+    `
+  },
+
+  sagitario: {
+    verano: `
+      El verano te va a abrir un poco el horizonte y te va a dar perspectiva.
+      vas a necesitar encontrar sentido en lo que hacés día a día.
+      descansar va a ser reconectar con el “porqué” más grande de tu trabajo.
+    `,
+    primer: `
+      El inicio del año te va a llevar de vuelta a lo concreto y al detalle diario.
+      los pequeños asuntos van a pesar más de lo que esperabas.
+      el desafío va a ser encontrar sentido y motivación incluso en lo más rutinario.
+    `,
+    segundo: `
+      A mitad de año tu entusiasmo natural va a levantar el ánimo del entorno.
+      vas a contagiar ganas y energía positiva justo cuando más haga falta.
+    `,
+    cierre: `
+      El año va a terminar con algo de cansancio, sí, pero también con sentido pleno.
+      vas a cerrar sabiendo que tu energía y tu visión sumaron mucho al equipo.
+    `
+  },
+
+  capricornio: {
+    verano: `
+      Incluso en verano te va a costar un poco soltar del todo las responsabilidades.
+      descansar va a implicar aprender a delegar más y a confiar en que los demás pueden hacerse cargo.
+    `,
+    primer: `
+      El inicio del año te va a posicionar como el sostén principal de varias cosas.
+      mucho va a funcionar bien simplemente porque vos estás ahí, tomando las riendas.
+      el desafío va a ser no intentar hacerlo absolutamente todo solo.
+    `,
+    segundo: `
+      A mitad de año vas a empezar a compartir la carga de manera más efectiva.
+      el trabajo se va a volver más llevadero y sostenible para vos.
+    `,
+    cierre: `
+      El año va a terminar sin que te hayas vaciado por completo.
+      vas a cerrar entendiendo que cuidarte y distribuir responsabilidades también forma parte del buen trabajo.
+    `
+  },
+
+  acuario: {
+    verano: `
+      El verano va a traer ideas nuevas y frescas a tu cabeza.
+      vas a empezar a imaginar otras formas de hacer las cosas, más eficientes o innovadoras.
+      descansar va a ser dejar que esas ideas respiren y tomen forma sin apuro.
+    `,
+    primer: `
+      El inicio del año va a chocar con ciertas rigideces y estructuras viejas.
+      vas a buscar caminos alternativos y soluciones distintas para resolver problemas.
+      el desafío va a ser no frustrarte demasiado ante la resistencia inicial.
+    `,
+    segundo: `
+      A mitad de año algunas de esas ideas van a empezar a funcionar en la práctica.
+      los cambios van a ser pequeños y graduales, pero reales y concretos.
+    `,
+    cierre: `
+      El año va a terminar con mejoras tangibles en el día a día.
+      aunque no siempre se noten a simple vista o reciban reconocimiento, esas mejoras van a estar ahí.
+    `
+  },
+
+  piscis: {
+    verano: `
+      El verano te va a pedir una pausa real y profunda.
+      vas a necesitar menos ruido externo y más calma interna.
+      este tiempo te va a ayudar a soltar carga emocional acumulada y a recargar energías.
+    `,
+    primer: `
+      El inicio del año puede llegar a desbordarte un poco si no tenés cuidado.
+      vas a aprender a poner límites claros y sin sentir culpa por hacerlo.
+    `,
+    segundo: `
+      A mitad de año hablar abiertamente va a ordenar muchas cosas.
+      compartir lo que sentís y lo que necesitás va a aliviar tensiones y mejorar el clima.
+    `,
+    cierre: `
+      El año va a terminar con mucha más liviandad de la que empezaste.
+      vas a cerrar sabiendo que tu sensibilidad sigue siendo un valor importante y un aporte único.
+    `
+  }
+},
+"tecnico-administrativo": {
     aries: {
-      verano: `
-        El verano te encuentra, aries, con la necesidad de ordenar lo que el año pasado dejó incompleto.
-        los primeros días se sienten como una prolongación del trabajo, revisando pendientes, ajustando procedimientos.
-        pero es clave que te obligues a soltar: tu cuerpo necesita el descanso para recuperar la velocidad que tanto te gusta.
-        buscá actividades que te permitan descargar adrenalina y mover el cuerpo, o la tensión de fin de año no se va a ir del todo.
-        la clave es la estrategia: el descanso es una planificación para un mejor rendimiento en marzo.
-      `,
-      primer: `
-        El primer cuatrimestre es un remolino: nuevas normativas, cambios de programas, y la sensación de que las reglas son un blanco móvil.
-        vos, aries, sos el motor que empuja la rueda de la gestión, pero corrés el riesgo de agotarte resolviendo lo urgente que otros no planificaron.
-        tu desafío es doble: primero, poner el cuerpo sin quemarte; segundo, empezar a decir que no a lo que no tiene sentido o a lo que te corresponde delegar.
-        no cada confusión amerita tu embestida; reservá tu energía para las batallas estructurales que realmente vale la pena dar.
-      `,
-      segundo: `
-        A mitad de año descubrís una nueva forma de liderazgo, más sutil y profunda.
-        no necesitás la confrontación directa para mover la estructura; entendés que una indicación precisa o un sistema claro pueden ser más efectivos que mil discusiones.
-        empezás a notar que las personas a tu alrededor valoran no solo tu capacidad de acción, sino tu habilidad para crear procesos que funcionan.
-        tu impulso se vuelve constructivo: estás en modo arquitecto, diseñando sistemas que se sostengan solos y que alivien el peso de la gestión.
-      `,
-      cierre: `
-        El fin de año llega con el orgullo de haber puesto orden donde había caos.
-        te diste cuenta de que sos mucho más que un ejecutor de tareas: sos el constructor de la base que permite que la institución funcione.
-        tu gran logro es haber aprendido a dosificar tu energía sin perder la potencia.
-        te llevás la certeza de que tu enfoque en la acción y la eficiencia es vital para la comunidad del alicia.
-      `
+      verano: "El verano será tu tregua necesaria tras un diciembre de actas y cierres frenéticos. Tu cuerpo pedirá desconexión total de las pantallas. Aprovecharás para resetear la paciencia; Aries necesita aire libre para no empezar marzo con los cables pelados. Descansar será tu mejor inversión para no estallar ante el primer pedido fuera de término en el regreso.",
+      primer: "El inicio del año traerá un aluvión de trámites y sistemas que no funcionan como deberían. Serás el primero en detectar las fallas del sistema informático y querrás resolverlo todo ya. El desafío será no pelearte con la burocracia ministerial; elegí tus batallas para no agotar tu fuego en formularios que no dependen de vos.",
+      segundo: "A mitad de año, tu agilidad para resolver lo que otros traban te hará ganar el respeto de los pasillos. Lograrás ordenar procesos que venían lentos. Tu liderazgo será práctico: menos queja y más solución. Empezarás a trabajar en red con otras oficinas para blindar el funcionamiento administrativo del instituto.",
+      cierre: "Llegarás a diciembre con la satisfacción de haber mantenido la máquina andando. Habrás aprendido que tu impulso es valioso cuando se organiza. Cerrarás el año sabiendo que, sin tu gestión, el Alicia se detiene. Te vas a descansar con la frente en alto y el sistema (finalmente) bajo control."
     },
     tauro: {
-      verano: `
-        El verano te da la posibilidad de reconectar con tu ritmo, ese que es lento, firme, y te da la seguridad para encarar el año que viene.
-        necesitás rutina simple: tus comidas, tus horarios de descanso, y la sensación de que la tierra está quieta por un rato.
-        no te apures a planificar; tu mente ya está haciendo el trabajo en silencio.
-        el descanso para tauro es una inversión; si la base está firme, el resto se construye con solidez.
-        aprovechá para conectar con lo estético: música, arte, o simplemente un espacio de trabajo ordenado.
-      `,
-      primer: `
-        El inicio del año trae consigo cambios en los formatos de trabajo y exigencias que piden velocidad, algo que irrita a tu lado más constante.
-        tauro tiene la paciencia para domar la burocracia, y eso te hace un pilar.
-        pero el desafío es no enquistarte en un "siempre se hizo así"; no todo cambio es negativo.
-        tu tarea es filtrar: qué es realmente una mejora y qué es solo un capricho administrativo.
-        y una vez que decidís qué sostener, tu constancia es inamovible.
-      `,
-      segundo: `
-        A mitad de año, tu estabilidad se vuelve el ancla que el resto de la institución necesita.
-        en medio del caos de cierres y parciales, vos sos el que se acuerda de los plazos importantes y el que garantiza la continuidad de los procesos clave.
-        esta persistencia silenciosa genera confianza y reconocimiento.
-        descubrís que tu verdadera habilidad de liderazgo no está en innovar, sino en sostener lo que funciona.
-        seguís siendo el que, sin grandes discursos, garantiza que el engranaje gire.
-      `,
-      cierre: `
-        Llegás a diciembre con la satisfacción del trabajo bien hecho, sin prisa, pero sin pausa.
-        el 2026 te deja una lección valiosa: tu resistencia al cambio no es obstinación, es discernimiento.
-        te llevás la certeza de que tu modo, lento y seguro, es lo que permite que el sistema respire cuando todo lo demás pide correr.
-        tu próximo desafío será integrar nuevos formatos sin sentir que traicionás tu eje.
-      `
+      verano: "El verano será tu refugio de previsibilidad. Necesitarás orden en tu casa y en tus días para compensar el caos de expedientes del año anterior. No querrás saber nada de cambios de último momento. Tu descanso será lento, físico y muy merecido, construyendo la paciencia que marzo te va a exigir.",
+      primer: "El primer cuatrimestre traerá normativas nuevas que te obligarán a cambiar tu forma de trabajar. Te generará resistencia, pero tu tenacidad será tu mejor aliada. Mientras todos se desesperan por la incertidumbre, vos te mantendrás firme en tu escritorio, garantizando que lo importante se siga registrando.",
+      segundo: "A mitad de año, tu estabilidad será el ancla de la oficina. Los docentes y estudiantes buscarán tu mirada tranquila cuando el sistema colapse. Descubrirás que tu ritmo, aunque parezca lento, es el único que llega al final sin errores. Tu constancia sostendrá la continuidad administrativa en un contexto hostil.",
+      cierre: "Cerrarás el año habiendo demostrado que la prolijidad es una forma de resistencia. No se te escapó ni un legajo. Te irás con la paz de quien sabe que su trabajo es el suelo firme sobre el que camina toda la institución. El 2026 te consagra como el pilar silencioso del Alicia."
     },
     géminis: {
-      verano: `
-        El verano te da la distancia necesaria para ver los flujos de la institución con claridad.
-        tu mente, siempre activa, empieza a mapear los cuellos de botella y los problemas de comunicación que detienen la gestión.
-        para vos, descansar es cambiar de canal; leés, aprendés, e interactuás con lo que es nuevo y te desafía.
-        esta recarga mental te prepara para ser el nodo de información que la institución necesita en marzo.
-        tu mejor estrategia es anticipar las fallas de comunicación.
-      `,
-      primer: `
-        El primer cuatrimestre es ideal para tu energía: es cambiante, requiere adaptarse rápido, y pide fluidez entre las áreas.
-        sos el conector: el que sabe qué necesita el estudiante, qué quiere el docente, y qué pide la administración, y podés traducir los lenguajes.
-        pero el riesgo es la sobre-adaptación: no todo tiene que pasar por vos para que funcione.
-        el desafío es crear procesos que se mantengan solos, sin depender de tu intervención constante como intermediario.
-      `,
-      segundo: `
-        A mitad de año, empezás a transformar el caos informativo en un sistema navegable.
-        tu claridad para comunicar y tu habilidad para explicar procesos complejos de forma simple se vuelven un recurso esencial para todos.
-        la gente te busca no solo por la respuesta, sino porque sentís confianza al hablar.
-        en este rol, encontrás un sentido más profundo a tu trabajo: no solo es gestionar datos, es gestionar la tranquilidad de la comunidad.
-      `,
-      cierre: `
-        El cierre del año te encuentra sintiendo el impacto de tu trabajo en el clima institucional.
-        tu lucidez para ordenar el flujo de información es lo que permitió que muchos proyectos llegaran a buen puerto.
-        te llevás la certeza de que tu aporte más grande es el de ser un traductor de la complejidad.
-        el reto para el próximo ciclo es defender ese espacio de calma mental.
-      `
+      verano: "Tu verano será una red de conversaciones y lecturas livianas. Necesitarás limpiar la cabeza de códigos, resoluciones y normativas densas. Te mantendrás en contacto con tus compañeros, intercambiando anécdotas del año que pasó, pero buscando aire nuevo en temas que nada tengan que ver con el trabajo.",
+      primer: "El regreso será un festival de consultas. Serás el que mejor explique los nuevos procedimientos porque los entendés antes que nadie. El desafío será no dispersarte en mil ventanillas a la vez. Tu rapidez mental será clave para traducir la jerga ministerial a un lenguaje humano que los estudiantes agradezcan.",
+      segundo: "A mitad de año, serás el puente de información entre las distintas áreas. Tu oficina será un nodo de comunicación donde se resuelven malentendidos antes de que lleguen a mayores. Descubrirás que comunicar bien es tan importante como cargar datos. Tu habilidad para circular la información evitará conflictos institucionales.",
+      cierre: "Terminarás el año habiendo ordenado el caos a través de la palabra. Lograste que la oficina sea un lugar de encuentro y claridad. Te irás sabiendo que tu lucidez mental fue el lubricante que permitió que la pesada maquinaria administrativa del Alicia no se trabara en los momentos críticos."
     },
     cáncer: {
-      verano: `
-        El verano te pide que te recargues de afecto, ese es tu mejor combustible.
-        la vorágine de la administración en diciembre te dejó emocionalmente expuesto, y necesitás repararte en tu caparazón.
-        volvé a tus espacios seguros, a tus afectos de confianza.
-        tu descanso no es solo físico, es emocional: necesitás procesar el peso que cargaste sin darte cuenta.
-        es el momento ideal para empezar a diseñar los límites que te van a proteger en el 2026.
-      `,
-      primer: `
-        El inicio del año te pone a prueba: la gente recurre a vos no solo por trámites, sino por contención y orientación en la incertidumbre.
-        sos el rostro amable de la administración, el que le da una dimensión humana a la burocracia.
-        el riesgo es que la empatía se vuelva una sobrecarga, y que termines agotado por el clima institucional.
-        el desafío es aprender a asistir con generosidad sin absorber el problema del otro como propio.
-      `,
-      segundo: `
-        A mitad de año, descubrís que tu verdadero aporte a la gestión no está en la frialdad de los números, sino en el cuidado de los vínculos.
-        tu capacidad para escuchar y ofrecer soluciones con un toque personal se vuelve indispensable.
-        los límites que empezaste a poner en el verano dan su fruto: podés ser sensible sin ser vulnerable.
-        tu trabajo se transforma en un acto de cuidado colectivo.
-      `,
-      cierre: `
-        El año termina con la certeza de que tu modo de ser, afectivo y presente, le dio un toque humano a la administración.
-        te llevás la lección de que no tenés que elegir entre ser eficiente y ser empático.
-        el 2026 te reafirma como un sostén afectivo, alguien que la institución necesita para que el engranaje no se vuelva solo metal.
-      `
+      verano: "El verano te pedirá nido y silencio. Te costará soltar la preocupación por ese estudiante que no terminó el trámite o el colega que quedó en la cuerda floja. Necesitarás que te cuiden a vos para recuperar la energía que pusiste en sostener el clima de la oficina. Tu descanso será emocional y reparador.",
+      primer: "El inicio del año te pondrá en la primera línea de la angustia ajena: recibirás a estudiantes y docentes preocupados por la crisis. Tu empatía será un refugio, pero el desafío será no llevarte esos problemas a tu casa. Aprenderás a poner un límite protector en tu escritorio para que tu sensibilidad no se convierta en agotamiento.",
+      segundo: "A mitad de año, transformarás la oficina en un espacio más humano. Un mate compartido, una escucha atenta o una palabra de aliento cambiarán el clima de trabajo. Lograrás que la administración no sea solo papeles, sino cuidado colectivo. Tu presencia será la que humanice la burocracia en tiempos difíciles.",
+      cierre: "Llegarás a diciembre cansado pero con el corazón lleno de agradecimientos. Habrás aprendido que tu rol es cuidar la trama humana del instituto. Te irás con la certeza de que en el Alicia, sos mucho más que un cargo administrativo: sos el alma que hace que el sistema no sea indiferente al dolor del otro."
     },
     leo: {
-      verano: `
-        El verano te pide que dejes de lado el rol de gestor responsable y vuelvas a ser el centro de tu propia vida.
-        recuperá lo que te da brillo: hobbies, placeres estéticos, y la conexión con tu deseo.
-        el descanso no es dejar de pensar en el trabajo, es pensar en él desde la creatividad, no desde la obligación.
-        este es el momento para hacer planes que te entusiasmen y te den perspectiva.
-        el propósito de leo es inspirar, y para eso, necesitás tener el tanque de vitalidad lleno.
-      `,
-      primer: `
-        El inicio del año exige un liderazgo claro, y vos, leo, estás listo para tomar la posta.
-        pero el reconocimiento puede tardar o no ser tan explícito como lo deseás.
-        te frustrás al ver que tu esfuerzo pasa desapercibido o se naturaliza.
-        el desafío es liderar por convicción propia, no por el aplauso de los demás.
-        transformá la necesidad de reconocimiento externo en un estándar de excelencia personal.
-      `,
-      segundo: `
-        A mitad de año, tu autoridad se consolida de forma natural.
-        no es porque lo exijas, sino porque tu claridad y tu ética de trabajo se imponen por sí solas.
-        empezás a usar tu brillo para iluminar a otros: delegás responsabilidades clave, das crédito al trabajo ajeno y actuás como mentor.
-        descubrís que el verdadero liderazgo es la generosidad: permitir que otros crezcan a tu lado sin sentir que perdés protagonismo.
-      `,
-      cierre: `
-        El año termina con menos necesidad de reconocimiento y más satisfacción interna.
-        demostraste que podés sostener la gestión con un estilo propio, eficiente y motivador.
-        tu gran logro es haber transformado el ego en una fuerza al servicio del bien común.
-        te vas sabiendo que tu presencia es vital para el buen funcionamiento de la institución.
-      `
+      verano: "El verano te devolverá el brillo personal fuera del mostrador. Necesitarás actividades que te hagan sentir protagonista de tu vida y no un eslabón más de la cadena. Recargarás tu energía con disfrute y sol, preparándote para volver a ser el referente que la oficina necesita para no desanimarse.",
+      primer: "En el regreso, sentirás la falta de reconocimiento por las horas extras y el esfuerzo de ordenar el desorden ajeno. El desafío será seguir trabajando con excelencia sin depender del aplauso ministerial. Aprenderás a liderar desde tu puesto, organizando al equipo con tu energía arrolladora aunque nadie te lo pida formalmente.",
+      segundo: "A mitad de año, tu confianza contagiará a tus compañeros. Serás el que proponga mejoras en la atención o nuevas formas de organizar el espacio físico. Tu autoridad natural se impondrá en los momentos de caos, dando seguridad a los que se acercan con dudas. Tu brillo será el que ilumine la oficina cuando las noticias externas sean oscuras.",
+      cierre: "Cerrarás el año sabiendo que tu ejemplo movilizó a los demás. No necesitaste un cargo jerárquico para ser el líder que la administración necesitaba. Te irás con la satisfacción de haber transformado tu puesto de trabajo en un lugar de dignidad y fuerza. El Alicia te reconoce como su motor vital."
     },
     virgo: {
-      verano: `
-        El verano, para virgo gestor, es una oportunidad de ordenar el caos mental que el año dejó en los expedientes.
-        sentís un impulso irrefrenable de armar planillas, listas y esquemas para marzo.
-        pero el verdadero descanso es soltar la necesidad de perfección.
-        tu desafío es permitir que haya espacios sin supervisión y que el orden llegue con menos esfuerzo.
-        es clave que conectes con tu cuerpo: el descanso físico es la mejor inversión para tu claridad mental en el 2026.
-      `,
-      primer: `
-        El primer cuatrimestre es un catálogo de fallas: sistemas que se caen, planillas incompletas, errores de tipeo, y la ineficiencia ajena te irrita.
-        tu ojo clínico detecta el problema antes de que se vuelva catastrófico, y eso es un valor incalculable.
-        el riesgo es agotarte corrigiendo lo que no te corresponde.
-        tu gran desafío es transformar la crítica en una propuesta de proceso, y no cargar con la responsabilidad de la perfección.
-      `,
-      segundo: `
-        A mitad de año, el alivio llega cuando aprendés a compartir la carga de la excelencia.
-        delegás con confianza, permitís que otros se hagan cargo de la revisión, y entendés que un error puntual no tira abajo todo el sistema.
-        tu trabajo se vuelve más estratégico; te ocupás de diseñar los procesos madre, y no tanto de la micro-gestión.
-        al soltar el control, el sistema se vuelve más resiliente.
-      `,
-      cierre: `
-        El año termina con menos estrés y la misma calidad de trabajo.
-        aprendiste que tu valor no está en la cantidad de detalles que controlás, sino en la claridad de los sistemas que diseñás.
-        te llevás la lección de que el trabajo bien hecho es el que se sostiene en la colaboración.
-        tu próxima tarea es defender tu tiempo de ocio con la misma rigurosidad con la que defendés una planilla.
-      `
+      verano: "Tu descanso será el orden: finalmente ordenarás tus carpetas personales, tu casa y tu mente. Te costará no pensar en cómo mejorar el sistema de archivos del instituto mientras estás en la playa. El desafío será permitirte el ocio sin sentir que estás perdiendo el tiempo. Tu mente necesita vacaciones de la precisión.",
+      primer: "El primer cuatrimestre será un catálogo de errores ajenos que vos tendrás que subsanar. Detectarás inconsistencias en las actas y datos mal cargados antes que nadie. El aprendizaje será no cargar con la culpa de la ineficiencia del sistema; hacé tu parte con excelencia y soltá el resto para no quemarte en marzo.",
+      segundo: "A mitad de año, tu meticulosidad salvará a la institución de algún error administrativo grave. Te volverás el referente de consulta para lo difícil. Tu método se volverá el estándar de la oficina, mejorando la calidad de vida de todos. Descubrirás que la prolijidad es la mejor defensa contra el desfinanciamiento y el caos.",
+      cierre: "Terminarás el año con las planillas en verde y todo archivado donde corresponde. Habrás aprendido a delegar lo que no requiere tu precisión quirúrgica. Te irás con la paz mental de quien no dejó ni un cabo suelto. Tu labor técnica fue el escudo que protegió los derechos de estudiantes y docentes en el 2026."
     },
     libra: {
-      verano: `
-        El verano te encuentra buscando la armonía perfecta entre el descanso y la preparación para el año.
-        necesitás rodearte de belleza, de conversaciones amables y de un ambiente que te dé paz para restablecer tu equilibrio interno.
-        este es el momento de planificar cómo mediar en los conflictos que sabés que van a venir en la institución.
-        el descanso para vos es estratégico: la calma interior es tu herramienta más fuerte de gestión.
-      `,
-      primer: `
-        El inicio del año trae consigo tensiones entre áreas, reclamos encontrados, y la necesidad de que alguien ponga paños fríos.
-        vos, libra, sos el mediador natural; tu diplomacia es un recurso esencial.
-        podés traducir las demandas y encontrar puntos en común que para otros son invisibles.
-        el riesgo es ceder tu propio criterio con tal de evitar la fricción.
-        el desafío es practicar el desacuerdo amable, sostener tu verdad sin romper la armonía.
-      `,
-      segundo: `
-        A mitad de año, tu capacidad de construir puentes se vuelve un activo innegable para la gestión.
-        no solo sos el que maneja la información, sos el que gestiona el clima emocional del lugar.
-        la gente te busca por tu calma y tu visión de justicia.
-        descubrís que la justicia institucional no es un balance perfecto, es un diálogo constante, y vos sos el motor de ese diálogo.
-        la esperanza reside en la conexión que lográs armar entre las partes.
-      `,
-      cierre: `
-        El año termina sin grandes rupturas en el sistema, y en el contexto complejo que te tocó, eso es muchísimo.
-        tu gran logro es haber sostenido la convivencia en un contexto de alta presión.
-        te llevás la lección de que tu aporte no es ser la balanza, sino ser el punto de encuentro.
-        el 2026 te reafirma como un estratega de la convivencia humana.
-      `
+      verano: "El verano será para recuperar la armonía en tus vínculos personales. Después de un año mediando entre el mal humor de la gente y la rigidez de las normas, necesitarás belleza y calma. Tu descanso será social pero tranquilo, rodeándote de personas que te den paz y no te pidan favores administrativos.",
+      primer: "El regreso te encontrará suavizando tensiones en la ventanilla. Serás la cara amable que calme a los que llegan con reclamos justos pero exaltados. El desafío será no quedar en el medio de los conflictos entre áreas. Aprenderás a decir que no con una sonrisa, manteniendo el equilibrio sin sacrificar tu salud mental.",
+      segundo: "A mitad de año, tu oficina se volverá el lugar de los acuerdos. Lograrás que el trabajo en equipo fluya gracias a tu capacidad de ver todas las posturas. Tu diplomacia será clave para mantener la convivencia institucional frente a las presiones externas. Serás el arquitecto de un clima laboral sano en medio de la tormenta.",
+      cierre: "Llegarás a diciembre habiendo evitado mil incendios emocionales. Tu trabajo invisible de pacificación permitió que la oficina no fuera un campo de batalla. Te irás con la satisfacción de quien sabe que la justicia también se construye en el trato diario. El Alicia te agradece por ser su punto de equilibrio."
     },
     escorpio: {
-      verano: `
-        El verano te pide una limpieza profunda, no solo de papeles, sino de procesos y vínculos que ya no funcionan.
-        necesitás introspección total; cortar con lo superficial para reconectar con lo esencial de tu trabajo.
-        el descanso para vos es una regeneración; volvés con una visión más clara y menos dispuesto a tolerar la simulación o el doble discurso.
-        aprovechá para quemar etapas mentales y prepararte para las transformaciones que vas a impulsar.
-      `,
-      primer: `
-        El inicio del año te encuentra sintiendo las contradicciones del sistema administrativo.
-        ves los juegos de poder, las decisiones opacas, y eso te irrita profundamente.
-        escorpio va al núcleo del problema, y en la gestión eso es un arma de doble filo; es necesario, pero incómodo.
-        tu desafío es elegir tus batallas; no cada falla exige tu intervención total.
-        el riesgo es el aislamiento; la clave es encontrar aliados que valoren tu lucidez, no tu dureza.
-      `,
-      segundo: `
-        A mitad de año, el sistema empieza a moverse gracias a las preguntas incómodas que vos pusiste sobre la mesa.
-        no es una revolución visible, es una depuración interna de procesos que eran ineficientes o injustos.
-        tu gestión se vuelve más austera y más coherente.
-        descubrís que la fuerza está en el silencio; no necesitás gritar para ser escuchado, tu coherencia es tu poder.
-        te volvés un referente de la ética en la gestión.
-      `,
-      cierre: `
-        El año termina con la satisfacción de haber sido auténtico en un ambiente que exige simulación.
-        te llevás la lección de que la transformación es un proceso lento, y que tu rol es iniciar la depuración.
-        perdiste la ilusión de la gestión perfecta, pero ganaste la certeza de la gestión honesta.
-        el 2026 te deja anclado en un nuevo tipo de poder personal: el de la coherencia interna.
-      `
+      verano: "Tu verano será de silencio y purificación. Necesitarás sacarte de encima la carga de los secretos y las tensiones que circulan en las oficinas de gestión. Tu descanso será una inmersión en vos mismo, evaluando qué batallas valen la pena seguir dando y cuáles es mejor soltar para tu propia salud.",
+      primer: "El inicio del año te mostrará la realidad cruda de la institución, sin filtros. Serás el primero en percibir las movidas políticas y los cambios de poder soterrados. El desafío será usar esa información para proteger a tus compañeros y no para el enroscarte en conflictos inútiles. Tu lucidez será tu poder de defensa.",
+      segundo: "A mitad de año, tu compromiso con la verdad y la transparencia administrativa se volverá innegociable. No dejarás que se cometa ninguna injusticia en los legajos bajo tu guardia. Te volverás un referente ético dentro de la administración, alguien a quien no se puede engañar. Tu fuerza será el blindaje moral de la oficina.",
+      cierre: "Cerrarás el año habiendo transformado profundamente tu espacio de trabajo. Nada de lo que estaba mal quedó oculto. Te irás con la intensidad intacta, sabiendo que fuiste fiel a vos mismo y que tu paso por la administración dejó una huella de honestidad brutal. El 2026 te encuentra anclado en tu propia verdad."
     },
     sagitario: {
-      verano: `
-        El verano activa tu necesidad de sentido y de horizonte.
-        necesitás leer, viajar mentalmente, y conectar tu tarea administrativa con un propósito más alto.
-        para vos, descansar es expandir el conocimiento y encontrar el marco filosófico que le dé un sentido a tu trabajo.
-        aprovechá para pensar en grande: ¿qué sistema de gestión podría ser ideal?
-        tu energía está en la visión a largo plazo, no en el detalle.
-      `,
-      primer: `
-        El inicio del año te exige bajar a tierra, ordenar el detalle, y lidiar con la micro-gestión que tanto te aburre.
-        te frustrás al ver que el sistema pide lo contrario a tu visión de amplitud.
-        el riesgo es caer en el cinismo o la dispersión.
-        tu desafío es encontrar el sentido en cada tarea y usar tu entusiasmo para motivar a otros.
-        no te olvides del mapa completo.
-      `,
-      segundo: `
-        A mitad de año, tu visión de futuro se vuelve un recurso para la institución.
-        lográs inyectar optimismo, proponés ideas que rompen la inercia, y recordás el propósito pedagógico que está detrás de cada trámite.
-        descubrís que tu rol es el del visionario que no se rinde, el que recuerda por qué se hace lo que se hace.
-        tu entusiasmo se vuelve contagioso y moviliza recursos.
-        la esperanza reside en el horizonte que vos marcás.
-      `,
-      cierre: `
-        El año termina con fatiga, pero con una certeza inquebrantable: el sentido se mantuvo vivo.
-        no lograste cambiar todo el sistema, pero sí sembraste preguntas que van a germinar en otros.
-        te llevás la lección de que el impacto de tu visión es a largo plazo y que la fe en el proceso es tu mayor herramienta de gestión.
-        el 2026 te reafirma como el optimista necesario.
-      `
+      verano: "El verano será tu válvula de escape: viajarás, caminarás o leerás algo que te saque de la cuadratura de la oficina. Necesitarás recuperar la visión de futuro que la rutina burocrática te quita. Tu descanso será mental y expansivo, soñando con nuevas formas de gestionar que no sean tan pesadas.",
+      primer: "Al volver, los trámites repetitivos te pesarán más que nunca. El desafío será encontrarle el sentido mayor a cada papel: entender que detrás de ese formulario hay un proyecto de vida. Tu entusiasmo ayudará a tus compañeros a no caer en el desánimo. Traerás humor y perspectiva cuando el sistema se ponga denso.",
+      segundo: "A mitad de año, propondrás cambios en la forma de atender o de organizar la información que agilizarán todo. Tu visión optimista abrirá puertas que parecían cerradas. Lograrás contagiar alegría incluso en las reuniones de equipo más difíciles. Tu rol será recordarles a todos por qué están ahí trabajando por la educación pública.",
+      cierre: "Terminarás el año con fatiga física pero con el espíritu libre. Habrás logrado que la oficina no fuera una cárcel de papeles, sino un espacio de posibilidad. Te irás con la certeza de que tu alegría fue una herramienta de resistencia política. El Alicia te necesita siempre mirando más allá del mostrador."
     },
     capricornio: {
-      verano: `
-        Incluso en verano te cuesta soltar la responsabilidad; la mente sigue en modo planificación.
-        tu seguridad reside en la estructura y el control.
-        la tarea es delegar mentalmente: por un rato, no todo depende de vos.
-        el descanso físico es la mejor inversión para el resto del año.
-        este es el momento para construir una base sólida de bienestar.
-      `,
-      primer: `
-        El inicio del año te coloca como la columna vertebral de la gestión.
-        tu capacidad de organización es lo que permite que el sistema funcione.
-        pero el riesgo es normalizar la sobrecarga y el trabajo solitario.
-        tu desafío es delegar activamente; formar a otros para que puedan tomar parte de tu carga, no como un riesgo, sino como una necesidad estratégica.
-        la eficiencia se encuentra en el trabajo distribuido.
-      `,
-      segundo: `
-        A mitad de año, el peso de la gestión se hace sentir con fuerza, y por primera vez, la resistencia no es la respuesta.
-        pedir ayuda se vuelve una posibilidad real.
-        descubrís la eficiencia en la colaboración, y te sorprendés al ver que el trabajo compartido es más rápido y mejor.
-        tu autoridad no disminuye, se fortalece.
-        este es tu gran cambio: transformar la responsabilidad solitaria en un liderazgo distribuido.
-      `,
-      cierre: `
-        El año termina con el alivio de haber llegado a la meta sin haberte sacrificado por completo.
-        entendiste que tu valor no está solo en lo que producís, sino en tu capacidad para construir estructuras duraderas que funcionen con o sin tu presencia constante.
-        te llevás la lección de que el verdadero éxito es alcanzar la meta cuidando el bienestar propio.
-      `
+      verano: "Te costará desconectar: seguirás pensando en las actas de examen que quedaron pendientes o en cómo organizar el archivo en marzo. Tu descanso será planificar el año administrativo para que nada te tome por sorpresa. El desafío será aprender que el mundo sigue girando aunque vos no estés controlando los sellos.",
+      primer: "El regreso te encontrará como la roca que sostiene todo el edificio administrativo. Mientras otros se quejan de los cambios, vos ya estarás estudiando la nueva normativa para aplicarla sin errores. Serás el sostén de tus superiores y la guía de tus compañeros. El riesgo será la sobrecarga; aprendé a delegar los trámites menores.",
+      segundo: "A mitad de año, tu eficiencia será legendaria. Lograrás que la oficina funcione como un reloj suizo a pesar de la falta de recursos. Tu seriedad dará confianza a toda la comunidad educativa. Descubrirás que tu autoridad no viene del cargo, sino de tu compromiso inquebrantable con el trabajo bien hecho.",
+      cierre: "Cerrarás el año con la tranquilidad del deber cumplido. La estructura administrativa del Alicia se mantuvo en pie gracias a tu rigor y tu esfuerzo silencioso. Te irás sabiendo que sos la columna vertebral de la gestión. El 2026 te consagra como el guardián de la continuidad institucional."
     },
     acuario: {
-      verano: `
-        El verano es un laboratorio mental; un espacio donde pensás alternativas radicales de gestión.
-        la pausa alimenta ideas que no encajan en el sistema actual, y eso te encanta.
-        tu energía se recarga en la desconexión social y en el pensamiento libre.
-        aprovechá para darle forma a esas ideas; serán tu arsenal para enfrentar la rigidez del sistema en marzo.
-      `,
-      primer: `
-        El primer cuatrimestre te enfrenta a normas rígidas y a lógicas que no contemplan la diversidad real del trabajo.
-        sentís el roce constante entre lo posible (lo que tu mente imagina) y lo permitido (lo que la burocracia impone).
-        tu rol es agitar las preguntas difíciles y buscar soluciones ingeniosas.
-        evitá el cinismo y canalizá esa energía en buscar el cambio, no la queja.
-      `,
-      segundo: `
-        A mitad de año, tu método poco convencional empieza a dar frutos: tus compañeros se dan cuenta de que tu sistema es más rápido.
-        te toca ser el gurú tecnológico de la oficina.
-        tu gran victoria es lograr que un trámite que antes tardaba horas, ahora se resuelva en cinco minutos.
-        descubrís que la libertad está en la eficiencia.
-        usá tu influencia para forjar alianzas inesperadas.
-      `,
-      cierre: `
-        El año termina con el profesorado más modernizado de lo que creen, gracias a tus inventos secretos.
-        te llevás el logro de haber sido un agente de cambio silencioso.
-        tu visión de futuro ya está circulando.
-        el 2026 te reafirma como un visionario.
-      `
+      verano: "Tu verano será un laboratorio de ideas. Pensarás en cómo digitalizar procesos, cómo eliminar papeles inútiles y cómo hacer que la oficina sea más horizontal. Necesitarás aire nuevo y rodearte de gente que piense distinto para volver con propuestas que sacudan el polvo de la administración.",
+      primer: "El regreso te enfrentará a los 'siempre se hizo así' que tanto te irritan. El desafío será proponer lo nuevo sin generar rechazo en tus compañeros más conservadores. Usarás tu ingenio para resolver problemas técnicos que el ministerio no soluciona. Serás el 'hacker' del sistema administrativo del instituto.",
+      segundo: "A mitad de año, tus ideas empezarán a implementarse de forma lateral. Lograrás que la comunicación interna sea más ágil y menos burocrática. Tu oficina será un foco de innovación y pensamiento libre. Descubrirás que se puede ser administrativo sin perder la rebeldía creativa. Tu esperanza estará en las redes que logres tejer.",
+      cierre: "Terminarás el año habiendo movido las estructuras que parecían inamovibles. No todo cambió, pero nada quedó igual. Te irás con la certeza de que tu visión de futuro ya está circulando entre tus compañeros. El 2026 te deja como el arquitecto de la administración que se viene."
     },
     piscis: {
-      verano: `
-        El verano te vuelve permeable y sensible a los climas emocionales de tu entorno.
-        necesitás pausa, retiro, y mucho contacto con la naturaleza o el arte para no saturarte.
-        el primer paso es desintoxicarte de las emociones ajenas que absorbiste.
-        buscá actividades que te permitan la evasión creativa.
-        la recarga es psíquica, no física.
-      `,
-      primer: `
-        El inicio del año puede ser abrumador si no ponés límites claros.
-        absorvés los climas, las exigencias, y los estados de ánimo que no siempre son tuyos.
-        al comienzo, te cuesta poner límites por temor a ser insensible.
-        el desafío es aprender que podés ser empático sin sacrificar tu propio espacio.
-        tu sensibilidad es una brújula, no una esponja.
-      `,
-      segundo: `
-        A mitad de año aprendés a compartir lo que sentís, a verbalizar la carga emocional.
-        poner palabras a lo difuso ordena tu mundo interior.
-        descubrís que al hablar, tus compañeros no te juzgan, sino que te ofrecen contención.
-        esta práctica de poner límites de forma suave es tu gran logro.
-      `,
-      cierre: `
-        El año termina con más contención y menos confusión interna.
-        no porque te hayas endurecido o aislado, sino porque sos más consciente de tus límites.
-        el 2026 fue el año donde aprendiste a navegar las aguas emocionales sin ahogarte en ellas.
-        tu esperanza reside en la conexión profunda que ahora podés elegir.
-      `
+      verano: "El verano será tu momento de sanación psíquica. Necesitarás limpiar tu aura de todas las quejas y angustias que absorbiste en la ventanilla. Buscarás el mar, la música o el arte para volver a conectar con tu centro. Tu descanso será una disolución necesaria de la identidad laboral para volver a ser vos mismo.",
+      primer: "El regreso podrá ser abrumador: sentirás el clima tenso de la oficina antes de que alguien hable. El desafío será no convertirte en la esponja de los problemas de todos. Aprenderás a poner un límite invisible pero firme entre vos y el mostrador. Tu sensibilidad será tu brújula para saber quién necesita realmente una mano hoy.",
+      segundo: "A mitad de año, tu intuición te ayudará a resolver trámites que parecían imposibles. Encontrarás la solución 'mágica' donde otros solo veían trabas. Tu trato dulce y comprensivo desarmará al más enojado de los estudiantes. Lograrás que la oficina sea un refugio de paz y humanidad en medio de la vorágine institucional.",
+      cierre: "Llegarás a diciembre con la sensibilidad intacta y el alma fortalecida. Habrás aprendido a navegar las aguas emocionales del instituto sin ahogarte. Te irás con la paz de quien sabe que su presencia suavizó el camino de muchos. El Alicia te agradece por recordarles a todos que, detrás de cada trámite, hay un ser humano."
     }
   },
+
   estudiante: {
     aries: {
       verano: `
-        El verano llega con la necesidad de moverte, aries, no podés quedarte quieto.
-        los primeros días son de pura inercia: te cuesta desconectar los horarios, los grupos de estudio y la presión de rendir.
-        tu cuerpo te pide actividad física intensa, aire libre y un corte total con el modo "estudiante estresado".
-        buscá viajes cortos, caminatas sin rumbo, o cualquier actividad que te devuelva el impulso vital que la cursada te había quitado.
-        el descanso es estratégico: necesitás recargar tu fuego interno para las batallas del 2026.
+        el verano llegará con la necesidad de moverte, aries, no podrás quedarte quieto.
+        los primeros días serán de pura inercia: te costará desconectar los horarios y la presión de rendir.
+        tu cuerpo te pedirá actividad física intensa, aire libre y un corte total con el modo "estudiante estresado".
+        buscarás viajes cortos, caminatas sin rumbo, o cualquier actividad que te devuelva el impulso vital que la cursada te había quitado.
+        el descanso será estratégico: necesitarás recargar tu fuego interno para las batallas académicas del 2026.
       `,
       primer: `
-        El primer cuatrimestre te encuentra con muchas materias, lecturas que se superponen, y una sensación de que no llegás a nada.
-        tu impulso inicial te lleva a querer absorber todo, a participar en cada debate, pero la energía no es infinita.
-        el riesgo es la impulsividad en las decisiones: abandonar una materia clave porque un docente no te gusta o discutir con un compañero en medio de un debate.
-        tu desafío es regular la marcha: no cada materia amerita el 100% de tu energía; elegí qué es vital y qué puede esperar.
-        la clave es la táctica, no la fuerza bruta.
+        el primer cuatrimestre te encontrará con muchas materias, lecturas que se superpondrán, y una sensación de que no llegarás a nada.
+        tu impulso inicial te llevará a querer absorber todo, a participar en cada debate, pero la energía no será infinita.
+        el riesgo será la impulsividad en las decisiones: abandonar una materia clave o discutir con un compañero en medio de un debate acalorado.
+        tu desafío será regular la marcha: no cada materia ameritará el 100% de tu energía; elegirás qué es vital y qué puede esperar.
+        la clave será la táctica, no la fuerza bruta.
       `,
       segundo: `
-        A mitad de año, lográs armar un sistema de estudio que te funciona, que es más tuyo y menos copiado de otros.
-        entendés que tu modo de aprender es dinámico y que te aburrís con la rutina.
-        empezás a liderar grupos de estudio donde tu capacidad de motivar a otros se vuelve esencial.
-        descubrís que la verdadera potencia no está en saberlo todo, sino en saber aplicar el conocimiento en el momento justo.
-        tu liderazgo se consolida a través de la acción concreta y la inspiración.
+        a mitad de año, lograrás armar un sistema de estudio que te funcionará, que será más tuyo y menos copiado de otros.
+        entenderás que tu modo de aprender es dinámico y que te aburrís con la rutina.
+        empezarás a liderar grupos de estudio donde tu capacidad de motivar a otros se volverá esencial.
+        descubrirás que la verdadera potencia no estará en saberlo todo, sino en saber aplicar el conocimiento en el momento justo.
+        tu liderazgo se consolidará a través de la acción concreta y la inspiración a tus pares.
       `,
       cierre: `
-        El fin de año te encuentra más maduro y menos impulsivo.
-        saliste del cuatrimestre con menos materias aprobadas de golpe, pero con una base de conocimiento más sólida.
-        aprendiste a elegir batallas y a no agotarte en discusiones inútiles.
-        te llevás del 2026 la lección de que el verdadero éxito no es la velocidad, sino la continuidad.
-        el próximo desafío es transformar esa energía individual en acción colectiva.
+        el fin de año te encontrará más maduro y menos impulsivo.
+        habrás salido del cuatrimestre con menos materias aprobadas de golpe, pero con una base de conocimiento más sólida.
+        habrás aprendido a elegir batallas y a no agotarte en discusiones inútiles.
+        te llevarás del 2026 la lección de que el verdadero éxito no es la velocidad, sino la continuidad.
+        el próximo desafío será transformar esa energía individual en acción colectiva.
       `
     },
     tauro: {
       verano: `
-        El verano te pide estabilidad y un piso firme para encarar el año que viene.
-        necesitás rutina, comidas ricas, silencio, y una desconexión total de la exigencia.
-        tu cuerpo te pide calma y tu mente, previsibilidad.
-        no te apures con las lecturas de verano, disfrutá del proceso, sin presión.
-        la recarga es a través de lo material: cocinar, jardinería, o simplemente estar con gente que te da paz.
-        tu descanso es tu base para la resistencia.
+        el verano te pedirá estabilidad y un piso firme para encarar el año que viene.
+        necesitarás rutina, comidas ricas, silencio, y una desconexión total de la exigencia.
+        tu cuerpo te pedirá calma y tu mente, previsibilidad.
+        no te apurarás con las lecturas de verano, disfrutarás del proceso, sin presión.
+        la recarga será a través de lo material: cocinar, jardinería, o simplemente estar con gente que te da paz.
+        tu descanso será tu base para la resistencia.
       `,
       primer: `
-        El inicio del año trae mucha información nueva que te desestabiliza.
-        los cambios en los planes de estudio o en los formatos de cursada te generan fricción.
-        vos, tauro, necesitás un tiempo para asimilar la información y hacerla tuya, no te apures a entenderlo todo a la primera.
-        el riesgo es la obstinación: no querer cambiar un método de estudio que ya no funciona.
-        tu desafío es mantener la constancia sin volverte totalmente resistente a lo nuevo.
+        el inicio del año traerá mucha información nueva que te desestabilizará.
+        los cambios en los planes de estudio o en los formatos de cursada te generarán fricción.
+        vos, tauro, necesitarás un tiempo para asimilar la información y hacerla tuya, no te apures a entenderlo todo a la primera.
+        el riesgo será la obstinación: no querer cambiar un método de estudio que ya no funciona.
+        tu desafío será mantener la constancia sin volverte totalmente resistente a lo nuevo.
       `,
       segundo: `
-        A mitad de año, tu constancia da su fruto.
-        mientras otros se queman o se dispersan, vos seguís ahí, firme, entregando trabajos con calidad y a tiempo.
-        tu presencia en los grupos de estudio es un ancla: sos el que recuerda los plazos, el que le da solidez al proyecto.
-        descubrís que tu verdadera potencia está en la tenacidad y en la capacidad de sostener lo que comenzás.
-        tu forma de ser es un acto de cuidado colectivo para tu grupo.
+        a mitad de año, tu constancia dará su fruto.
+        mientras otros se queman o se dispersan, vos seguirás ahí, firme, entregando trabajos con calidad y a tiempo.
+        tu presencia en los grupos de estudio será un ancla: serás el que recuerde los plazos, el que le dé solidez al proyecto.
+        descubrirás que tu verdadera potencia estará en la tenacidad y en la capacidad de sostener lo que comiences.
+        tu forma de ser será un acto de cuidado colectivo para tu grupo.
       `,
       cierre: `
-        Llegás a diciembre con la satisfacción del trabajo bien hecho.
-        lo que lograste fue por tu propia fuerza y paciencia.
-        te llevás la certeza de que tu modo, lento y seguro, es el más efectivo.
-        el 2026 te deja la lección de que no tenés que correr al ritmo de otros.
-        tu próximo desafío es aprender a delegar la carga sin sentir que perdés el control.
+        llegarás a diciembre con la satisfacción del trabajo bien hecho.
+        lo que lograste será por tu propia fuerza y paciencia.
+        te llevarás la certeza de que tu modo, lento y seguro, es el más efectivo.
+        el 2026 te dejará la lección de que no tendrás que correr al ritmo de otros.
+        tu próximo desafío será aprender a delegar la carga sin sentir que perdés el control.
       `
     },
     géminis: {
       verano: `
-        El verano te encuentra con la cabeza hiperactiva: leyendo de todo, saltando de un tema a otro, y conversando sin parar.
-        tu descanso es mental: la desconexión se da al cambiar de foco constantemente.
-        aprovechá para explorar todos esos temas periféricos que la cursada no te permite.
-        es el momento ideal para conectar con personas que te nutren intelectualmente y que te dan nuevas perspectivas.
-        tu mejor recarga es la expansión de la curiosidad.
+        el verano te encontrará con la cabeza hiperactiva: leyendo de todo, saltando de un tema a otro, y conversando sin parar.
+        tu descanso será mental: la desconexión se dará al cambiar de foco constantemente.
+        aprovecharás para explorar todos esos temas periféricos que la cursada no te permite.
+        será el momento ideal para conectar con personas que te nutran intelectualmente y que te den nuevas perspectivas.
+        tu mejor recarga será la expansión de la curiosidad.
       `,
       primer: `
-        El primer cuatrimestre es un caos de información; múltiples lecturas, debates que se superponen, y una sensación de que estás en todos lados a la vez.
-        tu habilidad para conectar ideas dispares te salva, pero el riesgo es la dispersión.
-        el desafío es no quedarte solo en la superficie de los temas; usá tu rapidez mental para ir profundo en lo que importa.
-        evitá el agotamiento por querer estar en todos los frentes.
-        filtrá la información.
+        el primer cuatrimestre será un caos de información; múltiples lecturas, debates que se superpondrán, y una sensación de que estarás en todos lados a la vez.
+        tu habilidad para conectar ideas dispares te salvará, pero el riesgo será la dispersión.
+        el desafío será no quedarte solo en la superficie de los temas; usarás tu rapidez mental para ir profundo en lo que importa.
+        evitarás el agotamiento por querer estar en todos los frentes.
+        filtrarás la información.
       `,
       segundo: `
-        A mitad de año, tu habilidad para circular información se vuelve esencial para el grupo de estudio.
-        sos el que conecta la teoría de una materia con la práctica de otra, el que avisa a tiempo de un cambio de horario.
-        en ese intercambio constante, sostenés más comunidad de lo que imaginás.
-        la comunicación deja de ser solo una habilidad para volverse una herramienta de cuidado colectivo que previene malentendidos.
-        descubrís que sos el nodo de coherencia.
+        a mitad de año, tu habilidad para circular información se volverá esencial para el grupo de estudio.
+        serás el que conecte la teoría de una materia con la práctica de otra, el que avise a tiempo de un cambio de horario.
+        en ese intercambio constante, sostendrás más comunidad de lo que imaginarás.
+        la comunicación dejará de ser solo una habilidad para volverse una herramienta de cuidado colectivo que prevenga malentendidos.
+        descubrirás que serás el nodo de coherencia.
       `,
       cierre: `
-        El cierre del año te encuentra con una certeza: comunicar no es solo hablar rápido, sino ordenar el caos para vos y para tu grupo.
+        el cierre del año te encontrará con una certeza: comunicar no será solo hablar rápido, sino ordenar el caos para vos y para tu grupo.
         lograste transformar la dispersión en una herramienta de agudeza mental.
-        te llevás la lección de que tu aporte más grande es el de ser un conector de saberes y personas.
-        el reto para el próximo ciclo es defender tu espacio de calma mental.
+        te llevarás la lección de que tu aporte más grande será el de ser un conector de saberes y personas.
+        el reto para el próximo ciclo será defender tu espacio de calma mental.
       `
     },
     cáncer: {
       verano: `
-        El verano te pide reparación emocional profunda.
-        necesitás volver a tus espacios seguros, a tus afectos de confianza, y a una rutina que te dé contención.
-        la vorágine de la cursada te dejó sensible y permeable a la energía ajena.
-        los primeros días son de hibernación; series, comidas caseras, y mucho silencio.
-        el descanso es emocional: aprovechá para diseñar límites que te van a proteger en marzo.
+        el verano te pedirá reparación emocional profunda.
+        necesitarás volver a tus espacios seguros, a tus afectos de confianza, y a una rutina que te dé contención.
+        la vorágine de la cursada te habrá dejado sensible y permeable a la energía ajena.
+        los primeros días serán de hibernación; series, comidas caseras, y mucho silencio.
+        el descanso será emocional: aprovecharás para diseñar límites que te van a proteger en marzo.
       `,
       primer: `
-        El primer cuatrimestre te golpea en el costado más sensible: el clima de estudio está cargado, hay malestar no dicho, y compañeros que piden más contención de la que podés dar.
-        vos, cáncer, cuidás por naturaleza: escuchás, acompañás, ofrecés un espacio seguro en el grupo de estudio.
-        el riesgo es el mismo de siempre: absorber la emocionalidad del ambiente y quedar agotado.
-        tu energía es valiosa; aprendé a diferenciar entre empatizar y cargar con el peso ajeno.
+        el primer cuatrimestre te golpeará en el costado más sensible: el clima de estudio estará cargado, habrá malestar no dicho, y compañeros que pedirán más contención de la que podrás dar.
+        vos, cáncer, cuidarás por naturaleza: escucharás, acompañarás, ofrecerás un espacio seguro en el grupo de estudio.
+        el riesgo será el mismo de siempre: absorber la emocionalidad del ambiente y quedar agotado.
+        tu energía será valiosa; aprenderás a diferenciar entre empatizar y cargar con el peso ajeno.
       `,
       segundo: `
-        A mitad de año, lográs algo clave: permitirte ser cuidado.
-        empezás a practicar el decir “no puedo”, “necesito un día libre”, o “esto no lo puedo llevar yo solo”.
-        lo que antes vivías como un fracaso personal se siente como un acto de verdad y autoafirmación.
-        y eso fortalece tus vínculos: cuando vos mostrás tu límite, otros entienden que también pueden tener uno.
-        la red de contención se amplía.
+        a mitad de año, lograrás algo clave: permitirte ser cuidado.
+        empezarás a practicar el decir “no puedo”, “necesito un día libre”, o “esto no lo puedo llevar yo solo”.
+        lo que antes vivías como un fracaso personal se sentirá como un acto de verdad y autoafirmación.
+        y eso fortalecerá tus vínculos: cuando vos muestres tu límite, otros entenderán que también pueden tener uno.
+        la red de contención se ampliará.
       `,
       cierre: `
-        El fin de año te encuentra más maduro y menos impulsivo.
-        no es que el estudio haya mejorado mágicamente, sino que vos empezaste a transitarlo de otro modo.
-        la fórmula es menos sacrificio, más reciprocidad.
-        tu gran logro de 2026 es haber fortalecido tu caparazón desde la conexión, no desde el aislamiento.
+        el fin de año te encontrará más maduro y menos impulsivo.
+        no es que el estudio haya mejorado mágicamente, sino que vos habrás empezado a transitarlo de otro modo.
+        la fórmula será menos sacrificio, más reciprocidad.
+        tu gran logro de 2026 será haber fortalecido tu caparazón desde la conexión, no desde el aislamiento.
       `
     },
     leo: {
       verano: `
-        El verano te devuelve el brillo que la cursada había apagado.
-        necesitás sentirte creativo, conectado con tu deseo, y ser el centro de tu propia vida.
-        retomá hobbies, actividades que te den vitalidad, y planes que te entusiasmen.
-        este reencuentro con tu chispa interna es tu combustible para el resto del año.
-        dejá de lado la necesidad de planificar y simplemente disfrutá de la luz.
+        el verano te devolverá el brillo que la cursada había apagado.
+        necesitarás sentirte creativo, conectado con tu deseo, y ser el centro de tu propia vida.
+        retomarás hobbies, actividades que te den vitalidad, y planes que te entusiasmen.
+        este reencuentro con tu chispa interna será tu combustible para el resto del año.
+        dejarás de lado la necesidad de planificar y simplemente disfrutarás de la luz.
       `,
       primer: `
-        El inicio del año trae un golpe sutil: la falta de reconocimiento en los trabajos grupales o la sensación de que tu esfuerzo pasa desapercibido.
-        te frustrás al no ver el impacto inmediato de tu dedicación.
-        el riesgo es trabajar solo para el aplauso.
-        el desafío es abrir el camino hacia un nuevo tipo de liderazgo, uno que no dependa de la validación externa.
-        aprendé a ser tu propio público, tu propia fuente de energía y validación.
+        el inicio del año traerá un golpe sutil: la falta de reconocimiento en los trabajos grupales o la sensación de que tu esfuerzo pasa desapercibido.
+        te frustrarás al no ver el impacto inmediato de tu dedicación.
+        el riesgo será trabajar solo para el aplauso.
+        el desafío será abrir el camino hacia un nuevo tipo de liderazgo, uno que no dependa de la validación externa.
+        aprenderás a ser tu propio público, tu propia fuente de energía y validación.
       `,
       segundo: `
-        A medida que avanza el año, entendés que liderar no es brillar en solitario, sino habilitar el talento de otros.
-        empezás a dar lugar en los grupos de estudio, a sostener en silencio los proyectos de tus compañeros.
-        tu autoridad se transmite por presencia, coherencia y generosidad.
-        ese cambio de eje, de protagonista a mentor, te da una calma inesperada.
-        tu influencia es profunda, no superficial.
+        a medida que avance el año, entenderás que liderar no es brillar en solitario, sino habilitar el talento de otros.
+        empezarás a dar lugar en los grupos de estudio, a sostener en silencio los proyectos de tus compañeros.
+        tu autoridad se transmitirá por presencia, coherencia y generosidad.
+        ese cambio de eje, de protagonista a mentor, te dará una calma inesperada.
+        tu influencia será profunda, no superficial.
       `,
       cierre: `
-        Llegás a diciembre con menos necesidad de aplauso y más confianza en tu propio valor.
-        descubriste un modo de brillar que no compite, que simplemente ilumina a otros.
-        tu gran logro es haber transformado la necesidad de protagonismo en una fuerza al servicio del bien común.
-        te vas sabiendo que inspiraste a los que te rodean.
+        llegarás a diciembre con menos necesidad de aplauso y más confianza en tu propio valor.
+        descubrirás un modo de brillar que no compite, que simplemente ilumina a otros.
+        tu gran logro será haber transformado la necesidad de protagonismo en una fuerza al servicio del bien común.
+        te irás sabiendo que inspiraste a los que te rodean.
       `
     },
     virgo: {
       verano: `
-        El verano te recibe con una energía peculiar: al principio querés ordenar el descanso.
-        organizás listas de lecturas, planillas de horarios para marzo, y pendientes mentales.
-        pero a los pocos días aparece una rendición necesaria: no se puede controlar todo.
-        cuando aflojás la estructura mental, encontrás una paz inesperada.
-        el descanso deja de ser una tarea que hay que cumplir y empieza a ser una experiencia regeneradora que te conecta con el cuerpo.
+        el verano te recibirá con una energía peculiar: al principio querrás ordenar el descanso.
+        organizarás listas de lecturas, planillas de horarios para marzo, y pendientes mentales.
+        pero a los pocos días aparecerá una rendición necesaria: no se podrá controlar todo.
+        cuando aflojes la estructura mental, encontrarás una paz inesperada.
+        el descanso dejará de ser una tarea que hay que cumplir y empezará a ser una experiencia regeneradora que te conectará con el cuerpo.
       `,
       primer: `
-        El primer cuatrimestre es un catálogo de imperfecciones: compañeros impuntuales, trabajos incompletos, lecturas mal citadas.
-        tu ojo clínico detecta el problema antes de que exista.
-        el riesgo es absorber cada falla como responsabilidad personal y agotarte corrigiendo lo que no te corresponde.
-        el aprendizaje es: no todo merece ser corregido de inmediato; hay que saber cuándo soltar el control.
-        la esperanza está en la eficiencia compartida.
+        el primer cuatrimestre será un catálogo de imperfecciones: compañeros impuntuales, trabajos incompletos, lecturas mal citadas.
+        tu ojo clínico detectará el problema antes de que exista.
+        el riesgo será absorber cada falla como responsabilidad personal y agotarte corrigiendo lo que no te corresponde.
+        el aprendizaje será: no todo merecerá ser corregido de inmediato; hay que saber cuándo soltar el control.
+        la esperanza estará en la eficiencia compartida.
       `,
       segundo: `
-        Con el correr de los meses, empezás a soltar el rigor.
-        delegás tareas, compartís responsabilidades, aceptás que cierto desorden funcional no es una catástrofe académica.
-        lo que antes te crispaba —la ineficiencia ajena— ahora lo mirás con compasión.
-        al bajar la autoexigencia, el estudio se vuelve respirable, y vos recuperás energía para aquello que realmente requiere tu precisión.
+        con el correr de los meses, empezarás a soltar el rigor.
+        delegarás tareas, compartirás responsabilidades, aceptarás que cierto desorden funcional no será una catástrofe académica.
+        lo que antes te crispaba —la ineficiencia ajena— ahora lo mirarás con compasión.
+        al bajar la autoexigencia, el estudio se volverá respirable, y vos recuperarás energía para aquello que realmente requiera tu precisión.
       `,
       cierre: `
-        El año termina sin haber alcanzado la perfección, y eso ya no te angustia.
-        aprendiste que la calidad no se pierde por aceptar límites de tiempo.
-        tu gran logro es haber transformado la crítica interna en discernimiento estratégico.
-        te vas con la convicción de que la estructura que se sostiene es la que tiene flexibilidad.
+        el año terminará sin haber alcanzado la perfección, y eso ya no te angustiará.
+        habrás aprendido que la calidad no se perderá por aceptar límites de tiempo.
+        tu gran logro será haber transformado la crítica interna en discernimiento estratégico.
+        te irás con la convicción de que la estructura que se sostiene es la que tiene flexibilidad.
       `
     },
     libra: {
       verano: `
-        El verano te encuentra buscando equilibrio en todas las áreas.
-        repasás mentalmente cómo volver a la cursada sin romper la delicada red de vínculos que fuiste tejiendo.
-        el descanso no es aislamiento, sino un profundo reacomodamiento interno.
-        necesitás restaurar la armonía en tu propia balanza antes de volver a mediar en las tensiones grupales.
-        aprovechá para rodearte de belleza y conversaciones estéticas que nutran tu espíritu.
+        el verano te encontrará buscando equilibrio en todas las áreas.
+        repasarás mentalmente cómo volver a la cursada sin romper la delicada red de vínculos que fuiste tejiendo.
+        el descanso no será aislamiento, sino un profundo reacomodamiento interno.
+        necesitarás restaurar la armonía en tu propia balanza antes de volver a mediar en las tensiones grupales.
+        aprovecharás para rodearte de belleza y conversaciones estéticas que nutran tu espíritu.
       `,
       primer: `
-        El inicio del año trae tensiones en los grupos de estudio: opiniones encontradas, trabajos que no avanzan al mismo ritmo.
-        vos, libra, escuchás, mediás con diplomacia, y traducís las posturas para que todos se entiendan.
-        el riesgo es mediar tanto que te corrés de tu propio eje o desaparecés detrás de la armonía que intentás sostener.
-        el desafío del cuatrimestre es practicar el desacuerdo amable, decir tu verdad sin buscar la aprobación total.
+        el inicio del año traerá tensiones en los grupos de estudio: opiniones encontradas, trabajos que no avanzan al mismo ritmo.
+        vos, libra, escucharás, mediarás con diplomacia, y traducirás las posturas para que todos se entiendan.
+        el riesgo será mediar tanto que te corras de tu propio eje o desaparezcas detrás de la armonía que intentás sostener.
+        el desafío del cuatrimestre será practicar el desacuerdo amable, decir tu verdad sin buscar la aprobación total.
       `,
       segundo: `
-        A mitad de año, tu trabajo invisible se vuelve visible.
-        muchas situaciones de conflicto no estallaron porque vos sostuviste el diálogo en el momento justo.
-        tu capacidad de construir puentes mantiene la convivencia grupal.
-        descubrís que la justicia no siempre es un balance perfecto, sino la posibilidad de que todas las voces sean escuchadas.
-        tu aporte es la cohesión.
+        a mitad de año, tu trabajo invisible se volverá visible.
+        muchas situaciones de conflicto no estallarán porque vos sostuviste el diálogo en el momento justo.
+        tu capacidad de construir puentes mantendrá la convivencia grupal.
+        descubrirás que la justicia no siempre será un balance perfecto, sino la posibilidad de que todas las voces sean escuchadas.
+        tu aporte será la cohesión.
       `,
       cierre: `
-        El año termina sin grandes rupturas en tus grupos de estudio.
-        aprendiste que cuidar el equilibrio colectivo también requiere cuidarte a vos en primer lugar.
-        ponerte primero no es egoísmo, es sostenibilidad.
-        te llevás la lección de que tu aporte no es ser la balanza, sino ser el punto de encuentro.
-        el 2026 te reafirma como un pacificador esencial.
+        el año terminará sin grandes rupturas en tus grupos de estudio.
+        habrás aprendido que cuidar el equilibrio colectivo también requerirá cuidarte a vos en primer lugar.
+        ponerte primero no será egoísmo, será sostenibilidad.
+        te llevarás la lección de que tu aporte no será ser la balanza, sino ser el punto de encuentro.
+        el 2026 te reafirmará como un pacificador esencial.
       `
     },
     escorpio: {
       verano: `
-        El verano es un tiempo de introspección profunda e inevitable.
-        necesitás silencio, profundidad, tiempo sin la necesidad de dar explicaciones superficiales.
-        descansar para vos es procesar todo lo que quedó pendiente a nivel emocional y estratégico.
-        algo estructural se está moviendo en tu interior; estás evaluando qué vínculos de estudio merecen seguir.
-        aprovechá para purificar tu energía y prepararte para las transformaciones.
+        el verano será un tiempo de introspección profunda e inevitable.
+        necesitarás silencio, profundidad, tiempo sin la necesidad de dar explicaciones superficiales.
+        descansar para vos será procesar todo lo que quedó pendiente a nivel emocional y estratégico.
+        algo estructural se estará moviendo en tu interior; estarás evaluando qué vínculos de estudio merecerán seguir.
+        aprovecharás para purificar tu energía y prepararte para las transformaciones.
       `,
       primer: `
-        El primer cuatrimestre no esquiva el conflicto; de hecho, lo atrae para poder depurarlo.
-        aparecen tensiones reales en los grupos, juegos de poder, y vos sentís que es necesario sacar la verdad a la luz.
-        escorpio va directamente al núcleo del problema, aunque eso incomode a otros.
-        tu manera de ir a la verdad es honesta y brutalmente necesaria.
-        el riesgo es el aislamiento; la clave es elegir aliados que valoren tu lucidez, no tu dureza.
+        el primer cuatrimestre no esquivará el conflicto; de hecho, lo atraerá para poder depurarlo.
+        aparecerán tensiones reales en los grupos, juegos de poder, y vos sentirás que es necesario sacar la verdad a la luz.
+        escorpio irá directamente al núcleo del problema, aunque eso incomode a otros.
+        tu manera de ir a la verdad será honesta y brutalmente necesaria.
+        el riesgo será el aislamiento; la clave será elegir aliados que valoren tu lucidez, no tu dureza.
       `,
       segundo: `
-        A mitad de año, las transformaciones empiezan a sentirse.
-        hay cambios en tus relaciones, en los límites personales que pusiste, y en lo que ya no estás dispuesto a tolerar.
-        escorpio no busca comodidad académica, busca verdad y autenticidad en el proceso de estudio.
-        este proceso de soltar lo viejo puede ser doloroso, pero te permite renacer con más fuerza y claridad.
-        confiá en la depuración.
+        a mitad de año, las transformaciones empezarán a sentirse.
+        habrá cambios en tus relaciones, en los límites personales que pondrás, y en lo que ya no estarás dispuesto a tolerar.
+        escorpio no buscará comodidad académica, buscará verdad y autenticidad en el proceso de estudio.
+        este proceso de soltar lo viejo podrá ser doloroso, pero te permitirá renacer con más fuerza y claridad.
+        confiarás en la depuración.
       `,
       cierre: `
-        El año termina y nada está igual que al comienzo.
-        perdiste algunas certezas que eran ilusiones, pero ganaste profundidad y una visión más aguda de tu proceso de estudio.
-        te llevás la fuerza de haber atravesado la crisis sin negociar tu esencia.
+        el año terminará y nada estará igual que al comienzo.
+        habrás perdido algunas certezas que eran ilusiones, pero ganarás profundidad y una visión más aguda de tu proceso de estudio.
+        te llevarás la fuerza de haber atravesado la crisis sin negociar tu esencia.
         el próximo año te encontrará anclado en un nuevo tipo de poder personal: el de la coherencia.
       `
     },
     sagitario: {
       verano: `
-        El verano activa tu necesidad de horizonte y de sentido.
-        leés, pensás, imaginás otros modos de estudiar; te negás a que el año que empieza sea solo supervivencia.
-        necesitás sentir que hay una meta más alta, un propósito pedagógico que trascienda la cursada.
-        tu descanso es mental; te recargás expandiendo tus conocimientos y soñando con el futuro.
-        aprovechá para conectar con filosofías o ideas que te den un marco de esperanza.
+        el verano activará tu necesidad de horizonte y de sentido.
+        leerás, pensarás, imaginarás otros modos de estudiar; te negarás a que el año que empieza sea solo supervivencia.
+        necesitarás sentir que habrá una meta más alta, un propósito pedagógico que trascienda la cursada.
+        tu descanso será mental; te recargarás expandiendo tus conocimientos y soñando con el futuro.
+        aprovecharás para conectar con filosofías o ideas que te den un marco de esperanza.
       `,
       primer: `
-        El primer cuatrimestre aprieta con calendarios rígidos y exigencias de corto plazo, lo que genera fricción con tu necesidad de amplitud.
-        vos seguís mirando más allá del día a día, buscando el sentido de cada tarea.
-        sagitario necesita propósito para sostener el esfuerzo, y cuando ese sentido flaquea, aparece el cansancio.
-        no te disperses en discusiones menores; recordá tu visión y usala como brújula.
-        tu energía está en la inspiración.
+        el primer cuatrimestre apretará con calendarios rígidos y exigencias de corto plazo, lo que generará fricción con tu necesidad de amplitud.
+        vos seguirás mirando más allá del día a día, buscando el sentido de cada tarea.
+        sagitario necesitará propósito para sostener el esfuerzo, y cuando ese sentido flaquee, aparecerá el cansancio.
+        no te dispersarás en discusiones menores; recordarás tu visión y la usarás como brújula.
+        tu energía estará en la inspiración.
       `,
       segundo: `
-        A mitad de año, compartís ideas, abrís debates inesperados, proponés miradas que oxigenan la conversación del grupo.
-        lográs inyectar una dosis de optimismo y posibilidad en el ambiente.
-        tu entusiasmo se vuelve contagioso y moviliza recursos que estaban dormidos.
-        descubrís que tu rol es el del visionario, el que recuerda por qué están todos ahí.
+        a mitad de año, compartirás ideas, abrirás debates inesperados, propondrás miradas que oxigenarán la conversación del grupo.
+        lograrás inyectar una dosis de optimismo y posibilidad en el ambiente.
+        tu entusiasmo se volverá contagioso y movilizará recursos que estaban dormidos.
+        descubrirás que tu rol será el del visionario, el que recuerda por qué están todos ahí.
       `,
       cierre: `
-        El año termina con fatiga física, pero no con vacío existencial.
-        el sentido sigue ahí, intacto y fortalecido por las acciones que emprendiste.
+        el año terminará con fatiga física, pero no con vacío existencial.
+        el sentido seguirá ahí, intacto y fortalecido por las acciones que emprendiste.
         tal vez no lograste la gran reforma educativa que soñabas, pero sembraste preguntas que van a germinar.
-        te vas sabiendo que inspiraste a otros a ver un poco más lejos.
+        te irás sabiendo que inspiraste a otros a ver un poco más lejos.
       `
     },
     capricornio: {
       verano: `
-        Incluso en verano te cuesta soltar la responsabilidad; es como un interruptor que no podés apagar del todo.
-        la mente sigue repasando pendientes y planificando el inicio, porque tu seguridad reside en la estructura.
-        descansar de verdad implica aprender a confiar en que, por un rato, no todo depende de tu control.
-        tu mayor tarea estival es delegar mentalmente; dejá que el mundo gire sin que vos lo impulses.
-        conectá con tu cuerpo; el descanso físico es la mejor inversión para tu rendimiento.
+        incluso en verano te costará soltar la responsabilidad; será como un interruptor que no podrás apagar del todo.
+        la mente seguirá repasando pendientes y planificando el inicio, porque tu seguridad residirá en la estructura.
+        descansar de verdad implicará aprender a confiar en que, por un rato, no todo dependerá de tu control.
+        tu mayor tarea estival será delegar mentalmente; dejarás que el mundo gire sin que vos lo impulses.
+        conectarás con tu cuerpo; el descanso físico será la mejor inversión para tu rendimiento.
       `,
       primer: `
-        El inicio del año te coloca en el lugar de sostén y de columna vertebral de tu grupo de estudio.
-        estructuras, organización, continuidad, cumplimiento de los tiempos; muchas cosas funcionan porque alguien las mantiene en marcha, y muchas veces ese alguien sos vos.
-        tu seriedad y compromiso son pilares, pero el riesgo es normalizar la sobrecarga.
-        trabajá en la delegación activa: empezá a formar a otros para que puedan tomar parte de tu carga.
+        el inicio del año te colocará en el lugar de sostén y de columna vertebral de tu grupo de estudio.
+        estructuras, organización, continuidad, cumplimiento de los tiempos; muchas cosas funcionarán porque alguien las mantendrá en marcha, y muchas veces ese alguien serás vos.
+        tu seriedad y compromiso serán pilares, pero el riesgo será normalizar la sobrecarga.
+        trabajarás en la delegación activa: empezarás a formar a otros para que puedan tomar parte de tu carga.
       `,
       segundo: `
-        A mitad de año el peso se hace sentir con fuerza, y por primera vez, la resistencia no es la respuesta.
-        capricornio empieza a reconocer que sostener el estudio no significa hacerlo en solitario.
-        pedir ayuda se vuelve una posibilidad real.
-        descubrís la eficiencia en la colaboración, y te sorprendés al ver que el trabajo compartido es más rápido y mejor.
-        este es tu gran cambio: transformar la responsabilidad solitaria en un liderazgo distribuido.
+        a mitad de año el peso se hará sentir con fuerza, y por primera vez, la resistencia no será la respuesta.
+        capricornio empezará a reconocer que sostener el estudio no significará hacerlo en solitario.
+        pedir ayuda se volverá una posibilidad real.
+        descubrirás la eficiencia en la colaboración, y te sorprenderás al ver que el trabajo compartido se hará más rápido y mejor.
+        este será tu gran cambio: transformar la responsabilidad solitaria en un liderazgo distribuido.
       `,
       cierre: `
-        El año termina gracias al trabajo silencioso y constante de quienes cargaron más de lo justo.
-        esta vez te vas reconociendo en esa tarea, pero sin romantizar el desgaste.
-        entendiste que tu valor no está solo en lo que producís, sino en tu capacidad para construir estructuras duraderas.
-        te llevás la lección de que el verdadero éxito es alcanzar la meta sin haber sacrificado tu bienestar en el camino.
+        el año terminará gracias al trabajo silencioso y constante de quienes cargaron más de lo justo.
+        esta vez te irás reconociendo en esa tarea, pero sin romantizar el desgaste.
+        entendiste que tu valor no estará solo en lo que produces, sino en tu capacidad para construir estructuras duraderas.
+        te llevarás la lección de que el verdadero éxito será alcanzar la meta sin haber sacrificado tu bienestar en el camino.
       `
     },
     acuario: {
       verano: `
-        El verano es un laboratorio mental: un espacio donde pensás alternativas radicales al estudio tradicional.
-        la pausa alimenta ideas que no encajan en los diseños curriculares oficiales.
-        tu energía se recarga en la desconexión social y en el pensamiento libre.
-        es el momento ideal para leer temas fuera de tu área o sumergirte en proyectos creativos.
-        mantené esas ideas frescas; serán tu arsenal para enfrentar la rigidez del sistema en marzo.
+        el verano será un laboratorio mental: un espacio donde pensarás alternativas radicales al estudio tradicional.
+        la pausa alimentará ideas que no encajarán en los diseños curriculares oficiales.
+        tu energía se recargará en la desconexión social y en el pensamiento libre.
+        será el momento ideal para leer temas fuera de tu área o sumergirte en proyectos creativos.
+        mantendrás esas ideas frescas; serán tu arsenal para enfrentar la rigidez del sistema en marzo.
       `,
       primer: `
-        El primer cuatrimestre te enfrenta a normas rígidas y a lógicas que no contemplan la diversidad real del estudio.
-        sentís el roce constante entre lo posible (lo que la teoría permite) y lo permitido (lo que la burocracia impone).
-        podés sentir frustración, pero tu rol es agitar las preguntas difíciles.
-        evitá el cinismo y canalizá esa energía en buscar soluciones ingeniosas.
-        el valor de tu signo es ser la voz del cambio.
+        el primer cuatrimestre te enfrentará a normas rígidas y a lógicas que no contemplarán la diversidad real del estudio.
+        sentirás el roce constante entre lo posible (lo que la teoría permite) y lo permitido (lo que la burocracia impone).
+        podrás sentir frustración, pero tu rol será agitar las preguntas difíciles.
+        evitarás el cinismo y canalizarás esa energía en buscar soluciones ingeniosas.
+        el valor de tu signo será ser la voz del cambio.
       `,
       segundo: `
-        A mitad de año, las redes humanas se vuelven tu refugio y tu motor.
-        ideas que no prosperan oficialmente encuentran circulación y apoyo en conversaciones laterales con compañeros afines.
-        lo nuevo no desaparece, se disemina por canales informales que vos ayudás a crear.
-        descubrís la potencia de la comunidad y del trabajo en red.
-        la esperanza florece en los márgenes, y vos sos el jardinero.
+        a mitad de año, las redes humanas se volverán tu refugio y tu motor.
+        ideas que no prosperan oficialmente encontrarán circulación y apoyo en conversaciones laterales con compañeros afines.
+        lo nuevo no desaparecerá, se diseminará por canales informales que vos ayudarás a crear.
+        descubrirás la potencia de la comunidad y del trabajo en red.
+        la esperanza florecerá en los márgenes, y vos serás el jardinero.
       `,
       cierre: `
-        El año termina sin una revolución visible, pero con muchas semillas plantadas en la cabeza de tus compañeros.
-        tu influencia fue silenciosa pero profunda.
+        el año terminará sin una revolución visible, pero con muchas semillas plantadas en la cabeza de tus compañeros.
+        tu influencia habrá sido silenciosa pero profunda.
         un cambio de mentalidad precede siempre al cambio de estructura.
-        te vas con la certeza de que tu visión de futuro ya está circulando.
+        te irás con la certeza de que tu visión de futuro ya estará circulando.
       `
     },
     piscis: {
       verano: `
-        El verano te vuelve permeable y sensible a los climas emocionales de tu entorno.
-        necesitás pausa, retiro, y mucho contacto con la naturaleza o el arte para no saturarte.
-        el primer paso es desintoxicarte de las emociones ajenas que absorbiste.
-        buscá actividades que te permitan la evasión creativa.
-        la recarga es psíquica, no física.
+        el verano te volverá permeable y sensible a los climas emocionales de tu entorno.
+        necesitarás pausa, retiro, y mucho contacto con la naturaleza o el arte para no saturarte.
+        el primer paso será desintoxicarte de las emociones ajenas que absorbiste.
+        buscarás actividades que te permitan la evasión creativa.
+        la recarga será psíquica, no física.
       `,
       primer: `
-        El inicio del año puede ser abrumador si no ponés límites claros.
-        absorvés los climas, las exigencias, y los estados de ánimo que no siempre son tuyos, lo que te drena la energía vital.
-        al comienzo, te cuesta poner límites por temor a ser insensible.
-        el desafío es aprender que podés ser empático sin sacrificar tu propio espacio.
-        tu sensibilidad es una brújula, no una esponja.
+        el inicio del año podrá ser abrumador si no pones límites claros.
+        absorberás los climas, las exigencias, y los estados de ánimo que no siempre serán tuyos.
+        al comienzo, te costará poner límites por temor a ser insensible.
+        el desafío será aprender que podrás ser empático sin sacrificar tu propio espacio.
+        tu sensibilidad deberá ser una brújula, no una esponja.
       `,
       segundo: `
-        A mitad de año aprendés a compartir lo que sentís, a verbalizar la carga emocional.
-        poner palabras a lo difuso ordena tu mundo interior.
-        descubrís que al hablar, tus compañeros no te juzgan, sino que te ofrecen contención.
-        esta práctica de poner límites de forma suave es tu gran logro.
-        la conexión sana te da un nuevo anclaje.
+        a mitad de año aprenderás a compartir lo que sientas, a verbalizar la carga emocional.
+        poner palabras a lo difuso ordenará tu mundo interior.
+        descubrirás que al hablar, tus compañeros no te juzgarán, sino que te ofrecerán contención.
+        esta práctica de poner límites de forma suave será tu gran logro.
       `,
       cierre: `
-        El año termina con más contención y menos confusión interna.
-        no porque te hayas endurecido o aislado, sino porque sos más consciente de tus límites.
-        el 2026 fue el año donde aprendiste a navegar las aguas emocionales sin ahogarte en ellas.
-        tu esperanza reside en la conexión profunda que ahora podés elegir.
+        el año terminará con más contención y menos confusión interna.
+        no porque te habrás endurecido o aislado, sino porque serás más consciente de tus límites.
+        el 2026 habrá sido el año donde aprendiste a navegar las aguas emocionales sin ahogarte en ellas.
+        tu esperanza residirá en la conexión profunda que ahora podrás elegir.
+      `
+    }
+  },
+ 
+  graduados: {
+    aries: {
+      verano: `
+        El verano te va a encontrar con una mezcla rara: por un lado aliviado de haber terminado, por otro con la sensación de que la adrenalina todavía no bajó.
+        vas a necesitar mover el cuerpo y quemar la energía que quedó acumulada de noches de entrega y finales.
+        este tiempo te va a servir para recordar que ya no tenés que rendir más, que ahora el fuego puede ser para vos: viajes cortos, proyectos personales o simplemente hacer nada sin culpa.
+        el descanso va a ser el primer acto de libertad real después de años de cursada.
+      `,
+      primer: `
+        El primer semestre del 2026 te va a traer de vuelta al Alicia, aunque sea de visita, de ad-honorem o porque arrancaste un posgrado.
+        vas a sentir la urgencia de los pasillos, los grupos desesperados, los profes que piden todo para ayer.
+        tu instinto aries va a querer meterse, resolver, liderar. el desafío va a ser elegir dónde poner esa energía: no todo lo que arde necesita que vos lo apagues.
+        vas a aprender a ser referente sin volver a ser estudiante.
+      `,
+      segundo: `
+        A mitad de año vas a descubrir que tu lugar ya no está en la primera fila sino un poco más atrás, acompañando, guiando, abriendo puertas.
+        tu experiencia reciente va a ser oro para los que vienen atrás: un “yo ya pasé por eso” vale más que mil teorías.
+        vas a liderar desde la generosidad, no desde la obligación. y eso te va a sentar increíble.
+      `,
+      cierre: `
+        El año va a terminar con la certeza de que graduarte no fue el final, sino el pase a otro rol.
+        vas a cerrar el 2026 sabiendo que tu fuego ahora sirve para encender otros fuegos, no para quemarte vos.
+        y eso, aries, es la mejor forma de seguir brillando.
+      `
+    },
+
+    tauro: {
+      verano: `
+        El verano te va a abrazar como un premio merecido.
+        por primera vez en años vas a poder planificar tus días sin que un calendario de entregas te condicione.
+        vas a necesitar rutina rica y tranquila: dormir hasta tarde, cocinar lento, estar con los tuyos.
+        este tiempo te va a devolver el placer de la estabilidad que la cursada te había robado.
+      `,
+      primer: `
+        Los primeros meses del año vas a volver al Alicia (tal vez a trabajar, tal vez a un posgrado) y vas a sentir el contraste: vos ya tenés tu título, pero el ambiente sigue igual de caótico.
+        tu desafío va a ser no volver a enroscarte en la misma lógica de urgencia.
+        vas a aprender a entrar y salir sin que te arrastre la vorágine.
+      `,
+      segundo: `
+        A mitad de año vas a empezar a ocupar tu lugar de graduado con mayúsculas: serás el que trae calma cuando todos corren, el que recuerda que se puede hacer bien y sin apuro.
+        tu presencia tranquila va a ser un faro para los que todavía están en la tormenta.
+      `,
+      cierre: `
+        Cerrarás el 2026 con la satisfacción de haber construido tu propio ritmo.
+        ya no vas a necesitar demostrar nada: tu título está, tu calma también.
+        y desde ahí vas a seguir siendo un sostén silencioso para el Alicia.
+      `
+    },
+
+    géminis: {
+      verano: `
+        El verano va a ser una fiesta mental: leerás todo lo que no pudiste durante la carrera, saltarás de un curso online a otro, armarás grupos de whatsapp de ex compañeros para seguir debatiendo.
+        tu cabeza no va a querer parar, pero esta vez va a ser por placer, no por obligación.
+      `,
+      primer: `
+        Decidiste regresar al Alicia (¿una nueva carrera?) y este retorno te va a poner en el lugar perfecto: serás el conector entre los que se están por recibir y los que ya se recibieron.
+        vas a circular información, ideas, contactos. tu red va a crecer y vos vas a ser el nodo.
+      `,
+      segundo: `
+        A mitad de año vas a descubrir que tu valor ya no está en aprobar materias, sino en tejer comunidad.
+        los cafés post-clase, los grupos de estudio que armás para los ingresantes, las charlas informales en el pasillo: ahí vas a estar construyendo el Alicia del futuro.
+      `,
+      cierre: `
+        El año va a terminar con vos sabiendo que el título fue solo el comienzo.
+        tu curiosidad y tu capacidad de conectar personas van a seguir siendo tu superpoder.
+        y el Alicia te va a necesitar más que nunca como puente entre generaciones.
+      `
+    },
+
+    cáncer: {
+      verano: `
+        El verano te va a pedir refugio emocional.
+        después de años de absorber el estrés colectivo, vas a necesitar volver a casa (literal y metafórica).
+        vas a reconectar con los afectos que sostuvieron tu carrera y vas a permitirte recibir en vez de solo dar.
+      `,
+      primer: `
+        Cuando vuelvas al Alicia vas a sentir el tirón emocional: los pasillos te van a recordar todo lo que viviste.
+        vas a querer cuidar a los que vienen atrás, escuchar sus angustias, acompañarlos.
+        el desafío va a ser hacerlo sin volver a cargarte todo el peso.
+      `,
+      segundo: `
+        A mitad de año vas a encontrar el equilibrio: serás el graduado que ofrece contención sin ahogarse.
+        tus límites van a estar más claros y tu empatía más madura.
+        vas a ser el “hermano mayor” que todos quieren tener.
+      `,
+      cierre: `
+        Cerrarás el 2026 con el corazón lleno.
+        te vas a dar cuenta de que el Alicia no es solo un lugar: es una red de afectos que vos ayudaste a tejer.
+        y ahora te toca estar del lado de los que sostienen.
+      `
+    },
+
+    leo: {
+      verano: `
+        El verano te va a devolver el protagonismo que la cursada a veces te quitó.
+        vas a querer celebrar, mostrarte, brillar sin rendir cuentas a nadie.
+        este será tu momento de disfrutar el título en la cara de todos (y está perfecto que lo hagas).
+      `,
+      primer: `
+        Planificás el regreso al Alicia, lo que te va a tentar con volver a ser el centro.
+        vas a querer liderar, organizar, destacarte.
+        el aprendizaje va a ser pasar el micrófono: tu nuevo brillo será hacer brillar a otros.
+      `,
+      segundo: `
+        A mitad de año vas a descubrir que el verdadero liderazgo de graduado es generoso.
+        vas a abrir puertas, recomendar, presentar gente, celebrar los logros ajenos.
+        y ahí vas a brillar más que nunca.
+      `,
+      cierre: `
+        El 2026 te va a dejar con una corona invisible pero real.
+        vas a cerrar sabiendo que tu luz ya no necesita reflectores: ilumina igual.
+        y el Alicia te va a agradecer eternamente.
+      `
+    },
+
+    virgo: {
+      verano: `
+        El verano va a ser tu recompensa de orden: por fin vas a poder organizar tu vida sin parciales ni entregas.
+        vas a armar tu espacio perfecto, tu rutina ideal, tu biblioteca soñada.
+        el descanso será puro placer de control recuperado.
+      `,
+      primer: `
+        Cuando vuelvas al Alicia vas a ver desorden por todos lados y tu primer impulso va a ser corregirlo todo.
+        el desafío va a ser elegir: ahora tu perfeccionismo puede estar al servicio de los demás, no como obligación.
+      `,
+      segundo: `
+        A mitad de año vas a empezar a delegar y a enseñar procesos.
+        tu legado va a ser que las cosas funcionen mejor gracias a los sistemas que dejaste.
+        y vas a hacerlo sin agotarte.
+      `,
+      cierre: `
+        Cerrarás el año con la paz de quien ya no necesita que todo sea perfecto para estar bien.
+        tu precisión seguirá siendo un regalo para el Alicia, pero ahora la vas a entregar con liviandad.
+      `
+    },
+
+    libra: {
+      verano: `
+        El verano te va a devolver el equilibrio perdido.
+        vas a poder estar con gente por placer, mediar conflictos familiares o de amigos sin que sea obligatorio.
+        este tiempo va a ser puro rebalanceo estético y afectivo.
+      `,
+      primer: `
+        Pensás en regresar al Alicia, lo te va a poner otra vez en el rol de mediador.
+        vas a ser el que suaviza tensiones entre estudiantes y docentes, entre áreas.
+        el desafío va a ser no diluirte: ahora podés decir tu verdad sin miedo.
+      `,
+      segundo: `
+        A mitad de año vas a consolidarte como el graduado que mantiene la paz sin desaparecer.
+        tu diplomacia va a ser más firme y tu presencia más sólida.
+      `,
+      cierre: `
+        El año va a terminar con vos sabiendo que la armonía también se construye diciendo “acá llega”.
+        vas a ser el puente que el Alicia necesita entre el pasado y el futuro.
+      `
+    },
+
+    escorpio: {
+      verano: `
+        El verano va a ser de depuración total.
+        vas a cerrar ciclos, cortar contactos tóxicos de la carrera, quemar apuntes simbólicamente.
+        este tiempo va a ser de renacimiento: el título fue la muerte de una etapa y el nacimiento de otra.
+      `,
+      primer: `
+        Cuando vuelvas al Alicia vas a ver las cosas con una claridad brutal.
+        ya no vas a tolerar hipocresías ni dobles discursos.
+        tu desafío va a ser usar esa intensidad para transformar, no para destruir.
+      `,
+      segundo: `
+        A mitad de año vas a empezar a ocupar roles de poder real (ayudantías, coordinación, investigación).
+        tu coherencia va a ser tu carta de presentación.
+      `,
+      cierre: `
+        Cerrarás el 2026 transformado y transformando.
+        el Alicia va a sentir tu paso: dejaste huella profunda y honesta.
+        y eso, escorpio, es tu mayor victoria.
+      `
+    },
+
+    sagitario: {
+      verano: `
+        El verano va a ser puro horizonte.
+        vas a viajar, leer filosofía, soñar con posgrados en el exterior o proyectos locos.
+        tu título va a ser el pasaporte a la libertad que siempre soñaste.
+      `,
+      primer: `
+        Decidís regresar al Alicia, lo que te va a parecer chico al principio.
+        vas a querer más, vas a querer volar.
+        el desafío va a ser traer esa visión grande al día a día del instituto.
+      `,
+      segundo: `
+        A mitad de año vas a empezar a contagiar entusiasmo: charlas, talleres, propuestas nuevas.
+        vas a ser el graduado que recuerda que la educación puede ser aventura.
+      `,
+      cierre: `
+        El 2026 te va a dejar con la certeza de que el título no fue la meta, fue el punto de partida.
+        vas a cerrar el año con más preguntas que respuestas… y eso será perfecto.
+      `
+    },
+
+    capricornio: {
+      verano: `
+        El verano te va a costar soltarlo todo.
+        vas a seguir planificando el próximo paso laboral o académico como si todavía tuvieras que rendir.
+        el descanso real va a llegar cuando aceptes que ya está: lo lograste.
+      `,
+      primer: `
+        Volvés al Alicia, lo que te va a poner en el lugar que siempre quisiste: ser el que sostiene, el que organiza, el que ya sabe cómo funciona.
+        vas a ser columna vertebral sin que te lo pidan.
+      `,
+      segundo: `
+        A mitad de año vas a empezar a delegar y a formar a los más chicos.
+        tu legado va a ser que el sistema funcione mejor gracias a tu estructura.
+      `,
+      cierre: `
+        Cerrarás el 2026 con la tranquilidad del deber cumplido… y del deber que empieza.
+        tu título fue el primer escalón; ahora viene construir con otros.
+      `
+    },
+
+    acuario: {
+      verano: `
+        El verano va a ser un laboratorio de ideas post-título.
+        vas a imaginar cooperativas de graduados, proyectos interdisciplinarios, formas nuevas de volver al Alicia sin encajar en los moldes viejos.
+      `,
+      primer: `
+        Cuando vuelvas al Alicia, vas a chocar con la rigidez institucional.
+        tu desafío va a ser no desconectar: traer tus ideas raras al pasillo.
+      `,
+      segundo: `
+        A mitad de año vas a armar redes de graduados que empiecen a mover cosas desde abajo.
+        tus proyectos “imposibles” van a empezar a caminar.
+      `,
+      cierre: `
+        El 2026 te va a dejar con la certeza de que el cambio real empieza cuando los que ya se fueron vuelven… pero de otra manera.
+        vas a ser el graduado que rompe la tradición desde adentro.
+      `
+    },
+
+    piscis: {
+      verano: `
+        El verano va a ser sanación pura.
+        vas a llorar de alivio, vas a dormir quince horas, vas a volver al mar o al río que te recargue el alma.
+        este tiempo va a ser de cerrar heridas emocionales que la carrera abrió.
+      `,
+      primer: `
+        El regreso al Alicia te va a emocionar y te va a desbordar.
+        vas a querer abrazar a todo el mundo y salvar a los que sufren como vos sufriste.
+        el desafío va a ser acompañar sin ahogarte.
+      `,
+      segundo: `
+        A mitad de año vas a encontrar tu lugar: ser el graduado que escucha, que contiene, que recuerda que detrás de cada legajo hay una persona.
+      `,
+      cierre: `
+        Cerrarás el 2026 sabiendo que tu sensibilidad no fue un peso, fue un superpoder.
+        el Alicia te va a necesitar siempre como el que recuerda que esto también es humano.
       `
     }
   }
 };
 
-// script.js - Psicohoróscopo de la esperanza 2026
-
-// --- CONTENIDO: (idéntico al tuyo, sin un solo carácter extraño) ---
-// (tu enorme objeto textos se mantuvo intacto, no lo repito acá para no duplicar 6000 líneas,
-// pero en la versión final que te entrego sí está incluido completo, revisado y limpio).
-// ---------------------------------------------------------------------
-
-// Capitaliza inicios de oración sin destruir el estilo original
+// Capitaliza inicios de oración y respeta minúsculas después de : y ;
+// Capitaliza inicios de oración y asegura que "Alicia" sea siempre "Alicia"
 function capitalizarTexto(texto) {
   if (!texto) return '';
-  return texto
-    .trim()
-    .replace(/(^|[\.\?\!]\s+)([a-záéíóúñ])/g, (m, sep, letra) => sep + letra.toUpperCase());
+
+  // 1. Convertimos todo a minúsculas para estandarizar
+  let textoProcesado = texto.toLowerCase();
+
+  // 2. REGLA DE ORO: Reemplazar todas las instancias de "alicia" por "Alicia"
+  // El modificador /g es para "global" y /i para que no importe si estaba en mayus o minus
+  textoProcesado = textoProcesado.replace(/alicia/gi, 'Alicia');
+
+  // 3. Capitalizar el inicio absoluto del texto
+  textoProcesado = textoProcesado.charAt(0).toUpperCase() + textoProcesado.slice(1);
+
+  // 4. Capitalizar después de puntos, signos de exclamación e interrogación
+  // (mantenemos tu lógica original que es muy buena)
+  textoProcesado = textoProcesado.replace(/([.!?\n]\s*)([a-zñáéíóúü])/g, (match, sep, char) => sep + char.toUpperCase());
+
+  // 5. Forzar minúscula después de : y ; (tu regla específica)
+  // Pero ojo: si después de ":" viene "Alicia", NO queremos que se ponga en minúscula.
+  // Usamos una función de reemplazo con lógica:
+  textoProcesado = textoProcesado.replace(/([:;]\s*)([a-zñáéíóúü])/gi, (match, sep, char) => {
+      // Si la palabra que sigue es "Alicia", la dejamos como está, si no, a minúscula
+      const resto = textoProcesado.substring(textoProcesado.indexOf(match) + sep.length);
+      if (resto.toLowerCase().startsWith("alicia")) {
+          return sep + "A"; 
+      }
+      return sep + char.toLowerCase();
+  });
+
+  // 6. Limpieza final de espacios
+  return textoProcesado.replace(/\s{2,}/g, ' ').trim();
 }
 
 // Normaliza acentos del signo para que coincida con el objeto base
-// Normaliza el signo y lo mapea a las claves REALES del objeto textos
 function normalizarSigno(signo) {
   if (!signo) return "";
 
-  // Quitar acentos y caracteres invisibles
   let s = signo.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 
-  // Mapa hacia las claves REALES del objeto (con tilde)
   const mapear = {
     geminis: "géminis",
     cancer: "cáncer",
-    escorpion: "escorpio" // por si alguien escribe "escorpión"
+    escorpion: "escorpio", 
   };
 
-  // Si el signo está en el mapa, devolvemos la clave correcta
   if (mapear[s]) return mapear[s];
-
-  // Si no, devolvemos exactamente lo que se normalizó
-  return s;
+  
+  return signo.toLowerCase().trim(); 
 }
 
 
@@ -1077,35 +1353,41 @@ function verPrediccion(e) {
   const mensajeFinal = document.getElementById('mensaje-final');
 
   if (!rol || !signoOriginal) {
-    estadoDiv.textContent = 'Por favor, elegí un rol y un signo.';
+    estadoDiv.textContent = 'por favor, elegí un rol y un signo.';
     estadoDiv.className = 'status';
-    resultadoDiv.innerHTML = 'Elegí rol y signo para desplegar el recorrido del año.';
+    resultadoDiv.innerHTML = 'elegí rol y signo para desplegar el recorrido del año.';
     mensajeFinal.style.display = 'none';
     return;
   }
 
   const contenido = textos[rol]?.[signoNormalizado];
   if (!contenido) {
-    estadoDiv.textContent = 'Combinación no encontrada.';
+    estadoDiv.textContent = 'combinación no encontrada.';
     estadoDiv.className = 'status';
-    resultadoDiv.innerHTML = 'Ups… no hay predicción para esa combinación todavía.';
+    resultadoDiv.innerHTML = 'ups… no hay predicción para esa combinación todavía.';
     mensajeFinal.style.display = 'none';
     return;
   }
 
-  estadoDiv.textContent = 'Calculando tu psicohoróscopo del 2026…';
+  estadoDiv.textContent = 'calculando tu psicohoróscopo del 2026…';
   estadoDiv.className = 'status ok';
 
   setTimeout(() => {
-    let rolFormateado =
-      rol === 'tecnico-administrativo'
-        ? 'técnico-administrativo'
-        : rol;
+    let rolDisplay = rol.replace('-', ' ');
+    
+    // Aplicar la regla de capitalización solo a la primera letra del título.
+    const capitalizeTitle = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
-    rolFormateado =
-      rolFormateado.charAt(0).toUpperCase() + rolFormateado.slice(1);
+    rolDisplay = capitalizeTitle(rolDisplay);
 
-    let html = `<h2>${signoOriginal.charAt(0).toUpperCase() + signoOriginal.slice(1)} · ${rolFormateado}</h2>`;
+    // Asegurar que "Técnico-administrativo" y "Personal auxiliar" se muestren correctamente
+    if (rol === 'tecnico-administrativo') rolDisplay = 'Técnico-administrativo';
+    if (rol === 'personal-auxiliar') rolDisplay = 'Personal auxiliar';
+    
+    // El signo siempre se obtiene capitalizado
+    const signoDisplay = capitalizeTitle(signoOriginal);
+
+    let html = `<h2>${signoDisplay} · ${rolDisplay}</h2>`;
 
     const titulos = {
       verano: 'Verano (descanso y reencuentro)',
@@ -1116,20 +1398,69 @@ function verPrediccion(e) {
 
     for (const key in titulos) {
       if (contenido[key]) {
-        const textoFormateado = capitalizarTexto(contenido[key]);
+        // La función capitalizarTexto maneja las reglas : y ;
+        const textoFormateado = capitalizarTexto(contenido[key]); 
+        
+        // Agregar un <br> para separar el título del contenido y mantener el formato HTML
         html += `<p><strong>${titulos[key]}:</strong><br>${textoFormateado}</p>`;
       }
     }
 
     resultadoDiv.innerHTML = html;
-    estadoDiv.textContent = '¡Listo! Aquí tenés tu psicohoróscopo de la esperanza 2026';
+    
+    // --- INYECCIÓN DEL MENSAJE FINAL (CON FORMATO Y CAPITALIZACIÓN) ---
+    const mensajeComunidadHTML = `
+      <h2>porque somos comunidad...</h2>
+      <p>
+        en el Alicia nada se construye en solitario.
+        2026 será un año intenso, sí, pero también será un año en el que la comunidad
+        —esa red silenciosa que une pasillos, grupos de estudio, oficinas y aulas—
+        volverá a demostrar su fuerza.
+      </p>
+      <p>
+        cada signo trae su propio modo de transitar la esperanza:
+        algunos avanzan, otros sostienen, otros cuidan, otros abren caminos.
+        pero todos, sin excepción, encuentran sentido cuando se enlazan con los demás.
+      </p>
+      <p>
+        que este psicohoróscopo no sea solo una guía: que sea un recordatorio de que la unidad nos hace más fuertes.
+        y que lo que una persona no puede, lo puede el tejido entero.
+      </p>
+      <p>
+        caminemos juntos este 2026: con humor, con lucidez, con fuerza,
+        y con la certeza de que cada gesto —aunque mínimo— sostiene la trama común.
+      </p>
+    `;
+
+    const finalMessageDiv = document.getElementById('mensaje-final');
+    
+    // Separamos el H2 para capitalizar el resto correctamente
+    const h2Tag = '<h2>porque somos comunidad...</h2>';
+    const content = mensajeComunidadHTML.replace(h2Tag, '').trim();
+    
+    // Aplicamos capitalización al contenido, pero manteniendo las etiquetas strong y span
+    const contentCapitalized = content.replace(/<p>.*?<\/p>/gs, (p) => {
+        // Convertir el contenido del párrafo (ignorando etiquetas)
+        return p.replace(/<[^>]+>|[^<]+/g, (match) => {
+            if (match.startsWith('<')) return match; // Dejar etiquetas quietas
+            return capitalizarTexto(match);
+        });
+    });
+
+    // Reemplazamos el contenido original y aplicamos la capitalización
+    finalMessageDiv.innerHTML = h2Tag + contentCapitalized;
+
+    estadoDiv.textContent = '¡listo! aquí tenés tu psicohoróscopo de la esperanza 2026';
     mensajeFinal.style.display = 'block';
 
+    // Para un mejor flujo, se hace scroll al resultado.
     resultadoDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 600);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('selector-form').addEventListener('submit', verPrediccion);
-  document.getElementById('mensaje-final').style.display = 'none';
+  // Inicialmente el mensaje final está oculto, se muestra solo al calcular
+  document.getElementById('mensaje-final').style.display = 'none'; 
 });
+
