@@ -1463,4 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inicialmente el mensaje final está oculto, se muestra solo al calcular
   document.getElementById('mensaje-final').style.display = 'none'; 
 });
+document.getElementById("mensaje-final").style.display = "block";
+
+
 
