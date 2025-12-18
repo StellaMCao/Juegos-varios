@@ -1266,7 +1266,7 @@ const textos = {
         Y que lo público se defiende también con constancia.
       `
     },
-    géminis: {
+    geminis: {
       verano: `
         El verano va a ser de intercambio permanente.
         Mensajes, ideas, grupos que se reactivan.
@@ -1292,7 +1292,7 @@ const textos = {
         Y vos vas a seguir escuchando.
       `
     },
-    cáncer: {
+    cancer: {
       verano: `
         El verano te va a pedir cuidado.
         Vas a recomponer energías emocionales.
