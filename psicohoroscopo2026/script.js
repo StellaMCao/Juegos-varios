@@ -1332,84 +1332,66 @@ const textos = {
   }
 };
 
-// Capitaliza inicios de oración y respeta minúsculas después de : y ;
-// Capitaliza inicios de oración y asegura que "Alicia" sea siempre "Alicia"
 function capitalizarTexto(texto) {
   if (!texto) return '';
 
-  // 1. Convertimos todo a minúsculas para estandarizar
-  let textoProcesado = texto.toLowerCase();
+  let t = texto.toLowerCase();
 
-  // 2. REGLA DE ORO: Reemplazar todas las instancias de "alicia" por "Alicia"
-  // El modificador /g es para "global" y /i para que no importe si estaba en mayus o minus
-  textoProcesado = textoProcesado.replace(/alicia/gi, 'Alicia');
+  // Alicia siempre con mayúscula
+  t = t.replace(/\balicia\b/gi, 'Alicia');
 
-  // 3. Capitalizar el inicio absoluto del texto
-  textoProcesado = textoProcesado.charAt(0).toUpperCase() + textoProcesado.slice(1);
+  // Capitalizar inicio absoluto
+  t = t.charAt(0).toUpperCase() + t.slice(1);
 
-  // 4. Capitalizar después de puntos, signos de exclamación e interrogación
-  // (mantenemos tu lógica original que es muy buena)
-  textoProcesado = textoProcesado.replace(/([.!?\n]\s*)([a-zñáéíóúü])/g, (match, sep, char) => sep + char.toUpperCase());
+  // Capitalizar después de punto, ?, ! o salto de línea
+  t = t.replace(/([.!?\n]\s*)([a-zñáéíóúü])/g, (_, sep, c) => sep + c.toUpperCase());
 
-  // 5. Forzar minúscula después de : y ; (tu regla específica)
-  // Pero ojo: si después de ":" viene "Alicia", NO queremos que se ponga en minúscula.
-  // Usamos una función de reemplazo con lógica:
-  textoProcesado = textoProcesado.replace(/([:;]\s*)([a-zñáéíóúü])/gi, (match, sep, char) => {
-      // Si la palabra que sigue es "Alicia", la dejamos como está, si no, a minúscula
-      const resto = textoProcesado.substring(textoProcesado.indexOf(match) + sep.length);
-      if (resto.toLowerCase().startsWith("alicia")) {
-          return sep + "A"; 
-      }
-      return sep + char.toLowerCase();
+  // Forzar minúscula después de : y ; (salvo Alicia)
+  t = t.replace(/([:;]\s*)([A-Za-zñáéíóúü]+)/g, (_, sep, palabra) => {
+    if (palabra.toLowerCase().startsWith('alicia')) {
+      return sep + 'Alicia';
+    }
+    return sep + palabra.charAt(0).toLowerCase() + palabra.slice(1);
   });
 
-  // 6. Limpieza final de espacios
-  return textoProcesado.replace(/\s{2,}/g, ' ').trim();
+  return t.replace(/\s{2,}/g, ' ').trim();
 }
-
-// Normaliza acentos del signo para que coincida con el objeto base
 function normalizarSigno(signo) {
-  if (!signo) return "";
-
-  let s = signo.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-
-  const mapear = {
-    geminis: "géminis",
-    cancer: "cáncer",
-    escorpion: "escorpio", 
-  };
-
-  if (mapear[s]) return mapear[s];
-  
-  return signo.toLowerCase().trim(); 
+  return signo
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
 }
-
-
+function capitalizarTitulo(str) {
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 function verPrediccion(e) {
   e.preventDefault();
 
   const rol = document.getElementById('rol').value.trim();
   const signoOriginal = document.getElementById('signo').value.trim();
-  const signoNormalizado = normalizarSigno(signoOriginal);
+  const signo = normalizarSigno(signoOriginal);
 
   const resultadoDiv = document.getElementById('resultado');
   const estadoDiv = document.getElementById('estado');
-  const mensajeFinal = document.getElementById('mensaje-final');
+  const mensajeFinalDiv = document.getElementById('mensaje-final');
 
   if (!rol || !signoOriginal) {
     estadoDiv.textContent = 'por favor, elegí un rol y un signo.';
     estadoDiv.className = 'status';
     resultadoDiv.innerHTML = 'elegí rol y signo para desplegar el recorrido del año.';
-    mensajeFinal.style.display = 'none';
+    mensajeFinalDiv.style.display = 'none';
     return;
   }
 
-  const contenido = textos[rol]?.[signoNormalizado];
+  const contenido = textos[rol]?.[signo];
   if (!contenido) {
     estadoDiv.textContent = 'combinación no encontrada.';
     estadoDiv.className = 'status';
     resultadoDiv.innerHTML = 'ups… no hay predicción para esa combinación todavía.';
-    mensajeFinal.style.display = 'none';
+    mensajeFinalDiv.style.display = 'none';
     return;
   }
 
@@ -1418,18 +1400,12 @@ function verPrediccion(e) {
 
   setTimeout(() => {
     let rolDisplay = rol.replace('-', ' ');
-    
-    // Aplicar la regla de capitalización solo a la primera letra del título.
-    const capitalizeTitle = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    rolDisplay = capitalizarTitulo(rolDisplay);
 
-    rolDisplay = capitalizeTitle(rolDisplay);
-
-    // Asegurar que "Técnico-administrativo" y "Personal auxiliar" se muestren correctamente
     if (rol === 'tecnico-administrativo') rolDisplay = 'Técnico-administrativo';
     if (rol === 'personal-auxiliar') rolDisplay = 'Personal auxiliar';
-    
-    // El signo siempre se obtiene capitalizado
-    const signoDisplay = capitalizeTitle(signoOriginal);
+
+    const signoDisplay = capitalizarTitulo(signoOriginal);
 
     let html = `<h2>${signoDisplay} · ${rolDisplay}</h2>`;
 
@@ -1440,73 +1416,48 @@ function verPrediccion(e) {
       cierre: 'Cierre de año (la cosecha)'
     };
 
-    for (const key in titulos) {
-      if (contenido[key]) {
-        // La función capitalizarTexto maneja las reglas : y ;
-        const textoFormateado = capitalizarTexto(contenido[key]); 
-        
-        // Agregar un <br> para separar el título del contenido y mantener el formato HTML
-        html += `<p><strong>${titulos[key]}:</strong><br>${textoFormateado}</p>`;
+    for (const etapa in titulos) {
+      if (contenido[etapa]) {
+        html += `
+          <p>
+            <strong>${titulos[etapa]}:</strong><br>
+            ${capitalizarTexto(contenido[etapa])}
+          </p>
+        `;
       }
     }
 
     resultadoDiv.innerHTML = html;
-    
-    // --- INYECCIÓN DEL MENSAJE FINAL (CON FORMATO Y CAPITALIZACIÓN) ---
-    const mensajeComunidadHTML = `
+
+    // --- MENSAJE FINAL DE COMUNIDAD ---
+    const mensajeComunidad = `
       <h2>porque somos comunidad...</h2>
-      <p>
-        en el Alicia nada se construye en solitario.
-        2026 será un año intenso, sí, pero también será un año en el que la comunidad
-        —esa red silenciosa que une pasillos, grupos de estudio, oficinas y aulas—
-        volverá a demostrar su fuerza.
-      </p>
-      <p>
-        cada signo trae su propio modo de transitar la esperanza:
-        algunos avanzan, otros sostienen, otros cuidan, otros abren caminos.
-        pero todos, sin excepción, encuentran sentido cuando se enlazan con los demás.
-      </p>
-      <p>
-        que este psicohoróscopo no sea solo una guía: que sea un recordatorio de que la unidad nos hace más fuertes.
-        y que lo que una persona no puede, lo puede el tejido entero.
-      </p>
-      <p>
-        caminemos juntos este 2026: con humor, con lucidez, con fuerza,
-        y con la certeza de que cada gesto —aunque mínimo— sostiene la trama común.
-      </p>
+      <p>en el Alicia nada se construye en solitario. 2026 será un año intenso, sí, pero también será un año en el que la comunidad —esa red silenciosa que une pasillos, grupos de estudio, oficinas y aulas— volverá a demostrar su fuerza.</p>
+      <p>cada signo trae su propio modo de transitar la esperanza: algunos avanzan, otros sostienen, otros cuidan, otros abren caminos. pero todos, sin excepción, encuentran sentido cuando se enlazan con los demás.</p>
+      <p>que este psicohoróscopo no sea solo una guía: que sea un recordatorio de que la unidad nos hace más fuertes. y que lo que una persona no puede, lo puede el tejido entero.</p>
+      <p>caminemos juntos este 2026: con humor, con lucidez, con fuerza, y con la certeza de que cada gesto —aunque mínimo— sostiene la trama común.</p>
     `;
 
-    const finalMessageDiv = document.getElementById('mensaje-final');
-    
-    // Separamos el H2 para capitalizar el resto correctamente
-    const h2Tag = '<h2>porque somos comunidad...</h2>';
-    const content = mensajeComunidadHTML.replace(h2Tag, '').trim();
-    
-    // Aplicamos capitalización al contenido, pero manteniendo las etiquetas strong y span
-    const contentCapitalized = content.replace(/<p>.*?<\/p>/gs, (p) => {
-        // Convertir el contenido del párrafo (ignorando etiquetas)
-        return p.replace(/<[^>]+>|[^<]+/g, (match) => {
-            if (match.startsWith('<')) return match; // Dejar etiquetas quietas
-            return capitalizarTexto(match);
-        });
-    });
+    mensajeFinalDiv.innerHTML = mensajeComunidad.replace(
+      /<p>(.*?)<\/p>/gs,
+      (_, contenido) => `<p>${capitalizarTexto(contenido)}</p>`
+    );
 
-    // Reemplazamos el contenido original y aplicamos la capitalización
-    finalMessageDiv.innerHTML = h2Tag + contentCapitalized;
-
+    mensajeFinalDiv.style.display = 'block';
     estadoDiv.textContent = '¡listo! aquí tenés tu psicohoróscopo de la esperanza 2026';
-    mensajeFinal.style.display = 'block';
 
-    // Para un mejor flujo, se hace scroll al resultado.
     resultadoDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 600);
 }
-
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('selector-form').addEventListener('submit', verPrediccion);
-  // Inicialmente el mensaje final está oculto, se muestra solo al calcular
-  document.getElementById('mensaje-final').style.display = 'none'; 
+  document
+    .getElementById('selector-form')
+    .addEventListener('submit', verPrediccion);
+
+  document.getElementById('mensaje-final').style.display = 'none';
 });
+
+
 
 
 
