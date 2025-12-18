@@ -1,4 +1,4 @@
-const textos = {
+window.textos = {
   docente: {
     aries: {
       verano: `
@@ -1214,7 +1214,7 @@ const textos = {
       `
     }
   },
-  graduados: {
+  graduado: {
     aries: {
       verano: `
         El verano te va a encontrar con una energía inquieta.
@@ -1507,4 +1507,3 @@ const textos = {
     }
   }
 };
-
