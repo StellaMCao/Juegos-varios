@@ -25,6 +25,309 @@ docente: {
       Te descubrirás más compañero, menos impulsivo, más dispuesto a construir algo que no dependerá únicamente de tu energía individual, blindando tu espacio de trabajo de la vorágine externa.
     `
   },
+graduados: {
+  aries: {
+    verano: `
+      El verano te va a encontrar con una energía inquieta.
+      Ya no habrá cursadas ni finales, pero el cuerpo seguirá acelerado, como si algo quedara por hacer.
+      Vas a iniciar proyectos, probar rumbos nuevos, moverte sin mapa.
+      En algún momento va a aparecer el Alicia como lugar donde esa energía todavía podría tener sentido colectivo.
+    `,
+    primer: `
+      Durante el primer semestre del 2026 vas a empezar a notar un clima distinto.
+      Conversaciones sobre recortes, cambios, fragilidad de lo público van a circular.
+      El contacto con otros egresados va a reactivar preguntas sobre cómo estar presentes.
+      No desde la urgencia, sino desde el compromiso elegido.
+    `,
+    segundo: `
+      A mitad de año vas a descubrir que hay muchas formas de volver.
+      Participar en encuentros, acompañar procesos, sumar tu voz cuando haga falta.
+      No todo va a requerir presencia constante.
+      Estar disponible va a ser una forma de acción.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con una certeza más clara.
+      El Alicia va a seguir siendo una comunidad que invita, no que exige.
+      Tu energía va a encontrar ahí un lugar posible.
+      Cuando decidas volver.
+    `
+  },
+
+  tauro: {
+    verano: `
+      El verano va a regalarte tiempo.
+      Vas a bajar el ritmo y ordenar prioridades.
+      El Alicia va a aparecer como recuerdo de esfuerzo compartido.
+      Algo construido entre muchos.
+    `,
+    primer: `
+      En los primeros meses del año vas a escuchar con atención lo que está pasando.
+      La educación pública va a mostrarse frágil, pero sostenida por vínculos.
+      El intercambio con otros egresados va a abrir preguntas serenas.
+      Sobre cómo cuidar lo que importa.
+    `,
+    segundo: `
+      A mitad de año vas a confirmar que defender también es sostener.
+      Estar presente en momentos clave, acompañar sin exponerte de más.
+      El Alicia va a seguir siendo un espacio al que se puede volver.
+      Incluso de manera intermitente.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con estabilidad.
+      Sabiendo que la comunidad no se rompe con la distancia.
+      Y que lo público se defiende también con constancia.
+    `
+  },
+
+  géminis: {
+    verano: `
+      El verano va a ser de intercambio permanente.
+      Mensajes, ideas, grupos que se reactivan.
+      El Alicia va a aparecer en conversaciones y debates.
+      Como tema vivo.
+    `,
+    primer: `
+      Durante el primer semestre vas a circular entre egresados, estudiantes y docentes.
+      Vas a compartir información, convocatorias, alertas.
+      Quizás aparezca la idea de una nueva carrera o un trayecto distinto.
+      El movimiento va a ser parte del compromiso.
+    `,
+    segundo: `
+      A mitad de año vas a confirmar que la red es fundamental.
+      Difundir, conectar, hacer circular la palabra cuando haga falta.
+      La defensa de lo público va a tomar formas flexibles.
+      Y vos vas a moverte cómodo ahí.
+    `,
+    cierre: `
+      El año va a cerrarse con una certeza.
+      El Alicia no será solo un edificio.
+      Será una red que sigue llamando.
+      Y vos vas a seguir escuchando.
+    `
+  },
+
+  cáncer: {
+    verano: `
+      El verano te va a pedir cuidado.
+      Vas a recomponer energías emocionales.
+      El Alicia va a aparecer ligado a vínculos, historias, afectos.
+      Más que a materias.
+    `,
+    primer: `
+      En el primer semestre vas a sentir con fuerza el clima de época.
+      Incertidumbre, preocupación, ganas de cuidar lo común.
+      El contacto con otros egresados va a habilitar espacios de palabra.
+      Necesarios para no cargar solo.
+    `,
+    segundo: `
+      A mitad de año vas a encontrar un modo más equilibrado de estar.
+      Acompañar sin absorber.
+      Defender la educación pública desde el cuidado mutuo.
+      Sin desbordarte.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con mayor calma.
+      Entendiendo que la comunidad se sostiene con gestos pequeños.
+      Y que el Alicia siempre deja la puerta abierta.
+    `
+  },
+
+  leo: {
+    verano: `
+      El verano va a ser tiempo de disfrute.
+      Celebrar el título, recuperar confianza.
+      El Alicia va a aparecer como escenario importante de tu formación.
+      Uno que dejó huella.
+    `,
+    primer: `
+      Durante el primer semestre vas a evaluar si querés volver a participar.
+      No para brillar solo, sino para sumar en momentos sensibles.
+      El intercambio con otros egresados va a ordenar prioridades.
+      El protagonismo va a volverse compartido.
+    `,
+    segundo: `
+      A mitad de año vas a descubrir que defender lo público también implica visibilizar.
+      Acompañar causas, apoyar cuando la comunidad lo necesita.
+      Tu voz va a sumar.
+      Incluso sin estar al frente.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con una convicción nueva.
+      El Alicia va a seguir invitando a volver.
+      Y tu lugar va a existir.
+      Aunque no sea el de antes.
+    `
+  },
+
+  virgo: {
+    verano: `
+      El verano va a permitirte ordenar.
+      Ideas, proyectos, tiempos.
+      El Alicia va a aparecer como institución conocida.
+      Con virtudes y tensiones.
+    `,
+    primer: `
+      En el primer semestre vas a observar con atención los cambios.
+      Ajustes, recortes, desorden.
+      El diálogo con otros egresados va a organizar respuestas posibles.
+      Sin dramatismo, pero con claridad.
+    `,
+    segundo: `
+      A mitad de año vas a aportar desde lo concreto.
+      Ayudar a organizar, a pensar estrategias colectivas.
+      La defensa de la educación pública va a necesitar método.
+      Y paciencia.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con alivio.
+      Sabiendo que hiciste tu parte.
+      Y que el Alicia se sostiene mejor cuando nadie actúa solo.
+    `
+  },
+
+  libra: {
+    verano: `
+      El verano va a reordenar vínculos.
+      Conversaciones pendientes, encuentros sin urgencia.
+      El Alicia va a aparecer como espacio de acuerdos y tensiones.
+    `,
+    primer: `
+      Durante el primer semestre vas a notar climas más ásperos.
+      Discusiones sobre el futuro de lo público.
+      Vas a tender puentes, facilitar diálogos.
+      Sin perderte en el intento.
+    `,
+    segundo: `
+      A mitad de año vas a tomar posiciones más claras.
+      Defender la educación pública también va a implicar decir hasta dónde.
+      La armonía va a volverse activa.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con equilibrio.
+      El Alicia va a seguir siendo comunidad.
+      Y la comunidad va a necesitar voces comprometidas.
+    `
+  },
+
+  escorpio: {
+    verano: `
+      El verano va a ser de revisión profunda.
+      Decisiones que no se pueden seguir postergando.
+      El Alicia va a aparecer como experiencia intensa.
+      Que transformó.
+    `,
+    primer: `
+      En el primer semestre vas a leer con claridad el contexto.
+      Amenazas, silencios, disputas.
+      El contacto con otros egresados va a fortalecer posiciones.
+      Para no quedar aislado.
+    `,
+    segundo: `
+      A mitad de año vas a elegir dónde poner tu energía.
+      Participar cuando haga falta, retirarte cuando no.
+      La defensa de lo público va a ser una toma de posición.
+      Consciente.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con coherencia.
+      El Alicia va a seguir invitando a volver.
+      Y vos vas a decidir cómo.
+    `
+  },
+
+  sagitario: {
+    verano: `
+      El verano va a abrir horizontes.
+      Ideas nuevas, recorridos posibles.
+      El Alicia va a aparecer como punto de partida.
+      No como límite.
+    `,
+    primer: `
+      Durante el primer semestre vas a considerar nuevos caminos.
+      Otra carrera, proyectos colectivos, participación en debates públicos.
+      El contacto con otros egresados va a ampliar la mirada.
+    `,
+    segundo: `
+      A mitad de año vas a traer entusiasmo a espacios compartidos.
+      Charlas, encuentros, defensa de la educación pública.
+      La educación va a volver a sentirse aventura común.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con expansión.
+      Volver no siempre va a ser regresar igual.
+      A veces será inventar otra forma.
+    `
+  },
+
+  capricornio: {
+    verano: `
+      El verano va a pedirte aflojar.
+      Soltar responsabilidades que ya no corresponden.
+      El Alicia va a aparecer como estructura conocida.
+    `,
+    primer: `
+      En el primer semestre vas a evaluar dónde hace falta sostener.
+      Organizar, acompañar, estar cuando la comunidad lo necesite.
+      El diálogo con otros egresados va a ordenar esfuerzos.
+    `,
+    segundo: `
+      A mitad de año vas a confiar más en lo colectivo.
+      Delegar, compartir decisiones.
+      La defensa de la educación pública va a dejar de ser individual.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con solidez.
+      Sabiendo que el Alicia se sostiene mejor entre muchos.
+      Y que siempre habrá lugar para volver.
+    `
+  },
+
+  acuario: {
+    verano: `
+      El verano va a ser laboratorio de ideas.
+      Formas nuevas de participación, cruces inesperados.
+      El Alicia va a aparecer como espacio a repensar.
+    `,
+    primer: `
+      Durante el primer semestre vas a chocar con límites.
+      Pero también vas a encontrar aliados.
+      Otros egresados van a compartir la inquietud.
+    `,
+    segundo: `
+      A mitad de año vas a impulsar redes.
+      Acciones colectivas, defensa de lo público, propuestas alternativas.
+      El cambio va a empezar en pequeño.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con convicción.
+      Volver no siempre será regresar igual.
+      A veces será transformar.
+    `
+  },
+
+  piscis: {
+    verano: `
+      El verano va a ser de descanso profundo.
+      Emociones que bajan, heridas que cierran.
+      El Alicia va a aparecer como recuerdo sensible.
+    `,
+    primer: `
+      En el primer semestre vas a sentir con fuerza lo que está en juego.
+      La educación pública como espacio humano.
+      El contacto con otros egresados va a sostenerte.
+    `,
+    segundo: `
+      A mitad de año vas a encontrar tu modo de compromiso.
+      Estar presente cuando haga falta.
+      Cuidar la comunidad sin perderte.
+    `,
+    cierre: `
+      El 2026 va a cerrarse con una certeza suave.
+      El Alicia va a seguir invitando a volver.
+      Y lo humano va a seguir siendo el centro.
+    `
+  }
+};
 
   tauro: {
     verano: `
