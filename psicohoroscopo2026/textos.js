@@ -35,7 +35,7 @@ window.textos = {
       `,
       primer: `
         El primer cuatrimestre traerá su propio temblor: cambios institucionales que no se explicarán del todo, reglas nuevas que no contemplarán la realidad cotidiana del aula. Se verán intentos de limitar la injerencia de la comunidad en las decisiones clave.
-        Vos, fiel a vos mismo, no entrarás en la corrida general; te dedicarás a sostener lo que importa de tu práctica.
+        Vos, sin correrte de tu eje, no entrarás en la corrida general; te dedicarás a sostener lo que importa de tu práctica.
         Tu estabilidad será un punto de apoyo para más de un colega. Tu desafío será mantener tu eje sin volverte totalmente resistente a cualquier cambio necesario.
       `,
       segundo: `
@@ -87,13 +87,13 @@ window.textos = {
         Tu energía será valiosa; deberás aprender a diferenciar entre empatizar y cargar con la mochila ajena.
       `,
       segundo: `
-        A mitad de año aparecerá un aprendizaje que venías postergando: permitirte ser cuidado.
+        A mitad de año aparecerá un aprendizaje que venías postergando: dejarte cuidar.
         Empezarás a practicar el decir “no puedo”, “hasta acá llego”, “esto necesito que me ayuden” sin culpa.
         Lo que antes vivías como una señal de debilidad empezará a sentirse como un acto de verdad y autoafirmación.
         Y, curiosamente, eso fortalecerá tus vínculos: cuando vos muestres tu límite de manera honesta, otros entenderán que también pueden tener uno, y la red de contención se ampliará.
       `,
       cierre: `
-        El fin de año te encontrará más acompañado y menos victimizado por la sobrecarga.
+        El fin de año te encontrará menos expuesto a la sobrecarga y con una red que te sostiene.
         No es que el contexto institucional haya mejorado mágicamente, sino que vos habrás aprendido a transitarlo de otro modo, con una estrategia de autocuidado renovada.
         La fórmula será menos sacrificio, más reciprocidad: menos absorberlo todo, más compartir lo que pesa con la gente que te quiere.
         Este será el logro más grande de tu 2026: haber fortalecido tu caparazón desde la conexión, no desde el aislamiento.
@@ -102,7 +102,7 @@ window.textos = {
     leo: {
       verano: `
         El verano te devolverá algo del brillo que habías ido apagando bajo el peso de las responsabilidades rutinarias.
-        Leo necesitará sentirse vivo, creativo, conectado con su deseo y propósito.
+        Leo necesitará sentirse vivo, creativo, en conexión con su deseo y propósito.
         En enero reaparecerá un impulso que no será de rendimiento, sino de vitalidad pura: cocinar algo rico, bailar un rato, retomar un hobby olvidado.
         Ese reencuentro con tu chispa interna será clave; será tu combustible para el resto del año, que te pedirá ser referente sin necesidad de imponer.
         Dejarás de lado la necesidad de planificar y simplemente disfrutarás de la luz.
@@ -198,7 +198,7 @@ window.textos = {
         A mitad de año, el sistema empezará a moverse gracias a las preguntas incómodas que vos pusiste sobre la mesa.
         No será una revolución visible, será una depuración interna de procesos que eran ineficientes o injustos.
         Tu gestión se volverá más austera y más coherente, sirviendo de ejemplo.
-        Descubrirás que la fuerza estará en el silencio; no necesitarás gritar para ser escuchado, tu coherencia será tu poder para blindar el instituto.
+        Descubrirás que la fuerza estará en el silencio; no necesitarás gritar para que te escuchen, tu coherencia será tu poder para blindar el instituto.
         Te volverás un referente de la ética en la gestión.
       `,
       cierre: `
@@ -206,7 +206,7 @@ window.textos = {
         Habrás perdido algunas certezas que eran ilusiones, pero ganarás profundidad y una visión más aguda de la realidad institucional.
         Lo que se transformó en tu vida profesional y tus vínculos era estructural, y vos lo sabías desde el inicio.
         Te llevarás la fuerza de haber atravesado la crisis sin negociar tu esencia.
-        El próximo año te encontrará anclado en un nuevo tipo de poder personal: el de la coherencia en la defensa de lo público.
+        El próximo año te encontrará consolidando un nuevo tipo de poder personal: el de la coherencia en la defensa de lo público.
       `
     },
     sagitario: {
@@ -319,7 +319,7 @@ window.textos = {
         La conexión sana te dará un nuevo anclaje.
       `,
       cierre: `
-        El fin de año te encontrará más acompañado y menos victimizado por la sobrecarga.
+        El fin de año te encontrará menos expuesto a la sobrecarga y con una red que te sostiene.
         No es que el contexto institucional haya mejorado mágicamente, sino que vos habrás aprendido a transitarlo de otro modo, con una estrategia de autocuidado renovada.
         La fórmula será menos sacrificio, más reciprocidad: menos absorberlo todo, más compartir lo que pesa con la gente que te quiere.
         Este será el logro más grande de tu 2026: haber fortalecido tu caparazón desde la conexión, no desde el aislamiento.
@@ -329,7 +329,7 @@ window.textos = {
   "personal-auxiliar": {
     aries: {
       verano: `
-        El verano te va a encontrar un poco cansado, pero con esa sensación satisfecha de haber sostenido mucho durante el año anterior.
+        El verano te va a encontrar con algo de cansancio, pero con esa sensación satisfecha de haber sostenido mucho durante el año anterior.
         Venís de un período intenso donde resolviste rápido, estuviste siempre disponible y apagaste incendios chicos y grandes.
         Ahora este tiempo te va a pedir bajar la urgencia, cambiar el ritmo y dejar de correr tanto.
         No se trata de no hacer nada, sino de hacer las cosas sin presión, sin el reloj encima, recuperando fuerza y energía para todo lo que viene después.
@@ -684,7 +684,7 @@ window.textos = {
         Tu presencia humanizará la burocracia.
       `,
       cierre: `
-        Llegarás a diciembre cansado, pero con el corazón lleno de agradecimientos.
+        Llegarás a diciembre con cansancio, pero con el corazón lleno de agradecimientos.
         Habrás aprendido que tu rol es cuidar la trama humana del instituto.
         Te irás con la certeza de que en el Alicia sos mucho más que un cargo: sos el alma que sostiene.
       `
@@ -989,7 +989,7 @@ window.textos = {
     leo: {
       verano: `
         El verano te devolverá el brillo que la cursada había apagado.
-        Necesitarás sentirte creativo, conectado con tu deseo y ser el centro de tu propia vida.
+        Necesitarás dar lugar a la creatividad, estar en contacto con tu deseo y ser el centro de tu propia vida..
         Retomarás hobbies, actividades que te den vitalidad y planes que te entusiasmen.
         Este reencuentro con tu chispa interna será tu combustible para el resto del año.
         Dejarás de lado la necesidad de planificar y simplemente disfrutarás de la luz.
@@ -1098,7 +1098,7 @@ window.textos = {
         El año terminará y nada estará igual que al comienzo.
         Habrás perdido algunas certezas que eran ilusiones, pero ganarás profundidad y una visión más aguda de tu proceso.
         Te llevarás la fuerza de haber atravesado la crisis sin negociar tu esencia.
-        El próximo año te encontrará anclado en un nuevo tipo de poder personal: el de la coherencia.
+        El próximo año te encontrará con un nuevo tipo de poder personal: el de la coherencia.
       `
     },
     sagitario: {
@@ -1401,8 +1401,7 @@ window.textos = {
       primer: `
         En el primer semestre vas a leer con claridad el contexto.
         Amenazas, silencios, disputas.
-        El contacto con otros egresados va a fortalecer posiciones.
-        Para no quedar aislado.
+        El contacto con otros egresados va a fortalecer posiciones para no quedar en soledad.
       `,
       segundo: `
         A mitad de año vas a elegir dónde poner tu energía.
@@ -1448,7 +1447,7 @@ window.textos = {
       primer: `
         En el primer semestre vas a evaluar dónde hace falta sostener.
         Organizar, acompañar, estar cuando la comunidad lo necesite.
-        El diálogo con otros egresados va a ordenar esfuerzos.
+        El diálogo con otros egresados va servir para ordenar esfuerzos.
       `,
       segundo: `
         A mitad de año vas a confiar más en lo colectivo.
